@@ -17,7 +17,13 @@ export interface UserStats {
   completedLessons: string[];
 }
 
-export type UserRole = "player" | "parent";
+export type UserRole = "player" | "parent" | "student";
+
+export interface InstitutionalConfig {
+  studentName: string;
+  institutionalEmail: string;
+  verificationCode: string;
+}
 
 export interface ParentConfig {
   idNumber: string;
@@ -46,6 +52,7 @@ export interface Question {
   options?: string[];
   correct?: any;
   feedback?: string;
+  hint?: string;
   reviewFromId?: string;
 }
 

@@ -38,6 +38,7 @@ import {
   Technique,
   UserRole,
   ParentConfig,
+  InstitutionalConfig,
 } from "./types";
 
 // Mock data
@@ -189,7 +190,9 @@ const INITIAL_LESSONS: Lesson[] = [
 export default function App() {
   const [view, setView] = useState<
     | "onboarding"
+    | "parentConsent"
     | "roleSelection"
+    | "institutionalForm"
     | "intro"
     | "walkthrough"
     | "dashboard"
@@ -202,6 +205,8 @@ export default function App() {
   const [ageGroup, setAgeGroup] = useState<AgeGroup | null>(null);
   const [parentalConsent, setParentalConsent] = useState(false);
   const [parentData, setParentData] = useState<ParentConfig | null>(null);
+  const [institutionalData, setInstitutionalData] =
+    useState<InstitutionalConfig | null>(null);
   const [stats, setStats] = useState<UserStats>({
     xp: 0,
     streak: 1,
@@ -218,7 +223,7 @@ export default function App() {
   const [showCrisis, setShowCrisis] = useState(false);
   const [showEditProfile, setShowEditProfile] = useState(false);
 
-  // Persistence
+  // Persistence - Load once on mount
   useEffect(() => {
     const saved = localStorage.getItem("mindhero_data");
     if (saved) {
@@ -242,13 +247,14 @@ export default function App() {
         if (data.ageGroup) setAgeGroup(data.ageGroup);
         if (data.parentalConsent) {
           setParentalConsent(data.parentalConsent);
-          if (view === "onboarding") setView("dashboard");
+          // Only redirect if we haven't set a different view yet
+          setView("dashboard");
         }
       } catch (e) {
         console.error("Error loading saved data", e);
       }
     }
-  }, [view]);
+  }, []); // Run only on mount
 
   const save = (
     updatedStats = stats,
@@ -269,36 +275,34 @@ export default function App() {
 
   const handleStartOnboarding = (age: AgeGroup) => {
     setAgeGroup(age);
-    setView("roleSelection");
-  };
-
-  const handleRoleSelection = (role: UserRole) => {
-    setUserRole(role);
+    setView("parentConsent");
   };
 
   const handleConsent = (data: ParentConfig) => {
     setParentData(data);
     setParentalConsent(true);
-    if (userRole === "parent" || (!userRole && data)) {
-      // Fallback if userRole is not set yet but they came from parent flow
-      setView("parentView");
-    } else {
-      setView("intro");
-    }
+    setView("roleSelection");
     save(stats, ageGroup, true, data);
   };
 
-  const handleStartLesson = (lesson: Lesson) => {
-    const today = new Date().toDateString();
-
-    // One level per day rule
-    if (stats.lastLessonDate === today && !lesson.completed) {
-      alert(
-        "¡Guardián! Has entrenado lo suficiente por hoy. Vuelve mañana para continuar tu misión. La constancia es tu mayor poder.",
-      );
-      return;
+  const handleRoleSelection = (role: UserRole) => {
+    setUserRole(role);
+    if (role === "parent") {
+      setView("parentView");
+    } else if (role === "student") {
+      setView("institutionalForm");
+    } else {
+      setView("intro");
     }
+  };
 
+  const handleInstitutionalSubmit = (data: InstitutionalConfig) => {
+    setInstitutionalData(data);
+    setView("intro");
+    // We could save this data too if needed
+  };
+
+  const handleStartLesson = (lesson: Lesson) => {
     const prevLessonsDone =
       lessons.filter((l) => l.order < lesson.order && !l.completed).length ===
       0;
@@ -384,11 +388,18 @@ export default function App() {
           <Onboarding key="onboarding" onStart={handleStartOnboarding} />
         )}
 
+        {view === "parentConsent" && (
+          <ParentConsentView key="consent" onConsent={handleConsent} />
+        )}
+
         {view === "roleSelection" && (
-          <RoleSelection
-            key="roles"
-            onSelect={handleRoleSelection}
-            onConsent={handleConsent}
+          <RoleSelection key="roles" onSelect={handleRoleSelection} />
+        )}
+
+        {view === "institutionalForm" && (
+          <InstitutionalFormView
+            key="inst"
+            onSubmit={handleInstitutionalSubmit}
           />
         )}
 
@@ -605,17 +616,12 @@ function IntroNarrative({
   );
 }
 
-function RoleSelection({
-  onSelect,
+function ParentConsentView({
   onConsent,
 }: {
-  onSelect: (role: UserRole) => void;
   onConsent: (data: ParentConfig) => void;
   key?: string;
 }) {
-  const [internalMode, setInternalMode] = useState<"select" | "consent">(
-    "select",
-  );
   const [formData, setFormData] = useState<ParentConfig>({
     idNumber: "",
     verifiedEmail: "",
@@ -628,103 +634,199 @@ function RoleSelection({
       animate={{ opacity: 1, scale: 1 }}
       className="max-w-md w-full px-8 py-12 flex flex-col items-center text-center bg-white border-8 border-bg-space rounded-[60px] shadow-2xl z-10"
     >
-      {internalMode === "select" ? (
-        <>
-          <div className="w-20 h-20 bg-brand-primary rounded-3xl flex items-center justify-center text-white mb-8 shadow-xl">
-            <User size={40} />
-          </div>
-          <h2 className="text-3xl font-black text-slate-800 uppercase tracking-tight mb-8">
-            ¿Quién eres tú?
-          </h2>
-          <div className="grid gap-6 w-full">
-            <button
-              onClick={() => {
-                setInternalMode("consent");
-                onSelect("player");
-              }}
-              className="py-6 bg-brand-primary text-white font-black rounded-3xl border-b-8 border-blue-800 hover:scale-[1.02] active:translate-y-1 active:border-b-0 flex items-center justify-center gap-4 text-xl"
-            >
-              <Gamepad2 /> SOY JUGADOR
-            </button>
-            <button
-              onClick={() => {
-                setInternalMode("consent");
-                onSelect("parent");
-              }}
-              className="py-6 bg-bg-space text-brand-primary font-black rounded-3xl border-b-8 border-slate-900 border-2 hover:scale-[1.02] active:translate-y-1 active:border-b-0 flex items-center justify-center gap-4 text-xl"
-            >
-              <User /> SOY EL PADRE
-            </button>
-          </div>
-        </>
-      ) : (
-        <div className="w-full">
-          <h2 className="text-2xl font-black text-slate-800 uppercase mb-4">
-            Verificación de Adulto
-          </h2>
-          <p className="text-slate-500 font-bold mb-8 text-sm">
-            De acuerdo con la Ley 1098, requerimos verificar los datos del
-            responsable legal.
-          </p>
+      <div className="w-full">
+        <h2 className="text-2xl font-black text-slate-800 uppercase mb-4">
+          Verificación de Adulto
+        </h2>
+        <p className="text-slate-500 font-bold mb-8 text-sm">
+          De acuerdo con la Ley 1098, requerimos verificar los datos del
+          responsable legal.
+        </p>
 
-          <div className="space-y-4 text-left">
-            <div>
-              <label className="text-[10px] font-black uppercase text-slate-400">
-                Nombre del Menor
-              </label>
-              <input
-                type="text"
-                className="w-full bg-slate-50 border-2 border-slate-100 p-4 rounded-xl font-bold"
-                placeholder="Nombre completo"
-                value={formData.childName}
-                onChange={(e) =>
-                  setFormData({ ...formData, childName: e.target.value })
-                }
-              />
-            </div>
-            <div>
-              <label className="text-[10px] font-black uppercase text-slate-400">
-                Cédula del Acudiente
-              </label>
-              <input
-                type="text"
-                className="w-full bg-slate-50 border-2 border-slate-100 p-4 rounded-xl font-bold"
-                placeholder="Número de documento"
-                value={formData.idNumber}
-                onChange={(e) =>
-                  setFormData({ ...formData, idNumber: e.target.value })
-                }
-              />
-            </div>
-            <div>
-              <label className="text-[10px] font-black uppercase text-slate-400">
-                Correo de Contacto
-              </label>
-              <input
-                type="email"
-                className="w-full bg-slate-50 border-2 border-slate-100 p-4 rounded-xl font-bold"
-                placeholder="email@ejemplo.com"
-                value={formData.verifiedEmail}
-                onChange={(e) =>
-                  setFormData({ ...formData, verifiedEmail: e.target.value })
-                }
-              />
-            </div>
+        <div className="space-y-4 text-left">
+          <div>
+            <label className="text-[10px] font-black uppercase text-slate-400">
+              Nombre del Menor
+            </label>
+            <input
+              type="text"
+              className="w-full bg-slate-50 border-2 border-slate-100 p-4 rounded-xl font-bold"
+              placeholder="Nombre completo"
+              value={formData.childName}
+              onChange={(e) =>
+                setFormData({ ...formData, childName: e.target.value })
+              }
+            />
           </div>
-
-          <button
-            disabled={
-              !formData.childName ||
-              !formData.idNumber ||
-              !formData.verifiedEmail
-            }
-            onClick={() => onConsent(formData)}
-            className="w-full mt-10 py-5 bg-accent-amber text-slate-800 font-black rounded-3xl border-b-8 border-yellow-600 shadow-xl uppercase tracking-widest disabled:opacity-50 disabled:grayscale"
-          >
-            VERIFICAR Y CONTINUAR
-          </button>
+          <div>
+            <label className="text-[10px] font-black uppercase text-slate-400">
+              Cédula del Acudiente
+            </label>
+            <input
+              type="text"
+              className="w-full bg-slate-50 border-2 border-slate-100 p-4 rounded-xl font-bold"
+              placeholder="Número de documento"
+              value={formData.idNumber}
+              onChange={(e) =>
+                setFormData({ ...formData, idNumber: e.target.value })
+              }
+            />
+          </div>
+          <div>
+            <label className="text-[10px] font-black uppercase text-slate-400">
+              Correo de Contacto
+            </label>
+            <input
+              type="email"
+              className="w-full bg-slate-50 border-2 border-slate-100 p-4 rounded-xl font-bold"
+              placeholder="email@ejemplo.com"
+              value={formData.verifiedEmail}
+              onChange={(e) =>
+                setFormData({ ...formData, verifiedEmail: e.target.value })
+              }
+            />
+          </div>
         </div>
-      )}
+
+        <button
+          disabled={
+            !formData.childName || !formData.idNumber || !formData.verifiedEmail
+          }
+          onClick={() => onConsent(formData)}
+          className="w-full mt-10 py-5 bg-accent-amber text-slate-800 font-black rounded-3xl border-b-8 border-yellow-600 shadow-xl uppercase tracking-widest disabled:opacity-50 disabled:grayscale"
+        >
+          VERIFICAR Y CONTINUAR
+        </button>
+      </div>
+    </motion.div>
+  );
+}
+
+function RoleSelection({
+  onSelect,
+}: {
+  onSelect: (role: UserRole) => void;
+  key?: string;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      className="max-w-md w-full px-8 py-12 flex flex-col items-center text-center bg-white border-8 border-bg-space rounded-[60px] shadow-2xl z-10"
+    >
+      <div className="w-20 h-20 bg-brand-primary rounded-3xl flex items-center justify-center text-white mb-8 shadow-xl">
+        <User size={40} />
+      </div>
+      <h2 className="text-3xl font-black text-slate-800 uppercase tracking-tight mb-8">
+        ¿Quién eres tú?
+      </h2>
+      <div className="grid gap-6 w-full">
+        <button
+          onClick={() => onSelect("player")}
+          className="py-6 bg-brand-primary text-white font-black rounded-3xl border-b-8 border-blue-800 hover:scale-[1.02] active:translate-y-1 active:border-b-0 flex items-center justify-center gap-4 text-xl"
+        >
+          <Gamepad2 /> SOY JUGADOR
+        </button>
+        <button
+          onClick={() => onSelect("parent")}
+          className="py-6 bg-bg-space text-brand-primary font-black rounded-3xl border-b-8 border-slate-900 border-2 hover:scale-[1.02] active:translate-y-1 active:border-b-0 flex items-center justify-center gap-4 text-xl"
+        >
+          <User /> SOY EL PADRE
+        </button>
+        <button
+          onClick={() => onSelect("student")}
+          className="py-6 bg-slate-100 text-slate-700 font-black rounded-3xl border-b-8 border-slate-300 border-2 hover:scale-[1.02] active:translate-y-1 active:border-b-0 flex items-center justify-center gap-4 text-xl"
+        >
+          <BookOpen /> SOY ESTUDIANTE
+        </button>
+      </div>
+    </motion.div>
+  );
+}
+
+function InstitutionalFormView({
+  onSubmit,
+}: {
+  onSubmit: (data: InstitutionalConfig) => void;
+  key?: string;
+}) {
+  const [formData, setFormData] = useState<InstitutionalConfig>({
+    studentName: "",
+    institutionalEmail: "",
+    verificationCode: "",
+  });
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      className="max-w-md w-full px-8 py-12 flex flex-col items-center text-center bg-white border-8 border-bg-space rounded-[60px] shadow-2xl z-10"
+    >
+      <div className="w-full">
+        <h2 className="text-2xl font-black text-slate-800 uppercase mb-4 text-center">
+          Registro Institucional
+        </h2>
+        <p className="text-slate-500 font-bold mb-8 text-sm text-center">
+          Completa tus datos académicos para acceder a la red de tu institución.
+        </p>
+
+        <div className="space-y-4 text-left">
+          <div>
+            <label className="text-[10px] font-black uppercase text-slate-400">
+              Nombre del Estudiante
+            </label>
+            <input
+              type="text"
+              className="w-full bg-slate-50 border-2 border-slate-100 p-4 rounded-xl font-bold"
+              placeholder="Tu nombre completo"
+              value={formData.studentName}
+              onChange={(e) =>
+                setFormData({ ...formData, studentName: e.target.value })
+              }
+            />
+          </div>
+          <div>
+            <label className="text-[10px] font-black uppercase text-slate-400">
+              Correo Institucional
+            </label>
+            <input
+              type="email"
+              className="w-full bg-slate-50 border-2 border-slate-100 p-4 rounded-xl font-bold"
+              placeholder="estudiante@colegio.edu.co"
+              value={formData.institutionalEmail}
+              onChange={(e) =>
+                setFormData({ ...formData, institutionalEmail: e.target.value })
+              }
+            />
+          </div>
+          <div>
+            <label className="text-[10px] font-black uppercase text-slate-400">
+              Código de Verificación
+            </label>
+            <input
+              type="text"
+              className="w-full bg-slate-50 border-2 border-slate-100 p-4 rounded-xl font-bold"
+              placeholder="Código entregado por tu colegio"
+              value={formData.verificationCode}
+              onChange={(e) =>
+                setFormData({ ...formData, verificationCode: e.target.value })
+              }
+            />
+          </div>
+        </div>
+
+        <button
+          disabled={
+            !formData.studentName ||
+            !formData.institutionalEmail ||
+            !formData.verificationCode
+          }
+          onClick={() => onSubmit(formData)}
+          className="w-full mt-10 py-5 bg-brand-primary text-white font-black rounded-3xl border-b-8 border-purple-800 shadow-xl uppercase tracking-widest disabled:opacity-50 disabled:grayscale"
+        >
+          ACCEDER AL JUEGO
+        </button>
+      </div>
     </motion.div>
   );
 }
@@ -860,11 +962,17 @@ function ParentDashboard({
   const completedCount = lessons.filter((l) => l.completed).length;
   const totalCount = lessons.length;
 
+  const getSectionProgress = (sectionId: string) => {
+    const sectionLessons = lessons.filter((l) => l.sectionId === sectionId);
+    const completed = sectionLessons.filter((l) => l.completed).length;
+    return Math.round((completed / sectionLessons.length) * 100);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="max-w-xl w-full px-8 py-12 bg-white rounded-[60px] shadow-2xl border-8 border-bg-space"
+      className="max-w-xl w-full px-8 py-12 bg-white rounded-[60px] shadow-2xl border-8 border-bg-space overflow-y-auto max-h-[90vh]"
     >
       <header className="flex items-center justify-between mb-10">
         <button
@@ -873,11 +981,42 @@ function ParentDashboard({
         >
           <ChevronLeft />
         </button>
-        <h2 className="text-xl font-black text-slate-800 uppercase tracking-widest">
-          Portal de Padres
+        <h2 className="text-xl font-black text-slate-800 uppercase tracking-widest text-center">
+          Progreso del Hijo
         </h2>
         <div className="w-12" />
       </header>
+
+      <div className="grid grid-cols-2 gap-4 mb-8">
+        <div className="p-6 bg-blue-50 rounded-3xl border-2 border-blue-100 text-center">
+          <p className="text-[10px] font-black text-blue-400 uppercase mb-2">
+            Ansiedad
+          </p>
+          <p className="text-3xl font-black text-slate-800">
+            {getSectionProgress("anxiety")}%
+          </p>
+          <div className="w-full h-1.5 bg-white rounded-full mt-3 overflow-hidden">
+            <div
+              className="h-full bg-blue-500"
+              style={{ width: `${getSectionProgress("anxiety")}%` }}
+            />
+          </div>
+        </div>
+        <div className="p-6 bg-purple-50 rounded-3xl border-2 border-purple-100 text-center">
+          <p className="text-[10px] font-black text-purple-400 uppercase mb-2">
+            Depresión
+          </p>
+          <p className="text-3xl font-black text-slate-800">
+            {getSectionProgress("depression")}%
+          </p>
+          <div className="w-full h-1.5 bg-white rounded-full mt-3 overflow-hidden">
+            <div
+              className="h-full bg-purple-500"
+              style={{ width: `${getSectionProgress("depression")}%` }}
+            />
+          </div>
+        </div>
+      </div>
 
       <div className="p-8 bg-blue-50 rounded-[40px] border-2 border-blue-100 mb-8">
         <p className="text-[10px] font-black text-blue-400 uppercase tracking-widest mb-4 text-center">
@@ -1093,10 +1232,13 @@ function Dashboard({
                   <div className="flex flex-col items-center space-y-16 relative">
                     {/* Visual Connection line could be added here */}
                     {sectionLessons.map((lesson, lIdx) => {
+                      const isCompleted = lesson.completed;
                       const isLocked =
                         lIdx > 0 &&
                         !sectionLessons[lIdx - 1]?.completed &&
-                        !lesson.completed;
+                        !isCompleted;
+                      const isActive = !isLocked && !isCompleted;
+
                       return (
                         <div key={lesson.id} className="relative group">
                           {/* Connection line fragment */}
@@ -1106,17 +1248,32 @@ function Dashboard({
 
                           <motion.button
                             initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: lIdx * 0.1 }}
+                            animate={{
+                              opacity: 1,
+                              scale: isActive ? 1.15 : 1,
+                              filter: isActive
+                                ? "drop-shadow(0 0 15px rgba(97,0,148,0.6))"
+                                : "none",
+                            }}
+                            transition={{
+                              delay: lIdx * 0.1,
+                              scale: isActive
+                                ? {
+                                    duration: 1.5,
+                                    repeat: Infinity,
+                                    repeatType: "reverse",
+                                  }
+                                : {},
+                            }}
                             onClick={() => !isLocked && onStartLesson(lesson)}
                             className={`
                               w-24 h-24 rounded-full flex flex-col items-center justify-center shadow-2xl relative z-10 transition-all
                               ${
-                                lesson.completed
+                                isCompleted
                                   ? "bg-brand-success border-b-8 border-green-700 text-white shadow-green-500/30"
                                   : isLocked
                                     ? "bg-slate-800 border-b-8 border-slate-900 text-slate-600 opacity-60"
-                                    : "bg-brand-primary border-b-8 border-purple-800 text-white shadow-purple-500/30 glow-text ring-4 ring-purple-500/20"
+                                    : "bg-brand-primary border-b-8 border-purple-800 text-white shadow-purple-500/30 ring-4 ring-purple-500/40 glow-text shadow-[0_0_30px_rgba(97,0,148,0.4)]"
                               }
                               ${lIdx % 2 === 0 ? "-translate-x-10" : "translate-x-10"}
                               hover:scale-110 active:translate-y-1 active:border-b-0
@@ -1129,17 +1286,17 @@ function Dashboard({
                                   ? "🤖"
                                   : "🪐"}
                             </span>
-                            {lesson.completed ? (
+                            {isCompleted ? (
                               <Check size={20} className="font-black" />
                             ) : null}
                           </motion.button>
 
                           {/* Current label */}
-                          {!lesson.completed && !isLocked && (
+                          {isActive && (
                             <div
-                              className={`absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1 bg-accent-amber text-black font-black rounded-lg text-[9px] uppercase tracking-widest whitespace-nowrap animate-pulse`}
+                              className={`absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1 bg-accent-amber text-black font-black rounded-lg text-[9px] uppercase tracking-widest whitespace-nowrap animate-bounce z-20`}
                             >
-                              En Curso
+                              ¡JUEGA AQUÍ!
                             </div>
                           )}
 
@@ -1684,6 +1841,7 @@ function LessonView({
   );
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [isSpeaking, setIsSpeaking] = useState(false);
+  const [showHint, setShowHint] = useState(false);
 
   const content = lesson.content || [];
   const currentContent = content[step];
@@ -1691,10 +1849,23 @@ function LessonView({
   const toggleSpeak = () => {
     setIsSpeaking(!isSpeaking);
     if (!isSpeaking) {
-      const utterance = new SpeechSynthesisUtterance(
-        currentContent.text || currentContent.question,
-      );
+      const textToSpeak = currentContent.text || currentContent.question;
+      const utterance = new SpeechSynthesisUtterance(textToSpeak);
       utterance.lang = "es-ES";
+      utterance.rate = 0.85; // Relaxed speed
+      utterance.pitch = 1.1; // Friendly pitch
+
+      // Try to find a better voice if available
+      const voices = window.speechSynthesis.getVoices();
+      const spanishVoice = voices.find(
+        (v) =>
+          v.lang.includes("es") &&
+          (v.name.includes("Monica") ||
+            v.name.includes("Helena") ||
+            v.name.includes("Google")),
+      );
+      if (spanishVoice) utterance.voice = spanishVoice;
+
       utterance.onend = () => setIsSpeaking(false);
       window.speechSynthesis.speak(utterance);
     } else {
@@ -1705,6 +1876,7 @@ function LessonView({
   const handleNext = () => {
     window.speechSynthesis.cancel();
     setIsSpeaking(false);
+    setShowHint(false);
 
     if (currentContent?.options && !showFeedback) {
       if (selectedOption === null) return;
@@ -1725,6 +1897,15 @@ function LessonView({
     } else {
       onComplete();
     }
+  };
+
+  const getHint = () => {
+    if (currentContent.hint) return currentContent.hint;
+    if (currentContent.options && currentContent.correct !== undefined) {
+      const correctText = currentContent.options[currentContent.correct];
+      return `Kaelen susurra: "Enfócate en la opción que menciona '${correctText.split(" ").slice(0, 2).join(" ")}...'. Es la clave para vencer esta sombra."`;
+    }
+    return "Confía en tu entrenamiento de Guardián.";
   };
 
   if (!currentContent) return null;
@@ -1775,16 +1956,38 @@ function LessonView({
               </div>
             )}
 
-            <button
-              onClick={toggleSpeak}
-              className={`absolute top-4 left-8 p-3 rounded-full transition-all ${isSpeaking ? "bg-brand-primary text-white scale-110" : "bg-white/5 text-slate-400 hover:bg-white/10"}`}
-              title="Escuchar explicación"
-            >
-              <Zap size={20} fill={isSpeaking ? "currentColor" : "none"} />
-            </button>
+            <div className="absolute top-4 left-8 flex gap-2">
+              <button
+                onClick={toggleSpeak}
+                className={`p-3 rounded-xl transition-all ${isSpeaking ? "bg-brand-primary text-white scale-110 shadow-[0_0_15px_#610094]" : "bg-white/5 text-slate-400 hover:bg-white/10 border border-white/10"}`}
+                title="Escuchar con voz relajada"
+              >
+                <Zap size={20} fill={isSpeaking ? "currentColor" : "none"} />
+              </button>
+
+              {currentContent.options && (
+                <button
+                  onClick={() => setShowHint(!showHint)}
+                  className={`p-3 rounded-xl transition-all ${showHint ? "bg-accent-amber text-slate-900 scale-110 shadow-[0_0_15px_#FFB400]" : "bg-white/5 text-slate-400 hover:bg-white/10 border border-white/10"}`}
+                  title="Obtener pista"
+                >
+                  <Star size={20} fill={showHint ? "currentColor" : "none"} />
+                </button>
+              )}
+            </div>
+
+            {showHint && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="absolute top-20 left-8 right-8 bg-accent-amber/95 p-4 rounded-2xl border-2 border-yellow-400 text-slate-900 font-bold text-xs shadow-xl z-30"
+              >
+                {getHint()}
+              </motion.div>
+            )}
 
             {!currentContent.options ? (
-              <div className="text-center">
+              <div className="text-center mt-6">
                 <div className="text-8xl md:text-9xl mb-8 transform hover:scale-110 transition-transform drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">
                   {currentContent.image ||
                     (lesson.type === "boss" ? "👿" : "🪐")}
@@ -1797,7 +2000,7 @@ function LessonView({
                 </p>
               </div>
             ) : (
-              <div className="text-left w-full">
+              <div className="text-left w-full mt-6">
                 <div className="flex items-center gap-4 mb-8">
                   <div className="w-16 h-16 bg-brand-primary/20 rounded-2xl flex items-center justify-center text-4xl">
                     {lesson.type === "boss" ? "💀" : "❓"}
@@ -1830,44 +2033,47 @@ function LessonView({
           </motion.div>
         </AnimatePresence>
 
-        {/* Feedback Bubble */}
+        {/* Feedback Bubble - Professional and Explanatory */}
         <AnimatePresence>
           {showFeedback && (
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 20, opacity: 0 }}
-              className={`absolute bottom-32 w-full max-w-sm p-6 rounded-3xl border-b-8 shadow-2xl z-20 ${
+              className={`absolute bottom-32 w-full max-w-lg p-8 rounded-[40px] border-b-8 shadow-2xl z-20 ${
                 feedbackType === "correct"
-                  ? "bg-brand-success border-green-700"
+                  ? "bg-brand-success border-green-700 shadow-green-500/20"
                   : feedbackType === "wrong"
-                    ? "bg-accent-rose border-rose-700"
-                    : "bg-accent-amber border-yellow-600"
+                    ? "bg-accent-rose border-rose-700 shadow-rose-500/20"
+                    : "bg-accent-amber border-yellow-600 shadow-amber-500/20"
               }`}
             >
-              <div className="flex gap-4">
-                <div className="text-3xl">
+              <div className="flex gap-6">
+                <div className="text-5xl">
                   {feedbackType === "correct"
-                    ? "✨"
+                    ? "🏆"
                     : feedbackType === "wrong"
-                      ? "💥"
+                      ? "🛸"
                       : "💡"}
                 </div>
                 <div>
-                  <h3 className="font-black text-white uppercase text-xs mb-1">
+                  <h3 className="font-black text-white uppercase text-sm mb-2 tracking-widest">
                     {feedbackType === "correct"
-                      ? "¡CRÍTICO!"
-                      : feedbackType === "wrong"
-                        ? "DAÑO RECIBIDO"
-                        : "INFORMACIÓN"}
+                      ? "Retroalimentación Heroica"
+                      : "Análisis del Guardián"}
                   </h3>
-                  <p className="text-xs text-white/90 font-bold leading-relaxed">
-                    {feedbackType === "correct"
-                      ? currentContent.feedback ||
-                        "¡Has debilitado a la sombra!"
-                      : feedbackType === "wrong"
-                        ? "La sombra te ha golpeado. Pero un héreo siempre se levanta. ¡Intenta de nuevo!"
-                        : "Aprender es tu mejor arma."}
+                  <p className="text-sm text-white/95 font-bold leading-relaxed">
+                    {feedbackType === "correct" ? (
+                      <>
+                        <span className="block mb-2">
+                          ¡Excelente análisis, Guardián!
+                        </span>
+                        {currentContent.feedback ||
+                          "Esta respuesta demuestra una comprensión sólida de los mecanismos psicológicos necesarios para gestionar tus emociones. Sigue aplicando este criterio en tu camino."}
+                      </>
+                    ) : (
+                      "La sombra ha nublado tu juicio esta vez. No te preocupes, el fracaso es solo un peldaño hacia el mando. Analiza la situación y busca la respuesta que promueva la salud y la calma."
+                    )}
                   </p>
                 </div>
               </div>
@@ -1880,9 +2086,11 @@ function LessonView({
                     setSelectedOption(null);
                   }
                 }}
-                className="mt-4 w-full py-3 bg-black/20 text-white font-black text-[10px] uppercase tracking-widest border border-white/20 rounded-xl"
+                className="mt-8 w-full py-5 bg-black/30 hover:bg-black/40 text-white font-black text-sm uppercase tracking-[0.2em] border-2 border-white/20 rounded-2xl transition-all"
               >
-                {feedbackType === "correct" ? "SIGUIENTE" : "REINTENTAR"}
+                {feedbackType === "correct"
+                  ? "CONTINUAR EL VIAJE"
+                  : "REINTENTAR ANÁLISIS"}
               </button>
             </motion.div>
           )}
