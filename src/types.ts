@@ -3,16 +3,26 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export type AgeGroup = 'child' | 'preteen' | 'teen';
+export type AgeGroup = "teen";
 
 export interface UserStats {
   xp: number;
   streak: number;
-  hearts: number; // Will use for infinite or display
+  hearts: number;
   level: number;
   name: string;
   avatar: string;
   bossesDefeated: number;
+  lastLessonDate: string | null;
+  completedLessons: string[];
+}
+
+export type UserRole = "player" | "parent";
+
+export interface ParentConfig {
+  idNumber: string;
+  verifiedEmail: string;
+  childName: string;
 }
 
 export interface Technique {
@@ -30,17 +40,26 @@ export interface Section {
   theme: string;
 }
 
+export interface Question {
+  type: "multiple" | "connect" | "write" | "review";
+  question: string;
+  options?: string[];
+  correct?: any;
+  feedback?: string;
+  reviewFromId?: string;
+}
+
 export interface Lesson {
   id: string;
   sectionId: string;
   title: string;
   description: string;
-  type: 'anxiety' | 'depression' | 'general' | 'boss' | 'npc';
-  activityType: 'narrative' | 'quiz' | 'interactive';
+  type: "anxiety" | "depression" | "general" | "boss" | "npc";
+  activityType: "narrative" | "quiz" | "interactive";
   ageGroup: AgeGroup;
   completed: boolean;
   order: number;
-  content?: any[]; // Allow objects for quiz/interactive
+  content: any[];
 }
 
 export interface CrisisContact {
