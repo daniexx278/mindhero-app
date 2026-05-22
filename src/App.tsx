@@ -40,6 +40,21 @@ import {
   ParentConfig,
   InstitutionalConfig,
 } from "./types";
+import { INITIAL_LESSONS } from "./lessons";
+import {
+  CompletarFrase,
+  OrdenarSecuencia,
+  MapaCorporal,
+  HechoInterpretacion,
+  VelocimetroAnsiedad,
+  NoticieroMente,
+  YoFuturo,
+  MapaApoyo,
+  PreocupacionUtilUtil,
+  LaCartaYoCompasivo,
+  LaboratorioPociones,
+  MultipleSelectQuiz,
+} from "./components/InteractiveActivities";
 
 // Mock data
 const CRISIS_CONTACTS: CrisisContact[] = [
@@ -99,89 +114,625 @@ const TECHNIQUES: Technique[] = [
   },
 ];
 
-const INITIAL_LESSONS: Lesson[] = [
-  // ANXIETY STAGE (10 Levels)
-  ...Array.from({ length: 9 }).map((_, i) => ({
-    id: `ans-${i + 1}`,
+const OLD_STATIC_LESSONS: Lesson[] = [
+  // ANXIETY STAGE (10 levels)
+  {
+    id: "ans-1",
     sectionId: "anxiety",
-    title: `Misión Ansiedad ${i + 1}`,
-    description: `Nivel ${i + 1} de entrenamiento.`,
-    type: "anxiety" as const,
-    activityType: "quiz" as const,
-    ageGroup: "teen" as const,
+    title: "Alertas corporales",
+    description: "¿Tu cuerpo a veces te manda alertas raras?",
+    type: "anxiety",
+    activityType: "quiz",
+    ageGroup: "teen",
     completed: false,
-    order: i + 1,
+    order: 1,
     content: [
       {
-        question: `Exploración de Ansiedad: Nivel ${i + 1}. ¿Cuál es una señal común de ansiedad?`,
-        options: ["Paz absoluta", "Corazón acelerado", "Hambre extrema"],
+        text: "El corazón acelerado antes de un examen o las mariposas en el estómago antes de hablar en clase son señales que nos manda el cuerpo. Eso tiene nombre: ansiedad, y está bien sentirla.",
+        image: "💓",
+      },
+      {
+        question: "¿Cuál de estas frases describe mejor lo que es la ansiedad?",
+        options: [
+          "Una enfermedad grave que solo les pasa a personas muy débiles.",
+          "Una señal del cuerpo que nos avisa cuando algo nos parece peligroso o amenazante.",
+          "Sentirse triste por algo que salió mal.",
+          "Un estado que solo ocurre en situaciones muy extremas, como terremotos.",
+        ],
         correct: 1,
-        feedback: "¡Bien! El cuerpo se prepara para la acción.",
+        feedback:
+          "La ansiedad es una señal normal del cuerpo, no una debilidad. Todos la sentimos de vez en cuando. (Craske & Barlow, 2022; Kendall et al., 2016)",
+        hint: "Recuerda que la ansiedad es una señal del cuerpo.",
       },
     ],
-  })),
+  },
+  {
+    id: "ans-2",
+    sectionId: "anxiety",
+    title: "El ciclo del miedo",
+    description: "¿Por qué evitar agranda nuestros miedos?",
+    type: "anxiety",
+    activityType: "quiz",
+    ageGroup: "teen",
+    completed: false,
+    order: 2,
+    content: [
+      {
+        text: "Cuando nos enfrentamos a algo que nos asusta, nuestra reacción puede ser evitarlo. Esto da un alivio inmediato pero, a la larga, el miedo tiende a crecer y volverse más intenso.",
+        image: "🔄",
+      },
+      {
+        question:
+          "Para reducir la ansiedad de verdad, ¿qué necesito hacer con las situaciones que me asustan?",
+        options: [
+          "Evitarlas para sentir calma por siempre.",
+          "Afrontarlas poco a poco con calma y guía.",
+          "Correr, huir o ignorar el reto.",
+          "Enojarme con los demás.",
+        ],
+        correct: 1,
+        feedback:
+          "Para reducir la ansiedad, es importante afrontar las situaciones que nos asustan poco a poco, en lugar de evitar. (Clark & Wells, 1995; Higa-McMillan, 2016)",
+        hint: "Evitar da alivio rápido pero a la larga el miedo crece. ¿Qué palabra es la contraria?",
+      },
+    ],
+  },
+  {
+    id: "ans-3",
+    sectionId: "anxiety",
+    title: "Respiración cuadrada",
+    description: "Hackea tu alarma interna",
+    type: "anxiety",
+    activityType: "quiz",
+    ageGroup: "teen",
+    completed: false,
+    order: 3,
+    content: [
+      {
+        text: "Imagina que dibujas un cuadrado. Inhalas en 4, mantienes 4, exhalas en 4 y sostienes sin aire otros 4. Así ordenas a tu cerebro relajarse.",
+        image: "💨",
+      },
+      {
+        question:
+          "En la respiración cuadrada, ¿cuál es el primer paso indispensable de la secuencia?",
+        options: [
+          "Mantener el aire por 4 tiempos.",
+          "Inhalar por la nariz contando 4 tiempos.",
+          "Exhalar fuertemente todo el aire.",
+          "Sostener sin aire contando 4 tiempos.",
+        ],
+        correct: 1,
+        feedback:
+          "Al inhalar, retener, exhalar y mantener el vacío en tiempos iguales, le envías a tu cerebro la señal directa de que estás a salvo. (Zaccaro et al., 2018; Ma et al., 2017)",
+        hint: "Primero necesitas llenarte de aire y energía antes de empezar a retenerla.",
+      },
+    ],
+  },
+  {
+    id: "ans-4",
+    sectionId: "anxiety",
+    title: "¿Qué hace la evitación?",
+    description: "La trampa del escape fácil",
+    type: "anxiety",
+    activityType: "quiz",
+    ageGroup: "teen",
+    completed: false,
+    order: 4,
+    content: [
+      {
+        text: "La evitación es escapar de nuestros miedos. Pareciera una solución perfecta hoy, pero en el fondo enseña al cerebro que la situación es inmanejable.",
+        image: "🚪",
+      },
+      {
+        question:
+          "Valentina siempre se hace la enferma para evitar exponer. ¿Qué le pasa a su miedo con el tiempo?",
+        options: [
+          "Desaparece porque no tiene que enfrentarlo.",
+          "Se mantiene exactamente igual sin cambiar.",
+          "Crece porque el cerebro aprende que exponer es realmente peligroso.",
+          "Se vuelve más valiente para la próxima.",
+        ],
+        correct: 2,
+        feedback:
+          "Cada vez que evitamos, le decimos al cerebro que tenía razón en asustarse. Por eso el miedo crece. (Barlow, 2002; Chorpita & Daleiden, 2009)",
+        hint: "Recuerda que el miedo crece si lo evitas y el cerebro aprende que esa situación es peligrosa.",
+      },
+    ],
+  },
+  {
+    id: "ans-5",
+    sectionId: "anxiety",
+    title: "Pensamientos trampa",
+    description: "Aprende a identificarlos",
+    type: "anxiety",
+    activityType: "quiz",
+    ageGroup: "teen",
+    completed: false,
+    order: 5,
+    content: [
+      {
+        text: "Los pensamientos tramposos distorsionan la realidad y disparan miedos innecesarios. Cuestionarlos es el primer paso para no dejarnos controlar por ellos.",
+        image: "🧠",
+      },
+      {
+        question:
+          "Al detectar un pensamiento trampa que te asusta, ¿qué tipo de pensamiento debes elaborar?",
+        options: [
+          "Un pensamiento exageradamente optimista aunque falso.",
+          "Un pensamiento equilibrado, justo y realista contigo mismo.",
+          "Un pensamiento ignorando el problema por completo.",
+          "Un pensamiento culposo.",
+        ],
+        correct: 1,
+        feedback:
+          "Siempre trata de desarrollar una forma más justa y equilibrada de pensar sobre las situaciones que te generan miedo. (Beck, 2021; Kendall et al., 2016)",
+        hint: "Busca una palabra que describa el punto medio: algo justo, tranquilo y equilibrado.",
+      },
+    ],
+  },
+  {
+    id: "ans-6",
+    sectionId: "anxiety",
+    title: "Ciclo de la ansiedad",
+    description: "Conoce los engranajes de la alerta",
+    type: "anxiety",
+    activityType: "quiz",
+    ageGroup: "teen",
+    completed: false,
+    order: 6,
+    content: [
+      {
+        text: "Una situación activa una alerta. Surge el pensamiento automático ('Me bloquearé'). El cuerpo reacciona con emoción intensa. Evitas para sentir alivio rápido. El miedo crece.",
+        image: "🌀",
+      },
+      {
+        question:
+          "¿Qué papel juega evitar la situación estresante dentro de este ciclo?",
+        options: [
+          "Disuelve el ciclo de inmediato de forma definitiva.",
+          "Permite que el cerebro olvide el peligro.",
+          "Da un alivio rápido al principio pero confirma al cerebro que la situación era peligrosa y el miedo crece.",
+          "Garantiza el éxito total en tareas difíciles.",
+        ],
+        correct: 2,
+        feedback:
+          "Evitar enseña al cerebro que solo sobreviviste gracias al escape. Romper el ciclo requiere exposición gradual. (Clark & Wells, 1995; Craske & Barlow, 2022)",
+        hint: "Es un parche cómodo momentáneo que agiganta la sombra a largo plazo.",
+      },
+    ],
+  },
+  {
+    id: "ans-7",
+    sectionId: "anxiety",
+    title: "Pensamientos y etiquetas",
+    description: "No te pongas leyes absolutas",
+    type: "anxiety",
+    activityType: "quiz",
+    ageGroup: "teen",
+    completed: false,
+    order: 7,
+    content: [
+      {
+        text: "Obtener un mal resultado y transformarlo en una etiqueta global sobre nuestra identidad es un error cognitivo común que nos desgasta en exceso.",
+        image: "🏷️",
+      },
+      {
+        question:
+          "Andrés saca un 3.8 en un examen y piensa: 'Soy un fracasado total, nunca sirvo para nada.' ¿Qué tipo de pensamiento es?",
+        options: [
+          "Lectura de mente: asume lo que otros piensan.",
+          "Generalización excesiva: saca una conclusión absoluta de sí mismo por un solo evento.",
+          "Catastrofización: asume que es el fin del mundo.",
+          "Pensamiento lógico realista.",
+        ],
+        correct: 1,
+        feedback:
+          "Generalizar en exceso es un sesgo clave donde un fallo temporal se lee como una definición irreversible de quién eres. (Beck, 1979; Burns, 1980)",
+        hint: "Andrés sacó 3.8 que es aprobatoria, pero cerró la puerta de su valor con la palabra 'nunca'.",
+      },
+    ],
+  },
+  {
+    id: "ans-8",
+    sectionId: "anxiety",
+    title: "La escalera de miedo",
+    description: "Exposición paso a paso",
+    type: "anxiety",
+    activityType: "quiz",
+    ageGroup: "teen",
+    completed: false,
+    order: 8,
+    content: [
+      {
+        text: "Subir una montaña alta o vencer el pánico no se hace corriendo sino con pasos controlados y calculados. La escalera de miedos te guía de lo simple a lo complejo.",
+        image: "🪜",
+      },
+      {
+        question:
+          "¿Cuáles miedos debemos colocar al inicio de nuestra escalera de exposición?",
+        options: [
+          "Miedos medianamente extremos.",
+          "Los miedos más fáciles y tolerables primero.",
+          "Los miedos definitivos y destructivos.",
+          "No colocar ningún miedo.",
+        ],
+        correct: 1,
+        feedback:
+          "La escalera empieza con retos pequeños para habituarnos, de modo que cada logro nos dé la confianza de dar el siguiente paso. (Higa-McMillan, 2016; Chorpita, 2009)",
+        hint: "Para subir sin resbalar, siempre colocamos el pie en el escalón más accesible y fácil.",
+      },
+    ],
+  },
+  {
+    id: "ans-9",
+    sectionId: "anxiety",
+    title: "Postergación de dudas",
+    description: "Guarda tus preocupaciones para luego",
+    type: "anxiety",
+    activityType: "quiz",
+    ageGroup: "teen",
+    completed: false,
+    order: 9,
+    content: [
+      {
+        text: "Preocuparse 24/7 desgasta. La técnica de postergación te enseña a anotarlas todas para analizarlas juntas únicamente en un horario reservado de tu día.",
+        image: "📝",
+      },
+      {
+        question:
+          "Cuando llega tu horario programado de resolver preocupaciones anotadas, ¿qué filtro racional debes aplicarles?",
+        options: [
+          "Preguntarte: ¿puedo hacer algo al respecto hoy?, ¿sigue siendo importante hoy?",
+          "Llorar desconsoladamente por cada una.",
+          "Compartirlas en redes para asustar a mis contactos.",
+          "Anotarlas en una lista más larga.",
+        ],
+        correct: 0,
+        feedback:
+          "Al mirarlas en frío, descubrirás que muchas de tus preocupaciones han perdido relevancia o fuerza por sí solas. (Borkovec et al., 1983; Rego, 2011)",
+        hint: "Te cuestionas racionalmente si la duda es útil, si tiene una acción viable hoy o perdió importancia.",
+      },
+    ],
+  },
   {
     id: "ans-10",
     sectionId: "anxiety",
     title: "EL JEFE: VORTEX",
-    description: "El desafío final de la Ansiedad.",
-    type: "boss" as const,
-    activityType: "quiz" as const,
-    ageGroup: "teen" as const,
+    description: "Desarma la trampa del hipercontrol",
+    type: "boss",
+    activityType: "quiz",
+    ageGroup: "teen",
     completed: false,
     order: 10,
     content: [
       {
-        question: "BOSS: ¿Qué técnica detiene el pensamiento impulsivo?",
-        options: ["Huir", "Respirar 4-7-8", "Gritar"],
-        correct: 1,
+        text: "El VORTEX te susurra que debes controlarlo todo, revisarlo cinco veces y no confiar en nadie u ocurrirá un desastre. ¡Desafía y vence la desconfianza ansiosa!",
+        image: "👾",
       },
       {
-        question: "BOSS: La ansiedad es una emoción...",
-        options: ["Mala siempre", "Natural de protección", "Inexistente"],
-        correct: 1,
+        question:
+          "Santiago predice que si no rehace él mismo el trabajo grupal sacarán cero. ¿Cuál es el experimento seguro para probar su predicción?",
+        options: [
+          "Abandono total: dejar todo tirado y apagar su teléfono sin mediar acuerdo.",
+          "Hipercontrol: desvelarse rehaciendo en secreto la entrega entera solo.",
+          "Delegación pequeña: redactar su parte, permitir que el grupo redacte la conclusión y revisarla juntos solo una vez al final.",
+          "Hacer la entrega solo, pero pasarse días quejándose.",
+        ],
+        correct: 2,
+        feedback:
+          "Menos control es más paz. Al soltar una parte pequeña y controlada, Santiago le da la oportunidad a la reality de demostrar que no ocurrirá un desastre. (Bennett-Levy et al., 2004; McManus, 2012)",
+        hint: "No saltes al vacío; busca una delegación intermedia, equilibrada y saludable para verificar.",
       },
     ],
   },
   // DEPRESSION STAGE (10 Levels)
-  ...Array.from({ length: 9 }).map((_, i) => ({
-    id: `dep-${i + 1}`,
+  {
+    id: "dep-1",
     sectionId: "depression",
-    title: `Misión Depresión ${i + 1}`,
-    description: `Nivel ${i + 1} de resiliencia.`,
-    type: "depression" as const,
-    activityType: "quiz" as const,
-    ageGroup: "teen" as const,
+    title: "Tristeza vs Depresión",
+    description: "Entiendo profundamente mis ánimos",
+    type: "depression",
+    activityType: "quiz",
+    ageGroup: "teen",
     completed: false,
-    order: 11 + i,
+    order: 11,
     content: [
       {
-        question: `Entendiendo la Depresión: Nivel ${i + 1}. ¿Cómo se siente a menudo la depresión?`,
+        text: "Estar triste es normal y dura poco. La depresión se ancla por semanas o meses, apaga el placer en tus pasatiempos y drena tu energía diaria sin una explicación clara.",
+        image: "☁️",
+      },
+      {
+        question:
+          "Valentina lleva tres semanas sintiéndose vacía, sin aliento de nada, durmiendo en exceso y cree que es una carga. ¿Qué describe su estado?",
         options: [
-          "Como una nube gris persistente",
-          "Como alegría explosiva",
-          "Como ganas de correr un maratón",
+          "Es solo pereza escolar que se pasará distrayéndose.",
+          "Como no le ocurrió un drama puntual, no puede ser nada de cuidado.",
+          "Se parece a la depresión clínica: dura más de dos semanas, anula el gusto por todo y carece de causa clara.",
+          "Solo debería atenderse si afecta radicalmente sus tareas.",
         ],
-        correct: 0,
-        feedback: "Correcto. Es una sensación de falta de energía y color.",
+        correct: 2,
+        feedback:
+          "Que no haya pasado nada malo es una característica de la depresión; es un malestar de salud real persistente. (APA, 2013; Hankin et al., 2015)",
+        hint: "Presta atención a la duración prolongada (mayor a dos semanas) y a la apatía que no requiere un luto.",
       },
     ],
-  })),
+  },
+  {
+    id: "dep-2",
+    sectionId: "depression",
+    title: "Cerebro y regulación",
+    description: "La alarma hipersensible",
+    type: "depression",
+    activityType: "quiz",
+    ageGroup: "teen",
+    completed: false,
+    order: 12,
+    content: [
+      {
+        text: "En la juventud, tu cerebro madura a mil por hora. En la depresión, la alarma emocional interna se enciende a tope por tonterías, mientras el freno regulador pierde tracción.",
+        image: "🧠",
+      },
+      {
+        question:
+          "¿Qué ocurre biológicamente con el sistema emocional en la depresión?",
+        options: [
+          "La zona amortiguadora cerebral trabaja el triple de fuerte.",
+          "La alarma emocional se dispara fácil y al mismo tiempo el guardián regulador de calma trabaja con menos fuerza.",
+          "Se cancela toda actividad y producción hormonal de golpe.",
+          "Se multiplica la energía mental infinitamente.",
+        ],
+        correct: 1,
+        feedback:
+          "Esta desregulación temporal hace que sientas todo con un volumen ensordecedor. Aprender técnicas le devuelve la fuerza al freno cerebral. (Lupien et al., 2009; Gotlib & Hamilton, 2008)",
+        hint: "Es una combinación dual de alarma hipersensible combinada con un freno débil.",
+      },
+    ],
+  },
+  {
+    id: "dep-3",
+    sectionId: "depression",
+    title: "Depresión invisible",
+    description: "La irritabilidad constante",
+    type: "depression",
+    activityType: "quiz",
+    ageGroup: "teen",
+    completed: false,
+    order: 13,
+    content: [
+      {
+        text: "En los jóvenes, la depresión no siempre se reduce a llorar. Se esconde a menú detrás de un mal humor constante, responder hostilmente y dolores corporales raros.",
+        image: "🎭",
+      },
+      {
+        question:
+          "Sebastián antes era pacífico, pero hace un mes está irritable, con dolores de cabeza frecuentes y dejó de chatear. ¿Qué es lo más acertado?",
+        options: [
+          "Es solo rebelión adolescente común, no hay de qué preocuparse.",
+          "La depresión en adolescentes se manifiesta a menudo con irritabilidad, fatiga somática y evitación social en lugar de lágrimas.",
+          "Mientras no declare estar deprimido, no se le debe forzar a nada.",
+          "Solo es preocupante si empieza a faltar a clase.",
+        ],
+        correct: 1,
+        feedback:
+          "Darse de baja socialmente, enfadarse por minucias y expresar dolores corporales recurrentes son banderas rojas importantes. (APA, 2013; Stringaris & Goodman, 2009)",
+        hint: "No todos lloran; algunos manifiestan sufrimiento con enojo constante, silencios corporales y alejamiento.",
+      },
+    ],
+  },
+  {
+    id: "dep-4",
+    sectionId: "depression",
+    title: "El laberinto social",
+    description: "Ojo con el scrolleo pasivo",
+    type: "depression",
+    activityType: "quiz",
+    ageGroup: "teen",
+    completed: false,
+    order: 14,
+    content: [
+      {
+        text: "Consumir feeds perfectos de redes en silencio deforma la percepción. Comparar tu vida normal con la pantalla hiperfiltrada ajena destruye el amor propio.",
+        image: "📱",
+      },
+      {
+        question:
+          "Laura pasa dos horas en silencio scrolleando fotos perfectas de compañeras y termina triste sin saber por qué. ¿Qué lo explica?",
+        options: [
+          "La cantidad de tiempo es idónea para regular el cansancio.",
+          "Mirar pasivamente vidas recortadas y editadas incita a la comparación social, disparando inferioridad.",
+          "Las redes causan depresión biológica inmediata.",
+          "Es una respuesta sana de autocrítica.",
+        ],
+        correct: 1,
+        feedback:
+          "El consumo pasivo y la comparación destructiva de 'vidas perfectas' es un factor estresante de alta correlación con el desánimo. (Twenge et al., 2018; Keles et al., 2020)",
+        hint: "Ella mira sin hablar ni reír, comparando su backstage con las mejores fotos editadas de otros.",
+      },
+    ],
+  },
+  {
+    id: "dep-5",
+    sectionId: "depression",
+    title: "Detector de engaños",
+    description: "Las trampas de tu propio cerebro",
+    type: "depression",
+    activityType: "quiz",
+    ageGroup: "teen",
+    completed: false,
+    order: 15,
+    content: [
+      {
+        text: "La depresión deforma los pensamientos. Nos hace ver todo en blanco o negro ('siempre fallo', 'nunca mejoraré') y descarta por completo las buenas victorias.",
+        image: "🕶️",
+      },
+      {
+        question:
+          "Camila saca un decente 3.8 y piensa: 'Me fue horrible, soy la peor, nunca voy a poder'. ¿Cuántas trampas mentales hay aquí?",
+        options: [
+          "Ninguna, es una queja normal y razonable.",
+          "Una sola: está frustrada académica.",
+          "Múltiples trampas: filtrado negativo (ignora pasar la materia), catastrofismo y absolutismo de todo-o-nada.",
+          "Dos: se echa la culpa de problemas climáticos.",
+        ],
+        correct: 2,
+        feedback:
+          "Disolver estos extremismos debilita el filtro oscuro y le quita dramatismo a la realidad. (Beck et al., 1979; Weisz et al., 2017)",
+        hint: "Presta atención a términos exagerados como 'nunca', 'siempre' y su descarte absoluto de su nota de 3.8.",
+      },
+    ],
+  },
+  {
+    id: "dep-6",
+    sectionId: "depression",
+    title: "El descanso sagrado",
+    description: "Regula las horas de tu batería",
+    type: "depression",
+    activityType: "quiz",
+    ageGroup: "teen",
+    completed: false,
+    order: 16,
+    content: [
+      {
+        text: "Dormir menos de 8 horas debilita el escudo biológico contra la tristeza. El sueño no es una deuda que se liquide toda junta el fin de semana.",
+        image: "🔋",
+      },
+      {
+        question:
+          "Daniel duerme 5 horas semanales y 12 horas los sábados. ¿Cuál es la consecuencia anímica de esta rutina?",
+        options: [
+          "Un sábado largo solventa y repara la fatiga diaria acumulada.",
+          "Dormir poco desgasta el humor diario y los atracones de sueño de fin de semana desestabilizan el ritmo circadiano de tus neuronas.",
+          "No tiene repercusiones si pasa el resto del día jugando.",
+          "Que recorta su capacidad creativa anímica.",
+        ],
+        correct: 1,
+        feedback:
+          "La regularidad del sueño diario es indispensable para que el cerebro sintetice neurotransmisores de bienestar. (Paruthi et al., 2016; Goldstein et al., 2014)",
+        hint: "El sistema del sueño requiere constancia diaria; no funciona ahorrando de golpe un día.",
+      },
+    ],
+  },
+  {
+    id: "dep-7",
+    sectionId: "depression",
+    title: "La ley de la inercia",
+    description: "La chispa nace de la acción",
+    type: "depression",
+    activityType: "quiz",
+    ageGroup: "teen",
+    completed: false,
+    order: 17,
+    content: [
+      {
+        text: "En la depresión, esperar a que te nazcan las ganas de actuar te dejará atrapado perpetuamente. Las ganas de moverte aparecen justamente después de comenzar algo simple.",
+        image: "🔥",
+      },
+      {
+        question:
+          "Sofi solía jugar voley, pero lo dejó y dice: 'Cuando tenga ánimos iré'. ¿Qué falla en su plan?",
+        options: [
+          "Ninguno, descansar sin ganas es la terapia más idónea.",
+          "La activación conductual enseña que las ganas regresan una vez arranca la acción física coordinada, no antes.",
+          "Debe sustituir el voley por ver películas sola.",
+          "Que los ánimos regresan únicamente durmiendo.",
+        ],
+        correct: 1,
+        feedback:
+          "Dar un paso pequeño (como preparar la mochila) rompe la parálisis de la desgana dopaminérgica de la depresión. (Cuijpers et al., 2007; Lejuez et al., 2011)",
+        hint: "La gasolina de las ganas de actuar nace después de calentar el motor de la acción.",
+      },
+    ],
+  },
+  {
+    id: "dep-8",
+    sectionId: "depression",
+    title: "Hablarse con clemencia",
+    description: "Desarma el juez interno",
+    type: "depression",
+    activityType: "quiz",
+    ageGroup: "teen",
+    completed: false,
+    order: 18,
+    content: [
+      {
+        text: "La autocrítica salvaje eleva el cortisol sanguíneo. El cerebro procesa tu culpa interna como un ataque físico en curso. Háblate con la ternura de un amigo.",
+        image: "🤍",
+      },
+      {
+        question:
+          "Tomás falla en su presentación y se tilda de 'fracaso'. ¿Cómo luce un trato autocompasivo honesto?",
+        options: [
+          "Validar que el fallo dolió profundamente, consolarse y recordarse que un tropiezo no anula su valor intelectual completo.",
+          "Evadir el asunto fingiendo que nunca ocurrió.",
+          "Decirse delirios inflados de perfección absoluta en todo.",
+          "Autocastigarse rumiando el percance sin tregua.",
+        ],
+        correct: 0,
+        feedback:
+          "Abordarse con clemencia reduce el miedo a cometer fallos, permitiendo reintentar los retos con calma. (Neff, 2003; MacBeth & Gumley, 2012)",
+        hint: "Utiliza el mismo tono comprensivo que dirigirías a tu mejor compañero al verlo triste.",
+      },
+    ],
+  },
+  {
+    id: "dep-9",
+    sectionId: "depression",
+    title: "El puente de la amistad",
+    description: "Acompañar a quien sufre",
+    type: "depression",
+    activityType: "quiz",
+    ageGroup: "teen",
+    completed: false,
+    order: 19,
+    content: [
+      {
+        text: "Apoyar no es jugar al doctor ni repetir frases vacías de 'échale ganas'. Consiste en prestar oído paciente, no juzgar el llanto y ser el puente a adultos habilitados.",
+        image: "🤝",
+      },
+      {
+        question:
+          "Tu mejor amiga lleva semanas ausente y apagada en el colegio. Decides ayudarla. ¿Cuál es el camino?",
+        options: [
+          "Forzarla a sonreír enfrente de toda la clase.",
+          "Acercarte en privado, escuchar su dolor con paciencia sin sermonear y sugerirle con respeto acudir a un orientador o especialista.",
+          "Hacerte cargo tú de rescatarla emocional en solitario.",
+          "Exponer sus secretos a otros compañeros para aconsejarla grupal.",
+        ],
+        correct: 1,
+        feedback:
+          "Brindar una escucha empática libre de juicios y motivarla a buscar ayuda calificada es el mayor acto de ternura. (Kitchener & Jorm, 2002; Radez et al., 2021)",
+        hint: "Es discreto, libre de sermones y promueve alentar a buscar ayuda de un psicólogo o acudientes.",
+      },
+    ],
+  },
   {
     id: "dep-10",
     sectionId: "depression",
     title: "EL JEFE: SOMBRA ETERNA",
-    description: "Vence al vacío final.",
-    type: "boss" as const,
-    activityType: "quiz" as const,
-    ageGroup: "teen" as const,
+    description: "Recuperando la luz del Guardián",
+    type: "boss",
+    activityType: "quiz",
+    ageGroup: "teen",
     completed: false,
     order: 20,
     content: [
       {
-        question: "BOSS: ¿Cuál es el primer paso para sanar?",
-        options: ["Esconderse", "Hablar con alguien de confianza", "Ignorarlo"],
-        correct: 1,
+        text: "La SOMBRA ETERNA de la depresión te infunde aislamiento para debilitarte en un calabozo. ¡Pero tu equipo de apoyo galáctico está listo hoy para ganar!",
+        image: "💀",
+      },
+      {
+        question:
+          "Andrés sumamente cansado y vacío hace tres semanas dice: 'Es solo una mala racha'. Según el protocolo de bienestar, ¿cuál es el paso definitivo?",
+        options: [
+          "Esperar más meses antes de alarmarse.",
+          "Acudir al doctor únicamente si tiene pensamientos extremos.",
+          "Como lleva más de dos semanas seguidas de alertas clínicas claras de anhedonia y fatiga, merece consultar a redes escolares o profesionales de salud sin dilación.",
+          "Ocultarlo indefinidamente de sus padres.",
+        ],
+        correct: 2,
+        feedback:
+          "Dos semanas de desinterés general y cansancio persistente ameritan atención. Pedir ayuda oportuna es el mayor superpoder del Guardián. (APA, 2013; MinSalud colombiano, 2023)",
+        hint: "Asegúrate de ponderar la duración en semanas (el límite general son dos semanas de desgana continuada).",
       },
     ],
   },
@@ -275,6 +826,7 @@ export default function App() {
 
   const handleStartOnboarding = (age: AgeGroup) => {
     setAgeGroup(age);
+    setParentalConsent(false);
     setView("parentConsent");
   };
 
@@ -354,6 +906,11 @@ export default function App() {
     });
     setAgeGroup(null);
     setParentalConsent(false);
+    setUserRole(null);
+    setParentData(null);
+    setInstitutionalData(null);
+    setLessons((prev) => prev.map((l) => ({ ...l, completed: false })));
+    setShowEditProfile(false);
     setView("onboarding");
   };
 
@@ -422,7 +979,11 @@ export default function App() {
             key="parent"
             stats={stats}
             lessons={lessons}
-            onBack={() => setView("onboarding")}
+            onBack={() => {
+              setAgeGroup(null);
+              setParentalConsent(false);
+              setView("onboarding");
+            }}
           />
         )}
 
@@ -627,6 +1188,15 @@ function ParentConsentView({
     verifiedEmail: "",
     childName: "",
   });
+  const [showError, setShowError] = useState(false);
+
+  const handleSubmit = () => {
+    if (!formData.childName || !formData.idNumber || !formData.verifiedEmail) {
+      setShowError(true);
+      return;
+    }
+    onConsent(formData);
+  };
 
   return (
     <motion.div
@@ -650,12 +1220,13 @@ function ParentConsentView({
             </label>
             <input
               type="text"
-              className="w-full bg-slate-50 border-2 border-slate-100 p-4 rounded-xl font-bold"
+              className={`w-full p-4 rounded-xl font-bold transition-all border-2 text-slate-950 ${showError && !formData.childName ? "border-red-500 bg-red-50 text-red-950 placeholder-red-300 focus:border-red-500 focus:outline-none" : "bg-slate-50 border-slate-100 text-slate-950 focus:border-brand-primary"}`}
               placeholder="Nombre completo"
               value={formData.childName}
-              onChange={(e) =>
-                setFormData({ ...formData, childName: e.target.value })
-              }
+              onChange={(e) => {
+                setFormData({ ...formData, childName: e.target.value });
+                if (showError) setShowError(false);
+              }}
             />
           </div>
           <div>
@@ -664,12 +1235,13 @@ function ParentConsentView({
             </label>
             <input
               type="text"
-              className="w-full bg-slate-50 border-2 border-slate-100 p-4 rounded-xl font-bold"
+              className={`w-full p-4 rounded-xl font-bold transition-all border-2 text-slate-950 ${showError && !formData.idNumber ? "border-red-500 bg-red-50 text-red-950 placeholder-red-300 focus:border-red-500 focus:outline-none" : "bg-slate-50 border-slate-100 text-slate-950 focus:border-brand-primary"}`}
               placeholder="Número de documento"
               value={formData.idNumber}
-              onChange={(e) =>
-                setFormData({ ...formData, idNumber: e.target.value })
-              }
+              onChange={(e) => {
+                setFormData({ ...formData, idNumber: e.target.value });
+                if (showError) setShowError(false);
+              }}
             />
           </div>
           <div>
@@ -678,22 +1250,26 @@ function ParentConsentView({
             </label>
             <input
               type="email"
-              className="w-full bg-slate-50 border-2 border-slate-100 p-4 rounded-xl font-bold"
+              className={`w-full p-4 rounded-xl font-bold transition-all border-2 text-slate-950 ${showError && !formData.verifiedEmail ? "border-red-500 bg-red-50 text-red-950 placeholder-red-300 focus:border-red-500 focus:outline-none" : "bg-slate-50 border-slate-100 text-slate-950 focus:border-brand-primary"}`}
               placeholder="email@ejemplo.com"
               value={formData.verifiedEmail}
-              onChange={(e) =>
-                setFormData({ ...formData, verifiedEmail: e.target.value })
-              }
+              onChange={(e) => {
+                setFormData({ ...formData, verifiedEmail: e.target.value });
+                if (showError) setShowError(false);
+              }}
             />
           </div>
         </div>
 
+        {showError && (
+          <p className="text-red-500 font-extrabold text-xs mt-4 animate-bounce text-center bg-red-50 border border-red-200 py-3 px-4 rounded-2xl flex items-center justify-center gap-2">
+            ⚠️ ¡Por favor completa todos los campos del formulario!
+          </p>
+        )}
+
         <button
-          disabled={
-            !formData.childName || !formData.idNumber || !formData.verifiedEmail
-          }
-          onClick={() => onConsent(formData)}
-          className="w-full mt-10 py-5 bg-accent-amber text-slate-800 font-black rounded-3xl border-b-8 border-yellow-600 shadow-xl uppercase tracking-widest disabled:opacity-50 disabled:grayscale"
+          onClick={handleSubmit}
+          className="w-full mt-10 py-5 bg-accent-amber text-slate-800 font-black rounded-3xl border-b-8 border-yellow-600 shadow-xl uppercase tracking-widest hover:scale-[1.01] transition-all"
         >
           VERIFICAR Y CONTINUAR
         </button>
@@ -723,21 +1299,32 @@ function RoleSelection({
       <div className="grid gap-6 w-full">
         <button
           onClick={() => onSelect("player")}
-          className="py-6 bg-brand-primary text-white font-black rounded-3xl border-b-8 border-blue-800 hover:scale-[1.02] active:translate-y-1 active:border-b-0 flex items-center justify-center gap-4 text-xl"
+          className="relative py-5 pl-24 pr-6 w-full min-h-[84px] text-left bg-brand-primary text-white font-black rounded-3xl border-b-8 border-blue-800 hover:scale-[1.02] active:translate-y-1 active:border-b-0 transition-all text-lg md:text-xl flex items-center shadow-lg"
         >
-          <Gamepad2 /> SOY JUGADOR
+          <div className="absolute left-5 w-12 h-12 bg-black/20 rounded-2xl flex items-center justify-center text-white shadow-inner">
+            <Gamepad2 size={26} />
+          </div>
+          <span className="tracking-wide uppercase">SOY JUGADOR</span>
         </button>
         <button
           onClick={() => onSelect("parent")}
-          className="py-6 bg-bg-space text-brand-primary font-black rounded-3xl border-b-8 border-slate-900 border-2 hover:scale-[1.02] active:translate-y-1 active:border-b-0 flex items-center justify-center gap-4 text-xl"
+          className="relative py-5 pl-24 pr-6 w-full min-h-[84px] text-left bg-bg-space text-brand-primary font-black rounded-3xl border-b-8 border-slate-900 border-2 hover:scale-[1.02] active:translate-y-1 active:border-b-0 transition-all text-lg md:text-xl flex items-center shadow-lg"
         >
-          <User /> SOY EL PADRE
+          <div className="absolute left-5 w-12 h-12 bg-brand-primary/10 rounded-2xl flex items-center justify-center text-brand-primary shadow-inner border border-brand-primary/20">
+            <User size={26} />
+          </div>
+          <span className="tracking-wide uppercase">SOY EL PADRE</span>
         </button>
         <button
           onClick={() => onSelect("student")}
-          className="py-6 bg-slate-100 text-slate-700 font-black rounded-3xl border-b-8 border-slate-300 border-2 hover:scale-[1.02] active:translate-y-1 active:border-b-0 flex items-center justify-center gap-4 text-xl"
+          className="relative py-5 pl-24 pr-6 w-full min-h-[84px] text-left bg-slate-100 text-slate-700 font-black rounded-3xl border-b-8 border-slate-300 border-2 hover:scale-[1.02] active:translate-y-1 active:border-b-0 transition-all text-lg md:text-xl flex items-center shadow-lg"
         >
-          <BookOpen /> SOY ESTUDIANTE
+          <div className="absolute left-5 w-12 h-12 bg-slate-200 rounded-2xl flex items-center justify-center text-slate-600 shadow-inner">
+            <BookOpen size={26} />
+          </div>
+          <span className="tracking-wide uppercase leading-tight">
+            SOY ESTUDIANTE INSTITUCIONAL
+          </span>
         </button>
       </div>
     </motion.div>
@@ -755,6 +1342,19 @@ function InstitutionalFormView({
     institutionalEmail: "",
     verificationCode: "",
   });
+  const [showError, setShowError] = useState(false);
+
+  const handleSubmit = () => {
+    if (
+      !formData.studentName ||
+      !formData.institutionalEmail ||
+      !formData.verificationCode
+    ) {
+      setShowError(true);
+      return;
+    }
+    onSubmit(formData);
+  };
 
   return (
     <motion.div
@@ -777,12 +1377,13 @@ function InstitutionalFormView({
             </label>
             <input
               type="text"
-              className="w-full bg-slate-50 border-2 border-slate-100 p-4 rounded-xl font-bold"
+              className={`w-full p-4 rounded-xl font-bold transition-all border-2 text-slate-950 ${showError && !formData.studentName ? "border-red-500 bg-red-50 text-red-950 placeholder-red-300 focus:border-red-500 focus:outline-none" : "bg-slate-50 border-slate-100 text-slate-950 focus:border-brand-primary"}`}
               placeholder="Tu nombre completo"
               value={formData.studentName}
-              onChange={(e) =>
-                setFormData({ ...formData, studentName: e.target.value })
-              }
+              onChange={(e) => {
+                setFormData({ ...formData, studentName: e.target.value });
+                if (showError) setShowError(false);
+              }}
             />
           </div>
           <div>
@@ -791,12 +1392,16 @@ function InstitutionalFormView({
             </label>
             <input
               type="email"
-              className="w-full bg-slate-50 border-2 border-slate-100 p-4 rounded-xl font-bold"
+              className={`w-full p-4 rounded-xl font-bold transition-all border-2 text-slate-950 ${showError && !formData.institutionalEmail ? "border-red-500 bg-red-50 text-red-950 placeholder-red-300 focus:border-red-500 focus:outline-none" : "bg-slate-50 border-slate-100 text-slate-100 focus:border-brand-primary"}`}
               placeholder="estudiante@colegio.edu.co"
               value={formData.institutionalEmail}
-              onChange={(e) =>
-                setFormData({ ...formData, institutionalEmail: e.target.value })
-              }
+              onChange={(e) => {
+                setFormData({
+                  ...formData,
+                  institutionalEmail: e.target.value,
+                });
+                if (showError) setShowError(false);
+              }}
             />
           </div>
           <div>
@@ -805,24 +1410,26 @@ function InstitutionalFormView({
             </label>
             <input
               type="text"
-              className="w-full bg-slate-50 border-2 border-slate-100 p-4 rounded-xl font-bold"
+              className={`w-full p-4 rounded-xl font-bold transition-all border-2 text-slate-950 ${showError && !formData.verificationCode ? "border-red-500 bg-red-50 text-red-950 placeholder-red-300 focus:border-red-500 focus:outline-none" : "bg-slate-50 border-slate-100 text-slate-950 focus:border-brand-primary"}`}
               placeholder="Código entregado por tu colegio"
               value={formData.verificationCode}
-              onChange={(e) =>
-                setFormData({ ...formData, verificationCode: e.target.value })
-              }
+              onChange={(e) => {
+                setFormData({ ...formData, verificationCode: e.target.value });
+                if (showError) setShowError(false);
+              }}
             />
           </div>
         </div>
 
+        {showError && (
+          <p className="text-red-500 font-extrabold text-xs mt-4 animate-bounce text-center bg-red-50 border border-red-200 py-3 px-4 rounded-2xl flex items-center justify-center gap-2">
+            ⚠️ ¡Por favor completa todos los campos del formulario!
+          </p>
+        )}
+
         <button
-          disabled={
-            !formData.studentName ||
-            !formData.institutionalEmail ||
-            !formData.verificationCode
-          }
-          onClick={() => onSubmit(formData)}
-          className="w-full mt-10 py-5 bg-brand-primary text-white font-black rounded-3xl border-b-8 border-purple-800 shadow-xl uppercase tracking-widest disabled:opacity-50 disabled:grayscale"
+          onClick={handleSubmit}
+          className="w-full mt-10 py-5 bg-brand-primary text-white font-black rounded-3xl border-b-8 border-purple-800 shadow-xl uppercase tracking-widest hover:scale-[1.01] transition-all"
         >
           ACCEDER AL JUEGO
         </button>
@@ -1246,13 +1853,26 @@ function Dashboard({
                             <div className="absolute top-24 left-1/2 -translate-x-1/2 w-1.5 h-16 bg-brand-primary/20 -z-10" />
                           )}
 
+                          {isActive && (
+                            <>
+                              {/* Pulsing deep aura ring */}
+                              <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-yellow-300/35 to-purple-500/35 blur-md animate-pulse -z-10" />
+                              {/* Standard ping ring */}
+                              <div className="absolute -inset-1 rounded-full border-4 border-yellow-300/50 animate-ping -z-10 duration-1000" />
+                            </>
+                          )}
+
                           <motion.button
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{
                               opacity: 1,
-                              scale: isActive ? 1.15 : 1,
-                              filter: isActive
-                                ? "drop-shadow(0 0 15px rgba(97,0,148,0.6))"
+                              scale: isActive ? [1, 1.15, 1] : 1,
+                              boxShadow: isActive
+                                ? [
+                                    "0 0 15px #D97706",
+                                    "0 0 45px #FBBF24",
+                                    "0 0 15px #D97706",
+                                  ]
                                 : "none",
                             }}
                             transition={{
@@ -1261,7 +1881,14 @@ function Dashboard({
                                 ? {
                                     duration: 1.5,
                                     repeat: Infinity,
-                                    repeatType: "reverse",
+                                    ease: "easeInOut",
+                                  }
+                                : {},
+                              boxShadow: isActive
+                                ? {
+                                    duration: 1.5,
+                                    repeat: Infinity,
+                                    ease: "easeInOut",
                                   }
                                 : {},
                             }}
@@ -1273,7 +1900,7 @@ function Dashboard({
                                   ? "bg-brand-success border-b-8 border-green-700 text-white shadow-green-500/30"
                                   : isLocked
                                     ? "bg-slate-800 border-b-8 border-slate-900 text-slate-600 opacity-60"
-                                    : "bg-brand-primary border-b-8 border-purple-800 text-white shadow-purple-500/30 ring-4 ring-purple-500/40 glow-text shadow-[0_0_30px_rgba(97,0,148,0.4)]"
+                                    : "bg-purple-600 border-b-8 border-purple-900 text-white ring-4 ring-yellow-400 border-4 border-yellow-350 glow-text scale-[1.05]"
                               }
                               ${lIdx % 2 === 0 ? "-translate-x-10" : "translate-x-10"}
                               hover:scale-110 active:translate-y-1 active:border-b-0
@@ -1842,14 +2469,64 @@ function LessonView({
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [showHint, setShowHint] = useState(false);
+  const [interactiveSolved, setInteractiveSolved] = useState(false);
 
   const content = lesson.content || [];
   const currentContent = content[step];
 
+  const isInteractive =
+    currentContent &&
+    [
+      "completar-frase",
+      "ordenar",
+      "mapa-corporal",
+      "hecho-interpretacion",
+      "velocimetro",
+      "noticiero",
+      "yo-futuro",
+      "mapa-apoyo",
+      "preocupacion-util",
+      "yo-compasivo",
+      "laboratorio-pociones",
+      "multiple-select",
+    ].includes(currentContent.type);
+
   const toggleSpeak = () => {
     setIsSpeaking(!isSpeaking);
     if (!isSpeaking) {
-      const textToSpeak = currentContent.text || currentContent.question;
+      let textToSpeak = currentContent.text || currentContent.question;
+
+      if (!textToSpeak && currentContent.type) {
+        const interactiveDescriptions: Record<string, string> = {
+          "mapa-corporal":
+            "Mi cuerpo tiene el mapa de mis emociones. Haz clic en una de las sensaciones físicas e identifícala en la silueta del astronauta para ver su explicación científica.",
+          "hecho-interpretacion":
+            "Hecho o interpretación. Lee cada situación y decide si es un dato totalmente objetivo, un hecho, o una historia subjetiva que crea tu mente, una interpretación.",
+          velocimetro:
+            "Velocímetro de ansiedad. Ajusta el velocímetro regulando tu estado actual, del uno al diez. Luego responde con sinceridad cómo se manifiesta esa fuerza en tu mente.",
+          noticiero:
+            "El Noticiero de la Mente. Analicemos cómo la mente de forma espontánea a menudo dramatiza y exagera las preocupaciones cotidianas. Lee el titular exagerado y redáctalo de manera realista.",
+          "yo-futuro":
+            "La carta a mi yo del futuro. Date un espacio de calma para responder a estas amigables preguntas concebidas para recordarle a tu yo del mañana tus fortalezas y metas actuales.",
+          "mapa-apoyo":
+            "Mi mapa de apoyo estelar. Nombra a cinco personas confiables, amigos, familiares o tutores, que conforman tu tripulación de rescate y apoyo en momentos de inestabilidad.",
+          "preocupacion-util":
+            "Clasificador de preocupaciones. No todas las preocupaciones son iguales. Algunas son útiles porque podemos resolverlas hoy, y otras no lo son. Vamos a clasificarlas.",
+          "yo-compasivo":
+            "La carta para mi yo compasivo. Escribe una breve nota de aliento dirigida a ti mismo o a un amigo cercano, usando palabras amables, libres de juicios dañinos.",
+          "laboratorio-pociones":
+            "El laboratorio de pociones de calma. Combina los ingredientes correctos para preparar misiones mágicas que reequilibren tu energía emocional según la receta del grimorio.",
+        };
+        textToSpeak = interactiveDescriptions[currentContent.type] || "";
+      }
+
+      if (!textToSpeak) {
+        textToSpeak =
+          lesson.description ||
+          lesson.title ||
+          "Misión interactiva en progreso";
+      }
+
       const utterance = new SpeechSynthesisUtterance(textToSpeak);
       utterance.lang = "es-ES";
       utterance.rate = 0.85; // Relaxed speed
@@ -1894,6 +2571,7 @@ function LessonView({
       setStep(step + 1);
       setShowFeedback(false);
       setSelectedOption(null);
+      setInteractiveSolved(false);
     } else {
       onComplete();
     }
@@ -1945,7 +2623,7 @@ function LessonView({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -30 }}
-            className={`max-w-2xl w-full p-8 md:p-12 rounded-[60px] shadow-2xl border-4 relative overflow-hidden ${lesson.type === "boss" ? "bg-red-950/20 border-red-500/50 shadow-[0_0_50px_rgba(239,68,68,0.2)]" : "bg-bg-space border-brand-primary/30"}`}
+            className={`max-w-3xl md:max-w-4xl w-full p-8 md:p-12 rounded-[60px] shadow-2xl border-4 relative overflow-hidden ${lesson.type === "boss" ? "bg-red-950/20 border-red-500/50 shadow-[0_0_50px_rgba(239,68,68,0.2)]" : "bg-bg-space border-brand-primary/30"}`}
           >
             {lesson.type === "boss" && (
               <div className="absolute top-4 right-8 flex items-center gap-2">
@@ -1986,7 +2664,134 @@ function LessonView({
               </motion.div>
             )}
 
-            {!currentContent.options ? (
+            {isInteractive ? (
+              <div
+                id="interactive-activity-box"
+                className="w-full text-left mt-6 custom-scroll overflow-y-auto max-h-[68vh] pr-2"
+              >
+                {currentContent.type === "completar-frase" && (
+                  <CompletarFrase
+                    text={currentContent.text}
+                    sentences={currentContent.sentences}
+                    bank={currentContent.bank}
+                    correct={currentContent.correct}
+                    feedback={currentContent.feedback}
+                    onSuccess={() => {
+                      setInteractiveSolved(true);
+                      setFeedbackType("correct");
+                      setShowFeedback(true);
+                    }}
+                  />
+                )}
+                {currentContent.type === "ordenar" && (
+                  <OrdenarSecuencia
+                    text={currentContent.text}
+                    initialItems={currentContent.initialItems}
+                    correctItems={currentContent.correctItems}
+                    feedback={currentContent.feedback}
+                    onSuccess={() => {
+                      setInteractiveSolved(true);
+                      setFeedbackType("correct");
+                      setShowFeedback(true);
+                    }}
+                  />
+                )}
+                {currentContent.type === "mapa-corporal" && (
+                  <MapaCorporal
+                    onSuccess={() => {
+                      setInteractiveSolved(true);
+                      setFeedbackType("correct");
+                      setShowFeedback(true);
+                    }}
+                  />
+                )}
+                {currentContent.type === "hecho-interpretacion" && (
+                  <HechoInterpretacion
+                    onSuccess={() => {
+                      setInteractiveSolved(true);
+                      setFeedbackType("correct");
+                      setShowFeedback(true);
+                    }}
+                  />
+                )}
+                {currentContent.type === "velocimetro" && (
+                  <VelocimetroAnsiedad
+                    onSuccess={() => {
+                      setInteractiveSolved(true);
+                      setFeedbackType("correct");
+                      setShowFeedback(true);
+                    }}
+                  />
+                )}
+                {currentContent.type === "noticiero" && (
+                  <NoticieroMente
+                    onSuccess={() => {
+                      setInteractiveSolved(true);
+                      setFeedbackType("correct");
+                      setShowFeedback(true);
+                    }}
+                  />
+                )}
+                {currentContent.type === "yo-futuro" && (
+                  <YoFuturo
+                    onSuccess={() => {
+                      setInteractiveSolved(true);
+                      setFeedbackType("correct");
+                      setShowFeedback(true);
+                    }}
+                  />
+                )}
+                {currentContent.type === "mapa-apoyo" && (
+                  <MapaApoyo
+                    onSuccess={() => {
+                      setInteractiveSolved(true);
+                      setFeedbackType("correct");
+                      setShowFeedback(true);
+                    }}
+                  />
+                )}
+                {currentContent.type === "preocupacion-util" && (
+                  <PreocupacionUtilUtil
+                    onSuccess={() => {
+                      setInteractiveSolved(true);
+                      setFeedbackType("correct");
+                      setShowFeedback(true);
+                    }}
+                  />
+                )}
+                {currentContent.type === "yo-compasivo" && (
+                  <LaCartaYoCompasivo
+                    onSuccess={() => {
+                      setInteractiveSolved(true);
+                      setFeedbackType("correct");
+                      setShowFeedback(true);
+                    }}
+                  />
+                )}
+                {currentContent.type === "laboratorio-pociones" && (
+                  <LaboratorioPociones
+                    onSuccess={() => {
+                      setInteractiveSolved(true);
+                      setFeedbackType("correct");
+                      setShowFeedback(true);
+                    }}
+                  />
+                )}
+                {currentContent.type === "multiple-select" && (
+                  <MultipleSelectQuiz
+                    question={currentContent.question}
+                    options={currentContent.options}
+                    correct={currentContent.correct}
+                    feedback={currentContent.feedback}
+                    onSuccess={() => {
+                      setInteractiveSolved(true);
+                      setFeedbackType("correct");
+                      setShowFeedback(true);
+                    }}
+                  />
+                )}
+              </div>
+            ) : !currentContent.options ? (
               <div className="text-center mt-6">
                 <div className="text-8xl md:text-9xl mb-8 transform hover:scale-110 transition-transform drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">
                   {currentContent.image ||
@@ -2010,7 +2815,7 @@ function LessonView({
                   </h2>
                 </div>
 
-                <div className="grid gap-4">
+                <div className="grid gap-4 custom-scroll overflow-y-auto max-h-[55vh] pr-1">
                   {currentContent.options.map((opt: string, i: number) => (
                     <button
                       key={i}
@@ -2040,7 +2845,7 @@ function LessonView({
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 20, opacity: 0 }}
-              className={`absolute bottom-32 w-full max-w-lg p-8 rounded-[40px] border-b-8 shadow-2xl z-20 ${
+              className={`absolute bottom-32 w-full max-w-lg p-8 rounded-[40px] border-b-8 shadow-2xl z-25 ${
                 feedbackType === "correct"
                   ? "bg-brand-success border-green-700 shadow-green-500/20"
                   : feedbackType === "wrong"
@@ -2084,6 +2889,7 @@ function LessonView({
                   } else {
                     setShowFeedback(false);
                     setSelectedOption(null);
+                    setInteractiveSolved(false);
                   }
                 }}
                 className="mt-8 w-full py-5 bg-black/30 hover:bg-black/40 text-white font-black text-sm uppercase tracking-[0.2em] border-2 border-white/20 rounded-2xl transition-all"
@@ -2102,9 +2908,12 @@ function LessonView({
           <button
             onClick={handleNext}
             disabled={
-              currentContent.options && selectedOption === null && !showFeedback
+              (currentContent.options &&
+                selectedOption === null &&
+                !showFeedback) ||
+              (isInteractive && !interactiveSolved && !showFeedback)
             }
-            className={`w-full py-6 bg-brand-primary text-white font-black text-xl rounded-3xl shadow-xl border-b-8 border-purple-800 hover:scale-[1.02] transition-all active:translate-y-1 active:border-b-0 uppercase tracking-widest glow-text ${currentContent.options && selectedOption === null && !showFeedback ? "opacity-50 grayscale cursor-not-allowed" : ""}`}
+            className={`w-full py-6 bg-brand-primary text-white font-black text-xl rounded-3xl shadow-xl border-b-8 border-purple-800 hover:scale-[1.02] transition-all active:translate-y-1 active:border-b-0 uppercase tracking-widest glow-text ${(currentContent.options && selectedOption === null && !showFeedback) || (isInteractive && !interactiveSolved && !showFeedback) ? "opacity-50 grayscale cursor-not-allowed" : ""}`}
           >
             {step < content.length - 1
               ? "SIGUIENTE PASO"
