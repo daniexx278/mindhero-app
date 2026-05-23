@@ -321,7 +321,7 @@ export const INITIAL_LESSONS: Lesson[] = [
     id: "dep-1",
     sectionId: "depression",
     title: "Tristeza vs Depresión",
-    description: "Aprende las diferencias de ánimo.",
+    description: "Aprende a diferenciar las nubes del ánimo.",
     type: "depression",
     activityType: "quiz",
     ageGroup: "teen",
@@ -329,22 +329,22 @@ export const INITIAL_LESSONS: Lesson[] = [
     order: 11,
     content: [
       {
-        text: "La tristeza suele tener una causa clara y dura poco. La depresión se ancla por semanas, apaga el goce por tus entretenimientos y merma notablemente tu energía física diaria.",
+        text: "Sentirnos tristes por algo que pasó es normal y suele pasar rápido, como una nubecita de lluvia. Pero la depresión es como una tormenta gris que se queda por semanas, nos quita las ganas de divertirnos y nos hace sentir muy cansados y sin energía.",
         image: "☁️",
       },
       {
         question:
-          "Valentina lleva tres semanas vacía, duerme en demasía y se percibe como una carga sin causa real. ¿Qué describe su estado?",
+          "Vale lleva tres semanas sintiéndose triste y vacía, duerme muchísimo y siente que no hace nada bien sin que haya un motivo real. ¿Cómo se describe lo que siente?",
         options: [
-          "A) Es solo tristeza normal que se solucionará esperando solitaria.",
-          "B) Como no tiene una causa dura, es solo para llamar la atención.",
-          "C) Su estado se asemeja a la depresión por su prolongación mayor a dos semanas, apatía por todo y ausencia de luto.",
-          "D) Solo es preocupante si empieza a reprobar materias.",
+          "A) Es solo una tristeza común y corriente que se le pasará si se encierra sola.",
+          "B) No le pasa nada malo, solo quiere llamar la atención de los demás.",
+          "C) Su estado se parece a la depresión porque lleva más de dos semanas sintiéndose muy desganada, apagada y sin una causa obvia.",
+          "D) Solo es algo de qué preocuparse si empieza a sacar malas notas en la escuela.",
         ],
         correct: 2,
         feedback:
-          "La depresión puede aparecer de forma biológica sin un desencadenante evidente.\n\nReferencias:\n- American Psychiatric Association (APA, 2013). Diagnostic and Statistical Manual of Mental Disorders (5th ed.).\n- Hankin, B.L. et al. (2015). Depressive disorders in children and adolescents. Handbook of Clinical Child Psychology.",
-        hint: "Presta atención a la duración, asimetría de goces y la ausencia de un motivo trágico concreto.",
+          "¡Muy bien! La depresión es como una sombra gris de fondo que puede aparecer sin avisar ni necesitar un desencadenante obvio. No es culpa de quien la siente.\n\nReferencias:\n- American Psychiatric Association (APA, 2013). Diagnostic and Statistical Manual of Mental Disorders (5th ed.).\n- Hankin, B.L. et al. (2015). Depressive disorders in children and adolescents. Handbook of Clinical Child Psychology.",
+        hint: "Fíjate en cuánto tiempo lleva sintiéndose desganada (tres semanas) y que le quita la sonrisa sin una causa obvia.",
       },
     ],
   },
@@ -352,7 +352,7 @@ export const INITIAL_LESSONS: Lesson[] = [
     id: "dep-2",
     sectionId: "depression",
     title: "Cerebro y depresión",
-    description: "Conoce los sensores desregulados.",
+    description: "Conoce el botón de alarma y calma.",
     type: "depression",
     activityType: "quiz",
     ageGroup: "teen",
@@ -360,22 +360,22 @@ export const INITIAL_LESSONS: Lesson[] = [
     order: 12,
     content: [
       {
-        text: "En la juventud, tu cerebro cambia aceleradamente. En la depresión, la alarma emocional se enciende a tope por tonterías, mientras la corteza reguladora de calma trabaja con menos fuerza.",
+        text: "Cuando estamos creciendo, nuestro cerebro cambia a toda velocidad. En la depresión, el 'botón de alarma' del cerebro (el que nos hace sentir enojo o miedo) se enciende facilísimo por cualquier problema, mientras el 'freno de la calma' trabaja muy lento y débil.",
         image: "🧠",
       },
       {
         question:
-          "¿Qué ocurre con el cerebro adolescente en presencia de la depresión?",
+          "¿Qué ocurre con la alarma y la calma en el cerebro de un joven cuando tiene depresión?",
         options: [
-          "A) La zona de amortiguación afectiva trabaja de forma hiperactiva.",
-          "B) La alarma emocional se activa con desmedida facilidad y el freno amortiguador trabaja con menor ímpetu.",
-          "C) Se cancelan biológicamente todas las emociones por completo.",
-          "D) Los mensajeros neurotransmisores suben para darnos alegría extra.",
+          "A) El freno de la calma se vuelve súper poderoso y borra cualquier enojo de inmediato.",
+          "B) La alarma de las emociones se enciende con demasiada facilidad y el freno protector de la calma trabaja con menos fuerza.",
+          "C) El cerebro apaga por completo las emociones físicas y ya no se puede sentir nada de nada.",
+          "D) Las hormonas de la felicidad suben muchísimo para darnos el doble de energía.",
         ],
         correct: 1,
         feedback:
-          "Esta desregulación temporal hace que las dificultades normales se perciban gigantes.\n\nReferencias:\n- Lupien, S.J. et al. (2009). Effects of stress throughout the lifespan on the brain, behaviour and cognition. Nature Reviews Neuroscience, 10, 434-445.\n- Gotlib, I.H. & Hamilton, J.P. (2008). Neuroimaging and depression. Handbook of Depression.",
-        hint: "Es una sumatoria: alarma altamente sensible sumada a un freno debilitado.",
+          "¡Excelente descubrimiento! Cuando esa alarma está encendida y la calma trabaja despacio, las dificultades pequeñas se perciben gigantescas como monstruos de sombra.\n\nReferencias:\n- Lupien, S.J. et al. (2009). Effects of stress throughout the lifespan on the brain, behaviour and cognition. Nature Reviews Neuroscience, 10, 434-445.\n- Gotlib, I.H. & Hamilton, J.P. (2008). Neuroimaging and depression. Handbook of Depression.",
+        hint: "Es un desbalance: una alarma altamente sensible y ruidosa sumada a un freno de calma debilitado.",
       },
     ],
   },
@@ -383,7 +383,7 @@ export const INITIAL_LESSONS: Lesson[] = [
     id: "dep-3",
     sectionId: "depression",
     title: "La depresión invisible",
-    description: "No todo es llanto constante.",
+    description: "La tristeza usa diferentes disfraces.",
     type: "depression",
     activityType: "interactive",
     ageGroup: "teen",
@@ -391,22 +391,22 @@ export const INITIAL_LESSONS: Lesson[] = [
     order: 13,
     content: [
       {
-        text: "La depresión en jóvenes no siempre se manifiesta en llanto triste o encierro. Muchas veces asume máscaras de ira defensiva, quejas físicas y desvinculación progresiva de amigos.",
+        text: "A veces la depresión usa máscaras. No siempre se ve como lágrimas o llanto. En los chicos, muchas veces se disfraza de mal genio constante, dolores de pancita o dolor de cabeza sin estar enfermos, y ganas de apartarse de sus seres queridos.",
         image: "👤",
       },
       {
         type: "multiple-select",
         question:
-          "Sebastián antes era pacífico, pero hace un mes está irritable, con dolores tensionales estomacales y no contesta mensajes. No llora. ¿Qué afirmaciones son acertadas?",
+          "Sebastián antes era muy alegre y tranquilo, pero hace un mes está muy irritable, le duele el estómago y no contesta los mensajes de sus amigos. No llora. ¿Qué afirmaciones son correctas?",
         options: [
-          "La depresión en jóvenes frecuentemente asume formas de mal genio recurrente, dolores somáticos y aislamiento en lugar de llanto.",
-          "La irritabilidad crónica y las afecciones físicas sin fundamento médico son alertas que ameritan una evaluación cordial.",
-          "Es solo rebeldía obligada del crecimiento, no conviene intervenir de ninguna forma.",
-          "Solo es objeto de alarma si el rendimiento escolar decae a cero.",
+          "La depresión en los jóvenes suele disfrazarse de mal genio constante, dolores corporales e incomodidad en lugar de lágrimas visibles.",
+          "Estar irritable todo el tiempo y sentir dolores físicos sin explicación médica son alertas para acercarnos con cariño y cuidado.",
+          "Solo es una rebeldía normal de la edad, lo mejor es dejarlo pasar y no prestarle atención.",
+          "Solo deberíamos preocuparnos si sus calificaciones en la escuela caen por completo a cero.",
         ],
         correct: [0, 1],
         feedback:
-          "La tristeza en jóvenes a menudo asume máscaras de ira defensiva, quejas físicas y desvinculación progresiva de amigos.\n\nReferencias:\n- American Psychiatric Association (APA, 2013).\n- Stringaris, A. & Goodman, R. (2009). Longitudinal outcome of irritability in children. American Journal of Psychiatry, 166(9).",
+          "¡Buen ojo de Guardián! Recuerda que el enojo recurrente, los dolores corporales y el aislamiento social son formas frecuentes en las que el cerebro de un joven pide auxilio.\n\nReferencias:\n- American Psychiatric Association (APA, 2013).\n- Stringaris, A. & Goodman, R. (2009). Longitudinal outcome of irritability in children. American Journal of Psychiatry, 166(9).",
       },
     ],
   },
@@ -414,7 +414,7 @@ export const INITIAL_LESSONS: Lesson[] = [
     id: "dep-4",
     sectionId: "depression",
     title: "Laberinto de redes",
-    description: "La tiranía del feed perfecto.",
+    description: "La trampa de las vidas editadas.",
     type: "depression",
     activityType: "quiz",
     ageGroup: "teen",
@@ -422,22 +422,22 @@ export const INITIAL_LESSONS: Lesson[] = [
     order: 14,
     content: [
       {
-        text: "Consumir perfiles perfectos de redes sin interactuar te incita a comparar tu vida detrás de escena con la máscara editada de los demás.",
+        text: "Ver perfiles 'perfectos' de otras personas en redes sociales nos incita a comparar nuestro día a día real (con momentos aburridos o difíciles) con las fotos posadas y editadas de los demás. ¡Olvidamos que son solo poses!",
         image: "📱",
       },
       {
         question:
-          "Laura pasa horas scrolleando fotos perfectas de compañeras y termina frustrada y decaída sin saber por qué. ¿Qué lo explica?",
+          "Lau pasa horas mirando las fotos increíbles y filtros divertidos de sus compañeros de clase, y termina sintiéndose triste e insatisfecha. ¿Qué explica esto?",
         options: [
-          "A) Dos horas es insignificante; necesita pasar cuatro horas para alterarse.",
-          "B) El scrolleo pasivo la empuja a la comparación social nociva contra fragmentos editados e irreales de otros.",
-          "C) Instagram destruye las neuronas mecánicas de forma instantánea.",
-          "D) Es una señal biológica de que Laura tiene baja capacidad académica.",
+          "A) Mirar fotos no hace nada; solo necesita pasar el doble de horas en internet para ponerse alegre.",
+          "B) Al mirar de forma pasiva, se compara de forma injusta con momentos felices muy editados e irreales que los demás eligen mostrar.",
+          "C) El teléfono celular destruye de inmediato las neuronas de la alegría en un segundo.",
+          "D) Es una señal biológica de que Lau no es tan buena estudiante como sus compañeras.",
         ],
         correct: 1,
         feedback:
-          "La comparación pasiva recurrente con ideales irreales de bienestar fomenta un desprecio severo de los propios logros.\n\nReferencias:\n- Twenge, J.M. et al. (2018). Increases in depressive symptoms, suicide-related outcomes, and suicide rates among US adolescents. Clinical Psychological Science, 6(1), 3–17.\n- Coyne, S.M. et al. (2020). Does time spent on social media impact mental health? A 8-year longitudinal study. Computers in Human Behavior, 102.",
-        hint: "Fíjate en el término de comparación social pasiva silenciosa contra vidas recortadas.",
+          "¡Gran acierto! Comparar tu vida real con los fragmentos arreglados y felices de internet es una trampa directa de las sombras que daña tu autoestima.\n\nReferencias:\n- Twenge, J.M. et al. (2018). Increases in depressive symptoms, suicide-related outcomes, and suicide rates among US adolescents. Clinical Psychological Science, 6(1), 3–17.\n- Coyne, S.M. et al. (2020). Does time spent on social media impact mental health? A 8-year longitudinal study. Computers in Human Behavior, 102.",
+        hint: "Piensa en el efecto de comparar tu día normal con las fotos llenas de filtros, preparadas e irreales de otras personas.",
       },
     ],
   },
@@ -445,7 +445,7 @@ export const INITIAL_LESSONS: Lesson[] = [
     id: "dep-5",
     sectionId: "depression",
     title: "Filtros y trampas",
-    description: "Identifica los extremos absolutos.",
+    description: "Gánale al juego del todo o nada.",
     type: "depression",
     activityType: "quiz",
     ageGroup: "teen",
@@ -453,22 +453,22 @@ export const INITIAL_LESSONS: Lesson[] = [
     order: 15,
     content: [
       {
-        text: "La tristeza tiñe las opiniones. Hace que tu cerebro ignore el lado positivo de un evento y se autoafirme en mentiras catastróficas del todo-o-nada.",
+        text: "Cuando estamos desanimados o tristes, nuestra mente se pone como unos lentes oscuros. Hacen que ignoremos todo lo bueno y nos creamos mentiras exageradas como 'hago todo mal' o 'nunca voy a poder'.",
         image: "🕶️",
       },
       {
         question:
-          "Camila obtiene un aceptable 3.8 y concluye: 'Me fue terrible. Nunca voy a poder con la materia. Siempre soy la peor.' ¿Qué trampas hay?",
+          "Cami saca un 3.8 en un examen (una nota aprobatoria) y dice: 'Me fue horrible. Nunca voy a poder con esta materia. Siempre me sale todo mal.' ¿Qué trampas hay aquí?",
         options: [
-          "A) Ninguna; es totalmente lógico y honesto que se exprese con ese desprecio.",
-          "B) Una sola: una leve molestia por perfeccionismo escolar.",
-          "C) Múltiples trampas: filtro negativo (ignora pasar la materia), catastrofismo y etiquetas extremas absolutas ('nunca', 'siempre').",
-          "D) Adjudicarse culpas ajenas a su control social.",
+          "A) Ninguna trampa; es lógico que piense así por no sacar un 5.0 perfecto.",
+          "B) Solo es una pequeña molestia por querer ser una estudiante excelente.",
+          "C) Múltiples trampas: filtro gris (ignora que aprobó), catastrofismo (pensar en lo peor) y palabras absolutas como 'nunca' y 'siempre' que no son reales.",
+          "D) Culparse de cosas de los demás que ella no puede controlar.",
         ],
         correct: 2,
         feedback:
-          "Desmontar el absolutismo del filtro negativo disminuye la pesadez de los errores pasajeros.\n\nReferencias:\n- Beck, A.T. et al. (1979). Cognitive therapy of depression. Guilford Press.\n- Haaga, D.A. et al. (1991). Empirical status of cognitive theory of depression. Psychological Bulletin, 110(2).",
-        hint: "Presta atención al uso de leyes absolutas injustas como 'nunca sirvo' y 'siempre fallo'.",
+          "¡Excelente! Aprender a detectar y quitarse esos 'lentes oscuros' nos ayuda a ver la realidad con más claridad y rebajar el peso de los tropiezos normales.\n\nReferencias:\n- Beck, A.T. et al. (1979). Cognitive therapy of depression. Guilford Press.\n- Haaga, D.A. et al. (1991). Empirical status of cognitive theory of depression. Psychological Bulletin, 110(2).",
+        hint: "Presta mucha atención al uso de palabras exageradas y absolutas que ignoran por completo su logro de haber aprobado.",
       },
     ],
   },
@@ -476,7 +476,7 @@ export const INITIAL_LESSONS: Lesson[] = [
     id: "dep-6",
     sectionId: "depression",
     title: "Sueño y humor",
-    description: "La regularidad de tu recarga.",
+    description: "Carga la batería de tu cerebro.",
     type: "depression",
     activityType: "interactive",
     ageGroup: "teen",
@@ -484,22 +484,22 @@ export const INITIAL_LESSONS: Lesson[] = [
     order: 16,
     content: [
       {
-        text: "La falta de sueño diario desgasta la paciencia, debilita el escudo de los neurotransmisores de bienestar y descalibra por completo tu ritmo circadiano.",
+        text: "El sueño recarga nuestra energía mental y física. Si dormimos de menos, nuestro escudo contra la tristeza se desgasta. Y ojo: ¡el sueño no se puede acumular ni reponer durmiendo todo el fin de semana!",
         image: "🛌",
       },
       {
         type: "multiple-select",
         question:
-          "Daniel duerme 5 horas semanales y 12 horas el sábado para 'liquidar la deuda'. ¿Qué riesgos tiene esta rutina en su salud mental?",
+          "Daniel duerme solo 5 horas en las noches de colegio y planea dormir 12 horas el sábado para 'compensar'. ¿Qué riesgos tiene esto en su humor y mente?",
         options: [
-          "El sueño no se acumula ni se repone en bloques; dormir de menos debilita el escudo de los neurotransmisores de bienestar.",
-          "Dormir poco desgasta la paciencia y el humor diario; los atracones de fin de semana descalibran el ritmo circadiano.",
-          "Es una rutina totalmente normal que no repercute cognitivamente.",
-          "Provoca fatiga física constante que el cerebro traduce como desánimo profundo durante la semana escolar.",
+          "El sueño perdido no se puede guardar ni recuperar después; dormir de menos debilita el escudo protector del cerebro contra el estrés.",
+          "Dormir muy pocas horas desgasta nuestra paciencia e incrementa la frustración, y los atracones de fin de semana enredan el reloj de nuestro cuerpo.",
+          "Es una gran rutina escolar y no tiene absolutamente ningún impacto en su cansancio o concentración.",
+          "Provoca un cansancio físico acumulado durante la semana que el cerebro confunde con desánimo y tristeza profunda en la escuela.",
         ],
         correct: [0, 1, 3],
         feedback:
-          "La falta recurrente de sueño diario magnifica la desregulación emocional, haciendo insalvables los retos.\n\nReferencias:\n- Paruthi, S. et al. (2016). Recommended amount of sleep for pediatric populations. Journal of Clinical Sleep Medicine, 12(6).\n- Harvey, A.G. (2011). Sleep and circadian rhythms in bipolar disorder and schizophrenia. Lancet Psychiatry.",
+          "¡Has superado el nivel! Dormir lo suficiente (entre 8 y 10 horas) le da estabilidad a nuestras emociones y energía para enfrentar el día.\n\nReferencias:\n- Paruthi, S. et al. (2016). Recommended amount of sleep for pediatric populations. Journal of Clinical Sleep Medicine, 12(6).\n- Harvey, A.G. (2011). Sleep and circadian rhythms in bipolar disorder and schizophrenia. Lancet Psychiatry.",
       },
     ],
   },
@@ -507,7 +507,7 @@ export const INITIAL_LESSONS: Lesson[] = [
     id: "dep-7",
     sectionId: "depression",
     title: "La inercia de actuar",
-    description: "Las ganas nacen del movimiento.",
+    description: "La energía nace al movernos.",
     type: "depression",
     activityType: "interactive",
     ageGroup: "teen",
@@ -515,22 +515,22 @@ export const INITIAL_LESSONS: Lesson[] = [
     order: 17,
     content: [
       {
-        text: "En la depression, el cerebro se apaga y posterga. Al contrario de lo que creemos, las ganas no nacen de la espera pasiva, ¡nacen del movimiento físico inicial!",
+        text: "Con la tristeza, nuestro cerebro prefiere apagarse y postergar cosas. Pero, a diferencia de lo que creemos, las ganas no llegan solas esperando acostados... ¡las ganas nacen justo después de dar el primer paso!",
         image: "🏃",
       },
       {
         type: "multiple-select",
         question:
-          "Sofi disfrutaba el voleibol, pero lo dejó y dice: 'Regresaré cuando me nazcan las ganas'. ¿Por qué postergar es perjudicial en la depresión?",
+          "Sofi amaba jugar voleibol, pero como está desanimada lo dejó y dice: 'Regresaré solo cuando me nazcan las ganas'. ¿Por qué esperar es una trampa de la tristeza?",
         options: [
-          "En la depresión, las ganas no reaparecen solas esperando; el cerebro desmotivado necesita la inercia de un paso pequeño inicial.",
-          "La activación conductual demuestra que el ánimo se gatilla como resultado del movimiento físico, no antes del mismo.",
-          "Es lo más aconsejable para evitar la exigencia física del deporte.",
-          "Solo debe chatear y suspender todas las salidas.",
+          "Las ganas no reaparecen solas esperando sin hacer nada; el cerebro necesita el movimiento de un primer paso pequeño para encenderse.",
+          "La activación nos enseña que el ánimo y la alegría se despiertan como resultado de movernos, no antes del movimiento.",
+          "Es lo más recomendable de hacer para no cansar los músculos de su cuerpo de forma innecesaria.",
+          "Lo mejor que Sofi puede hacer es quedarse encerrada chateando y cancelar todas las invitaciones de sus amigos.",
         ],
         correct: [0, 1],
         feedback:
-          "Iniciar con una actividad pequeña rompe el ciclo inactivo del decaimiento cerebral.\n\nReferencias:\n- Cuijpers, P. et al. (2007). Behavioral activation in the treatment of depression: A meta-analysis. Clinical Psychology Review, 27(3).\n- Lejuez, C.W. et al. (2011). Ten-year revision of the Brief Behavioral Activation Treatment for Depression. Cognitive and Behavioral Practice, 18(2).",
+          "¡Sensacional! Dar un paso pequeñito (como tender tu cama, dibujar 5 minutos o salir a caminar) es el control remoto que enciende de nuevo tu motivación.\n\nReferencias:\n- Cuijpers, P. et al. (2007). Behavioral activation in the treatment of depression: A meta-analysis. Clinical Psychology Review, 27(3).\n- Lejuez, C.W. et al. (2011). Ten-year revision of the Brief Behavioral Activation Treatment for Depression. Cognitive and Behavioral Practice, 18(2).",
       },
     ],
   },
@@ -538,7 +538,7 @@ export const INITIAL_LESSONS: Lesson[] = [
     id: "dep-8",
     sectionId: "depression",
     title: "Hablarse con amabilidad",
-    description: "Desarma el desprecio interno.",
+    description: "Sé tu propio mejor amigo.",
     type: "depression",
     activityType: "quiz",
     ageGroup: "teen",
@@ -546,22 +546,22 @@ export const INITIAL_LESSONS: Lesson[] = [
     order: 18,
     content: [
       {
-        text: "La autocrítica hostil daña tu cerebro igual que una amenaza física en curso. Háblate con la misma ternura que le ofrecerías a tu mejor amigo.",
+        text: "Regañarse muy feo cuando fallamos lastima a nuestro cerebro igual que una amenaza real. Háblate a ti mismo con el mismo cariño y paciencia que usarías con tu amigo preferido.",
         image: "🤍",
       },
       {
         question:
-          "Tomás se equivoca en clase y piensa: 'Soy un fracasado.' ¿Cómo luce una respuesta autocompasiva y protectora?",
+          "Tomás comete un error al hablar frente a todos en clase y piensa: 'Soy un tonto, todo lo hago mal'. ¿Cómo sería una respuesta autocompasiva?",
         options: [
-          "A) Validar que el error duele recio, consolarse y recordarse que un fallo transitorio no destruye su valor o inteligencia completa.",
-          "B) Negar el acontecimiento distrayéndose en videojuegos de forma obsesiva.",
-          "C) Decirse mentiras exageradas sobre ser perfecto e infalible.",
-          "D) Rumiar su descuidado en silencio por varias jornadas.",
+          "A) Aceptar que equivocarse da pena, consolarse a sí mismo y recordarse que todos fallan y eso no le quita lo inteligente y valioso.",
+          "B) Ignorar lo que pasó y ponerse a jugar videojuegos durante horas en plan obsesivo para no pensar.",
+          "C) Decirse mentiras exageradas en su cabeza alegando que él es perfecto y nunca cometerá un error.",
+          "D) Seguir recordando el error en silencio con enojo durante varios días seguidos de forma constante.",
         ],
         correct: 0,
         feedback:
-          "La amabilidad realista ante la falla atenúa el miedo limitante a volver a probar.\n\nReferencias:\n- Neff, K.D. (2003). Development and validation of a scale to measure self-compassion. Self and Identity, 2(3), 223–250.\n- Blatt, S.J. (204). Experiences of depression: Theoretical, clinical, and research perspectives. American Psychological Association.",
-        hint: "Busca la opción que acoja el dolor con clemencia, no con castigos mentales severos.",
+          "¡Excelente! Ser amable contigo mismo cuando te equivocas reduce el nivel de estrés y te da la valentía para volver a intentarlo.\n\nReferencias:\n- Neff, K.D. (2003). Development and validation of a scale to measure self-compassion. Self and Identity, 2(3), 223–250.\n- Blatt, S.J. (204). Experiences of depression: Theoretical, clinical, and research perspectives. American Psychological Association.",
+        hint: "Busca la opción donde Tomás se trata con amabilidad y comprensión, recordando que de los errores se aprende.",
       },
     ],
   },
@@ -569,7 +569,7 @@ export const INITIAL_LESSONS: Lesson[] = [
     id: "dep-9",
     sectionId: "depression",
     title: "El puente de la amistad",
-    description: "Acompañar sin emitir juicios.",
+    description: "Acompaña escuchando sin juzgar.",
     type: "depression",
     activityType: "interactive",
     ageGroup: "teen",
@@ -577,22 +577,22 @@ export const INITIAL_LESSONS: Lesson[] = [
     order: 19,
     content: [
       {
-        text: "Apoyar a un amigo con depresión no requiere dar sermones o decir 'ponle ganas'. Un oído paciente libre de juicios es el puente más poderoso.",
+        text: "Apoyar a alguien desanimado no consiste en darle sermones o decirle: 'ponte alegre'. El mejor puente es escuchar con paciencia y dejarle saber que estás ahí.",
         image: "🤝",
       },
       {
         type: "multiple-select",
         question:
-          "Tu amiga íntima lleva semanas ausente y apagada. Decides obrar con cuidado. ¿Qué caminos son aconsejables?",
+          "Tu mejor amiguito lleva semanas muy apagado, callado y sin querer jugar. Quieres apoyarlo con cariño. ¿Qué caminos son recomendables?",
         options: [
-          "Acercarte en forma privada y formularle un sincero '¿cómo estás de verdad?'.",
-          "Oír su malestar con paciencia y discreción, sin sermonearla ni exigirle 'ponle ganas'.",
-          "Sugerirle respetuosamente buscar la guía del orientador o especialista escolar y ofrecerte a acompañarla.",
-          "Forzarla a divertirse en público, revelando su malestar a otros para aconsejarla conjuntamente sin su anuencia.",
+          "Acercarte de forma tranquila y decirle algo sincero como: '¿Cómo estás de verdad? Estoy aquí para escucharte si lo deseas'.",
+          "Escuchar lo que le pasa con paciencia y discreción, sin sermonearle, ni exigirle que 'le eche ganas' o 'se ponga feliz' a la fuerza.",
+          "Sugerirle con suavidad ir a hablar con un adulto de confianza (como el orientador de su colegio o con sus padres) y ofrecerte a acompañarle.",
+          "Obligarlo a salir con todo el grupo en público y contarle la situación a otros compañeros sin pedirle permiso para aconsejarlo entre todos.",
         ],
         correct: [0, 1, 2],
         feedback:
-          "Una oreja dispuesta libre de críticas y motivar la vinculación con redes de soporte escolar son las mayores muestras de aprecio.\n\nReferencias:\n- Kitchener, B.A. & Jorm, A.F. (2002). Mental health first aid training in a workplace setting. International Journal of Mental Health Systems.\n- Rickwood, D. et al. (2005). Young people's help-seeking for mental health problems. Australian e-Journal for the Advancement of Mental Health, 4(3).",
+          "¡Maravilloso! Escuchar a un amigo de forma confidencial y alentarlo de manera cariñosa a buscar a un adulto de confianza es el mejor acto de amistad.\n\nReferencias:\n- Kitchener, B.A. & Jorm, A.F. (2002). Mental health first aid training in a workplace setting. International Journal of Mental Health Systems.\n- Rickwood, D. et al. (2005). Young people's help-seeking for mental health problems. Australian e-Journal for the Advancement of Mental Health, 4(3).",
       },
     ],
   },
@@ -600,7 +600,7 @@ export const INITIAL_LESSONS: Lesson[] = [
     id: "dep-10",
     sectionId: "depression",
     title: "EL JEFE: SOMBRA ETERNA",
-    description: "Reconoce cuándo es tramo clínico.",
+    description: "Reconoce los límites e indicadores.",
     type: "boss",
     activityType: "quiz",
     ageGroup: "teen",
@@ -608,22 +608,22 @@ export const INITIAL_LESSONS: Lesson[] = [
     order: 20,
     content: [
       {
-        text: "No requieres estar al borde del colapso para merecer apoyo. Dos semanas continuas de apatía general y pesadez son un indicador prudente para consultar.",
+        text: "No necesitas sentirte completamente deshecho para merecer sentirte bien. Si llevas más de dos semanas sintiéndote desganado, vacío y sin poder sonreír, es momento de pedir ayuda.",
         image: "🩺",
       },
       {
         question:
-          "Andrés lleva tres semanas cansado y vacío, pero dice: 'No es para tanto, todos tienen rachas malas'. ¿Qué criterio es apropiado?",
+          "Andrés lleva tres semanas seguidas muy cansado y sin ganas de hacer nada, pero dice: 'No es para tanto, a todos nos da flojera a veces'. ¿Qué criterio es el adecuado?",
         options: [
-          "A) Tiene razón; tres semanas es un luto breve que disolverá con ocio solitario.",
-          "B) Debe consultar únicamente si empieza a reprobar exámenes drásticamente.",
-          "C) Como ya sobrepasó el umbral clínico de dos semanas con cansancio y anhedonia, merece buscar ayuda sin dudar.",
-          "D) Mientras no tenga llanto o crisis estridentes de luto, carece de alertas.",
+          "A) Andrés tiene razón; tres semanas es muy poco tiempo y se le pasará solo sin decírselo a nadie.",
+          "B) Solo debería pedir ayuda de un médico si comienza a perder todas sus tareas en el colegio por completo.",
+          "C) Como ya superó las dos semanas continuas de tristeza constante, desánimo y apatía, merece pedir el apoyo de un adulto o profesional.",
+          "D) Mientras no pase llorando a gritos en público todos los días, no tiene ninguna alerta.",
         ],
         correct: 2,
         feedback:
-          "Esperar a que el dolor se torne insostenible dilata la sanación del desánimo.\n\nReferencias:\n- American Psychiatric Association (APA, 2013). DSM-5.\n- Radez, J. et al. (2021). Why do children and adolescents not seek formal help for their mental health difficulties? A systematic review. Social Psychiatry and Psychiatric Epidemiology, 56, 1221–1232.",
-        hint: "Nuestras directrices fijan el umbral de dolor sostenido en las dos semanas continuadas.",
+          "¡HAS DERROTADO AL JEFE DE LA DEPRESIÓN! Pedir ayuda es de verdaderos guerreros y guardianes. No dejes que las sombras te desanimen.\n\nReferencias:\n- American Psychiatric Association (APA, 2013). DSM-5.\n- Radez, J. et al. (2021). Why do children and adolescents not seek formal help for their mental health difficulties? A systematic review. Social Psychiatry and Psychiatric Epidemiology, 56, 1221–1232.",
+        hint: "Dos semanas consecutivas de desánimo constante y falta de goce por jugar es el límite clave para hablar con un adulto de confianza.",
       },
     ],
   },

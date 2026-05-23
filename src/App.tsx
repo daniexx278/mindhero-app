@@ -28,6 +28,7 @@ import {
   CircleDashed,
   Cpu,
   Wind,
+  Lock,
 } from "lucide-react";
 import {
   AgeGroup,
@@ -1349,8 +1350,71 @@ function AchievementsView({
   const [selectedTechnique, setSelectedTechnique] = useState<Technique | null>(
     null,
   );
+
+  // Custom states for interactive step-by-step exercises
+  const [currentStep, setCurrentStep] = useState<number>(0);
+  const [stepInputs, setStepInputs] = useState<string[]>(["", "", "", "", ""]);
+  const [selectedTouchFeelings, setSelectedTouchFeelings] = useState<string[]>(
+    [],
+  );
+  const [safePlaceName, setSafePlaceName] = useState<string>("");
+  const [safePlaceColor, setSafePlaceColor] = useState<string>("purple");
+  const [secondsLeft, setSecondsLeft] = useState<number>(4);
+
   const completed = lessons.filter((l) => l.completed).length;
   const progressPercent = Math.min((completed / lessons.length) * 100, 100);
+
+  // Breathing timer countdown effect
+  useEffect(() => {
+    let interval: any;
+    if (selectedTechnique?.id === "t1" && currentStep > 0 && currentStep < 4) {
+      setSecondsLeft(4);
+      interval = setInterval(() => {
+        setSecondsLeft((s) => (s > 1 ? s - 1 : 4));
+      }, 1000);
+    }
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [currentStep, selectedTechnique]);
+
+  const customColors = [
+    {
+      id: "purple",
+      code: "bg-purple-600",
+      border: "border-purple-400",
+      label: "Violeta Cósmico 🔮",
+      shadow: "shadow-purple-500/50",
+    },
+    {
+      id: "blue",
+      code: "bg-blue-600",
+      border: "border-blue-400",
+      label: "Azul Sideral 🌌",
+      shadow: "shadow-blue-500/50",
+    },
+    {
+      id: "green",
+      code: "bg-emerald-600",
+      border: "border-emerald-400",
+      label: "Esmeralda Sanador 🌿",
+      shadow: "shadow-emerald-500/50",
+    },
+    {
+      id: "pink",
+      code: "bg-pink-600",
+      border: "border-pink-400",
+      label: "Rosa Calma 💕",
+      shadow: "shadow-pink-500/50",
+    },
+    {
+      id: "amber",
+      code: "bg-amber-500",
+      border: "border-amber-400",
+      label: "Dorado Solar ☀️",
+      shadow: "shadow-amber-500/50",
+    },
+  ];
 
   return (
     <motion.div
@@ -1416,43 +1480,68 @@ function AchievementsView({
             Héroe
           </h3>
           <div className="grid gap-4">
-            {TECHNIQUES.map((t) => (
-              <div
-                key={t.id}
-                onClick={() => t.unlocked && setSelectedTechnique(t)}
-                className={`p-6 rounded-3xl border-2 transition-all cursor-pointer hover:scale-[1.02] ${t.unlocked ? "bg-bg-space border-brand-primary/40" : "bg-slate-900 border-slate-800 opacity-50 grayscale"}`}
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 bg-brand-primary/20 rounded-2xl flex items-center justify-center text-brand-primary">
-                    {t.icon === "Wind" ? (
-                      <Wind />
-                    ) : t.icon === "Check" ? (
-                      <CheckCircle2 />
-                    ) : (
-                      <Home />
-                    )}
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2">
-                      <p className="font-black text-white uppercase text-sm tracking-tight">
-                        {t.name}
-                      </p>
-                      {t.unlocked && (
-                        <span className="text-[8px] bg-brand-success/20 text-brand-success px-2 py-0.5 rounded-full font-black uppercase">
-                          Click para repasar
-                        </span>
+            {TECHNIQUES.map((t) => {
+              // Dynamically check if technique should be presented as learned
+              const isTechUnlocked =
+                t.id === "t1"
+                  ? true
+                  : t.id === "t2"
+                    ? lessons.some((l) => l.id === "ans-9" && l.completed)
+                    : lessons.some(
+                        (l) => l.sectionId === "depression" && l.completed,
+                      );
+
+              return (
+                <div
+                  key={t.id}
+                  onClick={() => {
+                    setSelectedTechnique(t);
+                    setCurrentStep(0);
+                    setStepInputs(["", "", "", "", ""]);
+                    setSelectedTouchFeelings([]);
+                    setSafePlaceName("");
+                    setSafePlaceColor("purple");
+                  }}
+                  className={`p-6 rounded-3xl border-2 transition-all cursor-pointer hover:scale-[1.02] ${isTechUnlocked ? "bg-bg-space border-brand-primary/40" : "bg-slate-900 border-slate-800 opacity-80"}`}
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-14 h-14 bg-brand-primary/20 rounded-2xl flex items-center justify-center text-brand-primary">
+                      {t.icon === "Wind" ? (
+                        <Wind />
+                      ) : t.icon === "Check" ? (
+                        <CheckCircle2 />
+                      ) : (
+                        <Home />
                       )}
                     </div>
-                    <p className="text-xs text-slate-500 font-bold mt-1">
-                      {t.description}
-                    </p>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2">
+                        <p className="font-black text-white uppercase text-sm tracking-tight">
+                          {t.name}
+                        </p>
+                        {isTechUnlocked ? (
+                          <span className="text-[8px] bg-brand-success/20 text-brand-success px-2 py-0.5 rounded-full font-black uppercase">
+                            Aprendida - ¡Entrenar!
+                          </span>
+                        ) : (
+                          <span className="text-[8px] bg-amber-500/20 text-amber-500 px-2 py-0.5 rounded-full font-black uppercase">
+                            Por aprender - ¡Entrenar!
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-xs text-slate-500 font-bold mt-1">
+                        {t.description}
+                      </p>
+                    </div>
+                    {isTechUnlocked ? (
+                      <Zap className="text-accent-amber" size={20} />
+                    ) : (
+                      <Lock className="text-slate-600" size={16} />
+                    )}
                   </div>
-                  {t.unlocked && (
-                    <Zap className="text-accent-amber" size={20} />
-                  )}
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </section>
 
@@ -1476,45 +1565,620 @@ function AchievementsView({
           </div>
         </section>
 
-        {/* Technique Detail Modal */}
+        {/* Technique Detail Modal with Step-by-Step Interactive Exercises */}
         <AnimatePresence>
           {selectedTechnique && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/90 backdrop-blur-xl z-[100] flex items-center justify-center p-6"
+              className="fixed inset-0 bg-black/90 backdrop-blur-xl z-[100] flex items-center justify-center p-6 overflow-y-auto"
               onClick={() => setSelectedTechnique(null)}
             >
               <motion.div
                 initial={{ scale: 0.9, y: 30 }}
                 animate={{ scale: 1, y: 0 }}
-                className="bg-bg-space w-full max-w-sm rounded-[60px] p-10 border-8 border-brand-primary/20 text-center relative shadow-[0_0_50px_rgba(97,0,148,0.3)]"
+                className="bg-bg-space w-full max-w-sm rounded-[50px] p-8 border-8 border-brand-primary/20 text-center relative shadow-[0_0_50px_rgba(97,0,148,0.3)] my-auto"
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="text-8xl mb-8">
-                  {selectedTechnique.icon === "Wind"
-                    ? "🌬️"
-                    : selectedTechnique.icon === "Check"
-                      ? "🧘"
-                      : "🏠"}
-                </div>
-                <h3 className="text-2xl font-black text-white uppercase tracking-widest mb-4 glow-text">
-                  {selectedTechnique.name}
-                </h3>
-                <p className="text-slate-300 font-bold leading-relaxed mb-8">
-                  {selectedTechnique.id === "t1"
-                    ? "Cierra los ojos. Inhala aire profundamente contando hasta 4. Mantén el aire por 4 segundos. Exhala lentamente en 4 segundos. Siente cómo la calma entra en tu sistema."
-                    : selectedTechnique.id === "t2"
-                      ? "Busca: 5 cosas que puedas ver, 4 cosas que puedas tocar, 3 cosas que puedas oír, 2 cosas que puedas oler y 1 cosa que puedas probar. Esto te trae de vuelta al presente."
-                      : "Imagina un lugar donde te sientas completamente seguro y feliz. Puede ser real o inventado. Cuando te sientas asustado, cierra los ojos y viaja allí."}
-                </p>
+                {/* Close Button */}
                 <button
                   onClick={() => setSelectedTechnique(null)}
-                  className="w-full py-5 bg-brand-primary text-white font-black uppercase tracking-widest rounded-3xl border-b-8 border-purple-800 active:translate-y-1 active:border-b-0 cursor-pointer"
+                  className="absolute top-4 right-4 w-10 h-10 bg-black/40 rounded-full flex items-center justify-center text-slate-400 hover:text-white transition-colors cursor-pointer"
                 >
-                  ¡ENTENDIDO!
+                  <X size={18} />
                 </button>
+
+                {/* Sub-components layout based on selected technique */}
+
+                {/* TECHNIQUE 1: RESPIRACIÓN PROFUNDA ("t1") */}
+                {selectedTechnique.id === "t1" && (
+                  <div>
+                    {currentStep === 0 && (
+                      <div className="flex flex-col items-center">
+                        <div className="text-7xl mb-6">🌬️</div>
+                        <h3 className="text-xl font-black text-white uppercase tracking-wider mb-3 glow-text text-center">
+                          {selectedTechnique.name}
+                        </h3>
+                        <p className="text-slate-300 text-sm font-bold leading-relaxed mb-6">
+                          Aprender a respirar con calma protege tu escudo
+                          galáctico de las alarmas del cerebro. Haremos un ciclo
+                          juntos de Inhala, Mantén y Exhala.
+                        </p>
+                        <button
+                          onClick={() => setCurrentStep(1)}
+                          className="w-full py-4 bg-brand-primary text-white font-black uppercase tracking-widest rounded-2xl border-b-4 border-purple-800 active:translate-y-0.5 active:border-b-0 cursor-pointer text-sm"
+                        >
+                          ¡Iniciar Práctica!
+                        </button>
+                      </div>
+                    )}
+
+                    {(currentStep === 1 ||
+                      currentStep === 2 ||
+                      currentStep === 3) && (
+                      <div className="flex flex-col items-center">
+                        <h4 className="text-[10px] font-black tracking-widest text-brand-primary uppercase mb-1">
+                          Estás en el Paso {currentStep} de 3
+                        </h4>
+                        <h3 className="text-xl font-black text-white uppercase tracking-wider mb-2">
+                          {currentStep === 1 && "1. ¡Inhala hondo!"}
+                          {currentStep === 2 && "2. ¡Mantén el aire!"}
+                          {currentStep === 3 && "3. ¡Suelta con suavidad!"}
+                        </h3>
+
+                        <p className="text-slate-300 text-xs font-bold leading-relaxed h-14 flex items-center justify-center">
+                          {currentStep === 1 &&
+                            "Toma aire lentamente por la nariz... Imagina que llenas tu cuerpo de estrellas brillantes."}
+                          {currentStep === 2 &&
+                            "Suavemente mantén el aire en tus pulmones. Siente la tranquilidad y fuerza adentro."}
+                          {currentStep === 3 &&
+                            "Exhala despacio por la boca, como soplando una pluma con mucho cuidado."}
+                        </p>
+
+                        <motion.div
+                          animate={{
+                            scale:
+                              currentStep === 1
+                                ? [1, 1.3, 1]
+                                : currentStep === 2
+                                  ? 1.3
+                                  : [1.3, 0.9, 1.3],
+                            opacity: [0.8, 1, 0.8],
+                          }}
+                          transition={{
+                            duration: 4,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                          }}
+                          className={`w-36 h-36 rounded-full mx-auto my-6 flex flex-col items-center justify-center text-4xl shadow-2xl transition-all duration-500 ${
+                            currentStep === 1
+                              ? "bg-cyan-500/30 border-4 border-cyan-400 shadow-cyan-500/40"
+                              : currentStep === 2
+                                ? "bg-emerald-500/30 border-4 border-emerald-400 shadow-emerald-500/40"
+                                : "bg-purple-500/30 border-4 border-purple-400 shadow-purple-500/40"
+                          }`}
+                        >
+                          <div>
+                            {currentStep === 1
+                              ? "🌬️"
+                              : currentStep === 2
+                                ? "🧘"
+                                : "✨"}
+                          </div>
+                          <span className="text-xs font-black mt-2 text-white/90">
+                            {secondsLeft}s
+                          </span>
+                        </motion.div>
+
+                        <div className="flex w-full gap-3 mt-4">
+                          <button
+                            onClick={() => setCurrentStep(currentStep - 1)}
+                            className="flex-1 py-3 bg-slate-800 text-white font-bold uppercase rounded-xl border-b-4 border-slate-900 active:translate-y-0.5 active:border-b-0 cursor-pointer text-xs"
+                          >
+                            Atrás
+                          </button>
+                          <button
+                            onClick={() => setCurrentStep(currentStep + 1)}
+                            className="flex-1 py-3 bg-brand-primary text-white font-black uppercase rounded-xl border-b-4 border-purple-800 active:translate-y-0.5 active:border-b-0 cursor-pointer text-xs"
+                          >
+                            {currentStep === 3 ? "Terminar" : "Siguiente"}
+                          </button>
+                        </div>
+                      </div>
+                    )}
+
+                    {currentStep === 4 && (
+                      <div className="flex flex-col items-center">
+                        <div className="text-6xl mb-6">💖</div>
+                        <h3 className="text-xl font-black text-white uppercase tracking-wider mb-3 glow-text text-center">
+                          ¡Ciclo Completado!
+                        </h3>
+                        <p className="text-slate-300 text-sm font-bold leading-relaxed mb-6">
+                          ¡Has regulado tu cuerpo y calmado la mente con éxito!
+                          Repite este ejercicio cósmico unas 3 o 5 veces siempre
+                          que lo necesites para restablecer tu paz.
+                        </p>
+                        <div className="flex w-full gap-3">
+                          <button
+                            onClick={() => setCurrentStep(1)}
+                            className="flex-1 py-3 bg-slate-800 text-white font-bold uppercase rounded-xl border-b-4 border-slate-900 active:translate-y-0.5 active:border-b-0 cursor-pointer text-xs"
+                          >
+                            Repetir
+                          </button>
+                          <button
+                            onClick={() => setSelectedTechnique(null)}
+                            className="flex-1 py-3 bg-brand-primary text-white font-black uppercase rounded-xl border-b-4 border-purple-800 active:translate-y-0.5 active:border-b-0 cursor-pointer text-xs"
+                          >
+                            ¡De Acuerdo!
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* TECHNIQUE 2: GROUNDING 5-4-3-2-1 ("t2") */}
+                {selectedTechnique.id === "t2" && (
+                  <div>
+                    {currentStep === 0 && (
+                      <div className="flex flex-col items-center">
+                        <div className="text-7xl mb-6">🧘</div>
+                        <h3 className="text-xl font-black text-white uppercase tracking-wider mb-2 glow-text">
+                          {selectedTechnique.name}
+                        </h3>
+                        <p className="text-slate-300 text-sm font-bold leading-relaxed mb-6">
+                          Con esta técnica usaremos tus 5 sentidos como antenas
+                          protectoras para alejar al miedo y reconectarte
+                          felizmente con el presente real.
+                        </p>
+                        <button
+                          onClick={() => setCurrentStep(1)}
+                          className="w-full py-4 bg-brand-primary text-white font-black uppercase tracking-widest rounded-2xl border-b-4 border-purple-800 active:translate-y-0.5 active:border-b-0 cursor-pointer text-sm"
+                        >
+                          Comenzar Anclaje
+                        </button>
+                      </div>
+                    )}
+
+                    {currentStep === 1 && (
+                      <div className="flex flex-col items-center">
+                        <h4 className="text-[10px] font-black tracking-widest text-brand-primary uppercase mb-1">
+                          Paso 1 de 6
+                        </h4>
+                        <h3 className="text-lg font-black text-white uppercase tracking-wide mb-2 flex items-center gap-2">
+                          👁️ 5 Cosas que puedes Ver
+                        </h3>
+                        <p className="text-slate-300 text-xs font-semibold leading-normal mb-3">
+                          Mira en tu entorno. Encuentra 5 cosas que estén cerca
+                          de ti y escríbelas:
+                        </p>
+
+                        <div className="grid grid-cols-1 gap-2 w-full my-2 max-h-40 overflow-y-auto pr-1">
+                          {[1, 2, 3, 4, 5].map((num, i) => (
+                            <input
+                              key={num}
+                              type="text"
+                              className="bg-black/50 text-white rounded-xl py-1.5 px-3 border border-brand-primary/30 text-xs text-center focus:outline-none focus:border-brand-primary text-white font-bold"
+                              placeholder={`Cosa ${num}...`}
+                              value={stepInputs[i] || ""}
+                              onChange={(e) => {
+                                const temp = [...stepInputs];
+                                temp[i] = e.target.value;
+                                setStepInputs(temp);
+                              }}
+                            />
+                          ))}
+                        </div>
+
+                        <div className="flex w-full gap-3 mt-4">
+                          <button
+                            onClick={() => setCurrentStep(currentStep - 1)}
+                            className="flex-1 py-3 bg-slate-800 text-white font-bold uppercase rounded-xl border-b-4 border-slate-900 active:translate-y-0.5 active:border-b-0 cursor-pointer text-xs"
+                          >
+                            Atrás
+                          </button>
+                          <button
+                            onClick={() => setCurrentStep(currentStep + 1)}
+                            className="flex-1 py-3 bg-brand-primary text-white font-black uppercase rounded-xl border-b-4 border-purple-800 active:translate-y-0.5 active:border-b-0 cursor-pointer text-xs"
+                          >
+                            Siguiente
+                          </button>
+                        </div>
+                      </div>
+                    )}
+
+                    {currentStep === 2 && (
+                      <div className="flex flex-col items-center">
+                        <h4 className="text-[10px] font-black tracking-widest text-brand-primary uppercase mb-1">
+                          Paso 2 de 6
+                        </h4>
+                        <h3 className="text-lg font-black text-white uppercase tracking-wide mb-2">
+                          🖐️ 4 Cosas que puedes Sentir
+                        </h3>
+                        <p className="text-slate-300 text-xs font-semibold leading-normal mb-3">
+                          Toca texturas u objetos cercanos. Selecciona los tipos
+                          de sensaciones que encuentras a tu alrededor:
+                        </p>
+
+                        <div className="grid grid-cols-2 gap-2 my-2 w-full">
+                          {[
+                            "🧸 Algo Suave",
+                            "🪵 Algo Rígido",
+                            "🧊 Algo Frío",
+                            "🌿 Algo Liso",
+                            "🌵 Algo Áspero",
+                            "☀️ Algo Calentito",
+                          ].map((feel) => {
+                            const isSel = selectedTouchFeelings.includes(feel);
+                            return (
+                              <button
+                                key={feel}
+                                onClick={() => {
+                                  if (isSel) {
+                                    setSelectedTouchFeelings(
+                                      selectedTouchFeelings.filter(
+                                        (x) => x !== feel,
+                                      ),
+                                    );
+                                  } else {
+                                    setSelectedTouchFeelings([
+                                      ...selectedTouchFeelings,
+                                      feel,
+                                    ]);
+                                  }
+                                }}
+                                className={`py-2 px-3 rounded-xl border font-bold text-xs transition-all cursor-pointer ${
+                                  isSel
+                                    ? "bg-brand-primary border-brand-primary text-white scale-105 shadow-md shadow-brand-primary/30"
+                                    : "bg-black/40 border-slate-800 text-slate-300 hover:bg-black/60"
+                                }`}
+                              >
+                                {feel}
+                              </button>
+                            );
+                          })}
+                        </div>
+
+                        <div className="flex w-full gap-3 mt-4">
+                          <button
+                            onClick={() => setCurrentStep(currentStep - 1)}
+                            className="flex-1 py-3 bg-slate-800 text-white font-bold uppercase rounded-xl border-b-4 border-slate-900 active:translate-y-0.5 active:border-b-0 cursor-pointer text-xs"
+                          >
+                            Atrás
+                          </button>
+                          <button
+                            onClick={() => setCurrentStep(currentStep + 1)}
+                            className="flex-1 py-3 bg-brand-primary text-white font-black uppercase rounded-xl border-b-4 border-purple-800 active:translate-y-0.5 active:border-b-0 cursor-pointer text-xs"
+                          >
+                            Siguiente
+                          </button>
+                        </div>
+                      </div>
+                    )}
+
+                    {currentStep === 3 && (
+                      <div className="flex flex-col items-center">
+                        <h4 className="text-[10px] font-black tracking-widest text-brand-primary uppercase mb-1">
+                          Paso 3 de 6
+                        </h4>
+                        <h3 className="text-lg font-black text-white uppercase tracking-wide mb-2">
+                          👂 3 Sonidos en el ambiente
+                        </h3>
+                        <p className="text-slate-300 text-xs font-semibold leading-normal mb-1">
+                          Cierra los ojos. Concéntrate en el silencio. Detecta 3
+                          sonidos continuos o de repente (un carro, voces
+                          lejanas, el viento o el zumbido de un PC).
+                        </p>
+
+                        <div className="flex justify-center items-center gap-1.5 my-8 h-12 w-full">
+                          {[1, 1.5, 0.8, 1.8, 1.2, 0.5, 1.6, 1.0].map(
+                            (h, i) => (
+                              <motion.div
+                                key={i}
+                                animate={{ height: ["10%", "100%", "10%"] }}
+                                transition={{
+                                  duration: h,
+                                  repeat: Infinity,
+                                  ease: "easeInOut",
+                                }}
+                                className="w-1.5 bg-brand-primary rounded-full h-full"
+                              />
+                            ),
+                          )}
+                        </div>
+
+                        <div className="flex w-full gap-3 mt-4">
+                          <button
+                            onClick={() => setCurrentStep(currentStep - 1)}
+                            className="flex-1 py-3 bg-slate-800 text-white font-bold uppercase rounded-xl border-b-4 border-slate-900 active:translate-y-0.5 active:border-b-0 cursor-pointer text-xs"
+                          >
+                            Atrás
+                          </button>
+                          <button
+                            onClick={() => setCurrentStep(currentStep + 1)}
+                            className="flex-1 py-3 bg-brand-primary text-white font-black uppercase rounded-xl border-b-4 border-purple-800 active:translate-y-0.5 active:border-b-0 cursor-pointer text-xs"
+                          >
+                            Siguiente
+                          </button>
+                        </div>
+                      </div>
+                    )}
+
+                    {currentStep === 4 && (
+                      <div className="flex flex-col items-center">
+                        <h4 className="text-[10px] font-black tracking-widest text-brand-primary uppercase mb-1">
+                          Paso 4 de 6
+                        </h4>
+                        <h3 className="text-lg font-black text-white uppercase tracking-wide mb-2">
+                          👃 2 Aromas a tu alrededor
+                        </h3>
+                        <p className="text-slate-300 text-xs font-semibold leading-normal mb-4">
+                          Inhala con calma. Intenta notar 2 olores en el lugar
+                          (tu ropa limpia, comida, jabón, o el olor de las
+                          paredes). ¡Esto relaja profundamente!
+                        </p>
+
+                        <div className="text-6xl my-6 animate-pulse">🌸💨</div>
+
+                        <div className="flex w-full gap-3 mt-4">
+                          <button
+                            onClick={() => setCurrentStep(currentStep - 1)}
+                            className="flex-1 py-3 bg-slate-800 text-white font-bold uppercase rounded-xl border-b-4 border-slate-900 active:translate-y-0.5 active:border-b-0 cursor-pointer text-xs"
+                          >
+                            Atrás
+                          </button>
+                          <button
+                            onClick={() => setCurrentStep(currentStep + 1)}
+                            className="flex-1 py-3 bg-brand-primary text-white font-black uppercase rounded-xl border-b-4 border-purple-800 active:translate-y-0.5 active:border-b-0 cursor-pointer text-xs"
+                          >
+                            Siguiente
+                          </button>
+                        </div>
+                      </div>
+                    )}
+
+                    {currentStep === 5 && (
+                      <div className="flex flex-col items-center">
+                        <h4 className="text-[10px] font-black tracking-widest text-brand-primary uppercase mb-1">
+                          Paso 5 de 6
+                        </h4>
+                        <h3 className="text-lg font-black text-white uppercase tracking-wide mb-2">
+                          👅 1 Sabor en tu boca
+                        </h3>
+                        <p className="text-slate-300 text-xs font-semibold leading-normal mb-4">
+                          Siente el sabor en tu lengua en este preciso instante.
+                          ¿Es neutro, dulce o salado? Centrarte en tu boca
+                          bloquea al 100% los pensamientos que agobian.
+                        </p>
+
+                        <div className="text-6xl my-6">🍓✨</div>
+
+                        <div className="flex w-full gap-3 mt-4">
+                          <button
+                            onClick={() => setCurrentStep(currentStep - 1)}
+                            className="flex-1 py-3 bg-slate-800 text-white font-bold uppercase rounded-xl border-b-4 border-slate-900 active:translate-y-0.5 active:border-b-0 cursor-pointer text-xs"
+                          >
+                            Atrás
+                          </button>
+                          <button
+                            onClick={() => setCurrentStep(currentStep + 1)}
+                            className="flex-1 py-3 bg-brand-primary text-white font-black uppercase rounded-xl border-b-4 border-purple-800 active:translate-y-0.5 active:border-b-0 cursor-pointer text-xs"
+                          >
+                            Siguiente
+                          </button>
+                        </div>
+                      </div>
+                    )}
+
+                    {currentStep === 6 && (
+                      <div className="flex flex-col items-center">
+                        <div className="text-6xl mb-6">🌌🛡️</div>
+                        <h3 className="text-xl font-black text-white uppercase tracking-wider mb-2 glow-text">
+                          ¡Anclaje Exitoso!
+                        </h3>
+                        <p className="text-slate-300 text-sm font-bold leading-relaxed mb-6">
+                          ¡Excelente! Has usado tus sentidos para domar la
+                          tormenta. Al llenar tu mente con datos de la realidad
+                          física del presente, has silenciado por completo los
+                          fantasmas de la ansiedad.
+                        </p>
+                        <button
+                          onClick={() => setSelectedTechnique(null)}
+                          className="w-full py-4 bg-brand-primary text-white font-black uppercase tracking-widest rounded-2xl border-b-4 border-purple-800 active:translate-y-0.5 active:border-b-0 cursor-pointer text-sm"
+                        >
+                          ¡Buen Trabajo!
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* TECHNIQUE 3: LUGAR SEGURO ("t3") */}
+                {selectedTechnique.id === "t3" && (
+                  <div>
+                    {currentStep === 0 && (
+                      <div className="flex flex-col items-center">
+                        <div className="text-7xl mb-6">🏠</div>
+                        <h3 className="text-xl font-black text-white uppercase tracking-wider mb-2 glow-text">
+                          {selectedTechnique.name}
+                        </h3>
+                        <p className="text-slate-300 text-sm font-bold leading-relaxed mb-6">
+                          Creemos un castillo o rincón de luz secreto en tu
+                          imaginación. Es un lugar perfecto de paz donde las
+                          sombras escolares o el cansancio jamás pueden tocarte.
+                        </p>
+                        <button
+                          onClick={() => setCurrentStep(1)}
+                          className="w-full py-4 bg-brand-primary text-white font-black uppercase tracking-widest rounded-2xl border-b-4 border-purple-800 active:translate-y-0.5 active:border-b-0 cursor-pointer text-sm"
+                        >
+                          ¡Iniciar el Viaje!
+                        </button>
+                      </div>
+                    )}
+
+                    {currentStep === 1 && (
+                      <div className="flex flex-col items-center">
+                        <h4 className="text-[10px] font-black tracking-widest text-brand-primary uppercase mb-1">
+                          Paso 1 de 3
+                        </h4>
+                        <h3 className="text-lg font-black text-white uppercase tracking-wide mb-2">
+                          Elige un Nombre Mágico
+                        </h3>
+                        <p className="text-slate-300 text-xs font-semibold leading-normal mb-3">
+                          Imagínalo (la playa, tu dormitorio con un gato, nubes
+                          esponjosas, un planeta secreto). Escribe cómo se llama
+                          tu portal:
+                        </p>
+
+                        <input
+                          type="text"
+                          value={safePlaceName}
+                          onChange={(e) => setSafePlaceName(e.target.value)}
+                          placeholder="Ej. Isla de Algodón, Castillo Solar"
+                          maxLength={30}
+                          className="w-full text-center bg-black/60 border-2 border-brand-primary/40 placeholder:text-slate-600 rounded-2xl py-3 px-4 text-white text-sm font-bold focus:outline-none focus:border-brand-primary my-4"
+                        />
+
+                        <div className="flex w-full gap-3 mt-4">
+                          <button
+                            onClick={() => setCurrentStep(currentStep - 1)}
+                            className="flex-1 py-3 bg-slate-800 text-white font-bold uppercase rounded-xl border-b-4 border-slate-900 active:translate-y-0.5 active:border-b-0 cursor-pointer text-xs"
+                          >
+                            Atrás
+                          </button>
+                          <button
+                            onClick={() => setCurrentStep(currentStep + 1)}
+                            disabled={!safePlaceName.trim()}
+                            className="flex-1 py-3 bg-brand-primary text-white font-black uppercase rounded-xl border-b-4 border-purple-800 active:translate-y-0.5 active:border-b-0 cursor-pointer text-xs disabled:opacity-40"
+                          >
+                            Siguiente
+                          </button>
+                        </div>
+                      </div>
+                    )}
+
+                    {currentStep === 2 && (
+                      <div className="flex flex-col items-center">
+                        <h4 className="text-[10px] font-black tracking-widest text-brand-primary uppercase mb-1">
+                          Paso 2 de 3
+                        </h4>
+                        <h3 className="text-lg font-black text-white uppercase tracking-wide mb-2">
+                          Tu Aura de Escudo Protector
+                        </h3>
+                        <p className="text-slate-300 text-xs font-semibold leading-normal mb-3">
+                          ¿De qué color brillará el domo de luz que protege tu
+                          refugio contra cualquier temor?
+                        </p>
+
+                        <div className="flex flex-wrap justify-center gap-2 my-3">
+                          {customColors.map((c) => {
+                            const isAct = safePlaceColor === c.id;
+                            return (
+                              <button
+                                key={c.id}
+                                onClick={() => setSafePlaceColor(c.id)}
+                                className={`px-3 py-2 rounded-xl border text-xs font-black transition-all cursor-pointer ${
+                                  isAct
+                                    ? `${c.code} ${c.border} text-white scale-105 shadow-md ${c.shadow}`
+                                    : "bg-black/30 border-slate-800 text-slate-400 hover:text-white"
+                                }`}
+                              >
+                                {c.label}
+                              </button>
+                            );
+                          })}
+                        </div>
+
+                        <div className="flex w-full gap-3 mt-4">
+                          <button
+                            onClick={() => setCurrentStep(currentStep - 1)}
+                            className="flex-1 py-3 bg-slate-800 text-white font-bold uppercase rounded-xl border-b-4 border-slate-900 active:translate-y-0.5 active:border-b-0 cursor-pointer text-xs"
+                          >
+                            Atrás
+                          </button>
+                          <button
+                            onClick={() => setCurrentStep(currentStep + 1)}
+                            className="flex-1 py-3 bg-brand-primary text-white font-black uppercase rounded-xl border-b-4 border-purple-800 active:translate-y-0.5 active:border-b-0 cursor-pointer text-xs"
+                          >
+                            Siguiente
+                          </button>
+                        </div>
+                      </div>
+                    )}
+
+                    {currentStep === 3 && (
+                      <div className="flex flex-col items-center">
+                        <h4 className="text-[10px] font-black tracking-widest text-brand-primary uppercase mb-1">
+                          Paso 3 de 3
+                        </h4>
+                        <h3 className="text-lg font-black text-white uppercase tracking-wide mb-2">
+                          Siente la Calma Total
+                        </h3>
+                        <p className="text-slate-300 text-xs font-semibold leading-relaxed mb-4 text-center">
+                          Cierra tus ojos. Estás ahora mismo en{" "}
+                          <strong className="text-brand-success">
+                            "{safePlaceName}"
+                          </strong>
+                          , dentro de un indestructible escudo de color{" "}
+                          <strong className="text-brand-primary">
+                            {
+                              customColors
+                                .find((c) => c.id === safePlaceColor)
+                                ?.label.split(" ")[1]
+                            }
+                          </strong>
+                          . Nada malo puede pasar. Haz una gran respiración
+                          hondo...
+                        </p>
+
+                        <div className="w-16 h-16 rounded-full flex items-center justify-center text-4xl animate-bounce my-4">
+                          🌟
+                        </div>
+
+                        <div className="flex w-full gap-3 mt-4">
+                          <button
+                            onClick={() => setCurrentStep(currentStep - 1)}
+                            className="flex-1 py-3 bg-slate-800 text-white font-bold uppercase rounded-xl border-b-4 border-slate-900 active:translate-y-0.5 active:border-b-0 cursor-pointer text-xs"
+                          >
+                            Atrás
+                          </button>
+                          <button
+                            onClick={() => setCurrentStep(currentStep + 1)}
+                            className="flex-1 py-3 bg-brand-primary text-white font-black uppercase rounded-xl border-b-4 border-purple-800 active:translate-y-0.5 active:border-b-0 cursor-pointer text-xs"
+                          >
+                            Guardar Refugio
+                          </button>
+                        </div>
+                      </div>
+                    )}
+
+                    {currentStep === 4 && (
+                      <div className="flex flex-col items-center">
+                        <div className="text-6xl mb-6">🪐✅</div>
+                        <h3 className="text-xl font-black text-white uppercase tracking-wider mb-2 glow-text">
+                          ¡Refugio Listo!
+                        </h3>
+                        <p className="text-slate-300 text-sm font-bold leading-relaxed mb-6">
+                          Tu portal de paz{" "}
+                          <strong className="text-brand-success">
+                            "{safePlaceName}"
+                          </strong>{" "}
+                          quedó grabado en tu pecho. Cuando tengas un mal día en
+                          la escuela, asustado o triste, cierra tus ojos por un
+                          momento y viaja allí libremente para recargar energía
+                          positiva.
+                        </p>
+                        <button
+                          onClick={() => setSelectedTechnique(null)}
+                          className="w-full py-4 bg-brand-primary text-white font-black uppercase tracking-widest rounded-2xl border-b-4 border-purple-800 active:translate-y-0.5 active:border-b-0 cursor-pointer text-sm"
+                        >
+                          ¡Entendido!
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                )}
               </motion.div>
             </motion.div>
           )}
