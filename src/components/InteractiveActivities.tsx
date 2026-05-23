@@ -129,7 +129,7 @@ export function CompletarFrase({
                       {isSelected && (
                         <span
                           onClick={(e) => handleClearGap(gapIdx, e)}
-                          className="w-4 h-4 rounded-full bg-red-500 text-white flex items-center justify-center text-[8px] hover:bg-red-600"
+                          className="w-4 h-4 rounded-full bg-red-500 text-white flex items-center justify-center text-[8px] hover:bg-red-650"
                         >
                           ✕
                         </span>
@@ -213,7 +213,7 @@ export function CompletarFrase({
                   setSelections(Array(correct.length).fill(""));
                   setActiveGap(0);
                 }}
-                className="mt-4 w-full py-4 bg-red-600 hover:bg-red-700 text-white font-black text-xs uppercase tracking-widest rounded-xl transition-all"
+                className="mt-4 w-full py-4 bg-red-650 hover:bg-red-700 text-white font-black text-xs uppercase tracking-widest rounded-xl transition-all"
               >
                 Limpiar y Reintentar
               </button>
@@ -310,7 +310,7 @@ export function OrdenarSecuencia({
                 className={`p-2 rounded-xl transition-all border ${
                   index === 0
                     ? "opacity-20 cursor-not-allowed border-slate-950"
-                    : "bg-slate-950 text-slate-350 border-slate-800 hover:bg-purple-950 hover:text-white hover:border-purple-500"
+                    : "bg-slate-950 text-slate-350 border-slate-850 hover:bg-purple-950 hover:text-white hover:border-purple-500"
                 }`}
               >
                 <ArrowUp size={16} />
@@ -321,7 +321,7 @@ export function OrdenarSecuencia({
                 className={`p-2 rounded-xl transition-all border ${
                   index === items.length - 1
                     ? "opacity-20 cursor-not-allowed border-slate-950"
-                    : "bg-slate-950 text-slate-350 border-slate-800 hover:bg-purple-950 hover:text-white hover:border-purple-500"
+                    : "bg-slate-950 text-slate-350 border-slate-850 hover:bg-purple-950 hover:text-white hover:border-purple-500"
                 }`}
               >
                 <ArrowDown size={16} />
@@ -348,7 +348,7 @@ export function OrdenarSecuencia({
               <div className="flex-1">
                 <p className="font-black text-sm uppercase tracking-wider">
                   {isCorrect
-                    ? "¡Módulos Alienados Correctamente!"
+                    ? "¡Módulos Alineados Correctamente!"
                     : "Orden Turbulento"}
                 </p>
                 <p className="text-xs mt-2 leading-relaxed">
@@ -401,7 +401,7 @@ export function MapaCorporal({ onSuccess }: { onSuccess: () => void }) {
       name: "Respiración agitada / Opresión",
       label: "La respiración agitada o nudo en el pecho",
       explanation:
-        "La respiración se vuelve rápido y superficial para oxigenar tus músculos con fuerza en situaciones críticas.",
+        "La respiración se vuelve de forma rápida y superficial para oxigenar tus músculos con fuerza en situaciones críticas.",
       top: "25%",
       left: "42%",
     },
@@ -439,7 +439,6 @@ export function MapaCorporal({ onSuccess }: { onSuccess: () => void }) {
   const handleHotspotClick = (hotspotId: string) => {
     if (!activeSensation) return;
 
-    // Validate target has correct mapping or since we accept it as "No bad answers, all mapped", click locks it in.
     if (activeSensation === hotspotId) {
       if (!matchedSensations.includes(hotspotId)) {
         setMatchedSensations([...matchedSensations, hotspotId]);
@@ -699,8 +698,8 @@ export function HechoInterpretacion({ onSuccess }: { onSuccess: () => void }) {
           <Sparkles size={14} /> Laboratorio: Separador de Hechos
         </p>
         <p className="text-slate-300 text-sm font-bold leading-relaxed">
-          Clasifica cada frase en "Hechos" (comprobables por cámara) o
-          "Interpretaciones de tu mente" (lo que el miedo agrega).
+          Clasifica cada frase en \"Hechos\" (comprobables por cámara) o
+          \"Interpretaciones de tu mente\" (lo que el miedo agrega).
         </p>
       </div>
 
@@ -720,7 +719,7 @@ export function HechoInterpretacion({ onSuccess }: { onSuccess: () => void }) {
                 exit={{ scale: 0.9, opacity: 0 }}
                 className="bg-slate-950/60 p-8 rounded-3xl border-2 border-indigo-500/20 text-white font-extrabold text-lg flex items-center justify-center min-h-[160px] shadow-inner"
               >
-                "{cards[index].phrase}"
+                \"{cards[index].phrase}\"
               </motion.div>
             ) : (
               <motion.div
@@ -762,8 +761,8 @@ export function HechoInterpretacion({ onSuccess }: { onSuccess: () => void }) {
                 className="flex-1 py-5 bg-indigo-600 border-b-8 border-indigo-800 text-white font-black tracking-widest rounded-2xl uppercase text-xs hover:scale-[1.02] active:translate-y-1 active:border-b-0 flex flex-col items-center gap-1"
               >
                 <span>Hecho Comprobable</span>
-                <span className="text-[10px] text-indigo-200 normal-case normal-spacing opacity-90">
-                  "Lo graba una cámara 📹"
+                <span className="text-[10px] text-indigo-200 normal-case tracking-normal opacity-90">
+                  \"Lo graba una cámara 📹\"
                 </span>
               </button>
               <button
@@ -771,8 +770,8 @@ export function HechoInterpretacion({ onSuccess }: { onSuccess: () => void }) {
                 className="flex-1 py-5 bg-purple-600 border-b-8 border-purple-800 text-white font-black tracking-widest rounded-2xl uppercase text-xs hover:scale-[1.02] active:translate-y-1 active:border-b-0 flex flex-col items-center gap-1"
               >
                 <span>Interpretación</span>
-                <span className="text-[10px] text-purple-200 normal-case normal-spacing opacity-90">
-                  "Lo que añade la mente 🧠"
+                <span className="text-[10px] text-purple-200 normal-case tracking-normal opacity-90">
+                  \"Lo que añade la mente 🧠\"
                 </span>
               </button>
             </div>
@@ -1008,7 +1007,7 @@ export function NoticieroMente({ onSuccess }: { onSuccess: () => void }) {
             {activeCase.name}
           </p>
           <p className="text-white text-base font-extrabold italic">
-            "{activeCase.situation}"
+            \"{activeCase.situation}\"
           </p>
         </div>
 
@@ -1133,7 +1132,7 @@ export function YoFuturo({ onSuccess }: { onSuccess: () => void }) {
         <p className="text-xs text-brand-success font-black uppercase tracking-widest mb-1 flex items-center gap-2">
           <Sparkles size={14} /> Tarea: Viaje Temporal (Yo del Futuro)
         </p>
-        <p className="text-slate-3.5 text-sm font-bold">
+        <p className="text-slate-300 text-sm font-bold">
           La ansiedad hace que el problema de hoy se sienta gigante y eterno.
           Tomar perspectiva temporal te enseñará a anclar la mente en el tiempo
           real.
@@ -1180,7 +1179,7 @@ export function YoFuturo({ onSuccess }: { onSuccess: () => void }) {
                 Preocupación Declarada
               </p>
               <p className="text-xs font-bold text-slate-350 italic">
-                "{answers[0]}"
+                \"{answers[0]}\"
               </p>
             </div>
 
@@ -1188,7 +1187,7 @@ export function YoFuturo({ onSuccess }: { onSuccess: () => void }) {
               <p className="text-[10px] uppercase font-black text-purple-400">
                 Proyección Temporal (1 semana - 1 año)
               </p>
-              <p className="text-xs font-bold text-slate-350 leading-relaxed">
+              <p className="text-xs font-bold text-slate-350 leading-relaxed font-semibold">
                 Dentro de una semana esperas que: {answers[1]}
                 <br />
                 En un mes calculas que: {answers[2]}
@@ -1419,7 +1418,7 @@ export function PreocupacionUtilUtil({ onSuccess }: { onSuccess: () => void }) {
         </div>
 
         <div className="bg-slate-950 p-6 rounded-3xl border-2 border-indigo-500/10 text-white font-extrabold text-base min-h-[100px] flex items-center justify-center">
-          "{activeCard.text}"
+          \"{activeCard.text}\"
         </div>
 
         {!showExplanation ? (
@@ -1490,7 +1489,7 @@ export function LaCartaYoCompasivo({ onSuccess }: { onSuccess: () => void }) {
         <p className="text-xs text-brand-success font-black uppercase tracking-widest mb-1 flex items-center gap-2">
           <Sparkles size={14} /> Diario: Terapia de Autocompasión Interna
         </p>
-        <p className="text-slate-350 text-sm font-bold">
+        <p className="text-slate-355 text-sm font-bold">
           Esa voz dura que te critica drena tu fuerza. Escribirte con la
           amabilidad con la que consolarías a tu mejor compañero disuelve el
           veneno de la ansiedad.
@@ -1535,8 +1534,8 @@ export function LaCartaYoCompasivo({ onSuccess }: { onSuccess: () => void }) {
             <div className="w-24 h-1.5 bg-yellow-400 mx-auto mt-2 rounded" />
           </div>
 
-          <p className="text-semibold text-xs leading-relaxed text-yellow-100 italic space-y-4">
-            <span className="block font-bold">"Querido(a) Cadete,</span>
+          <p className="font-semibold text-xs leading-relaxed text-yellow-105 italic space-y-4">
+            <span className="block font-bold">\"Querido(a) Cadete,</span>
             <span className="block">
               Sé lo complejo que ha sido este tramo para ti en el colegio.{" "}
               {answers[0]}
@@ -1547,7 +1546,7 @@ export function LaCartaYoCompasivo({ onSuccess }: { onSuccess: () => void }) {
               {answers[2]}
             </span>
             <span className="block text-right font-black mt-4">
-              Con todo el aprecio, Tu Guardián Interno."
+              Con todo el aprecio, Tu Guardián Interno.\"
             </span>
           </p>
 
@@ -1647,7 +1646,7 @@ export function LaboratorioPociones({ onSuccess }: { onSuccess: () => void }) {
         <p className="text-xs text-brand-success font-black uppercase tracking-widest mb-1 flex items-center gap-2">
           <Sparkles size={14} /> Juego: Mezclador Químico de Calma
         </p>
-        <p className="text-slate-350 text-sm font-bold">
+        <p className="text-slate-355 text-sm font-bold">
           Para forjar un hechizo estable, selecciona exactamente un ingrediente
           químico de cada estantería para el caldero.
         </p>
@@ -1759,7 +1758,7 @@ export function LaboratorioPociones({ onSuccess }: { onSuccess: () => void }) {
         <div className="bg-slate-900 border-4 border-yellow-400 rounded-[48px] p-6 text-left space-y-4 shadow-[0_0_30px_rgba(234,179,8,0.2)]">
           <div className="text-center">
             <span className="text-6xl text-center block">🧪</span>
-            <h4 className="font-black text-yellow-500 uppercase text-lg tracking-widest mt-2">
+            <h4 className="font-black text-yellow-505 uppercase text-lg tracking-widest mt-2">
               ✨ ¡POCIÓN DE CALMA ESTABLE! ✨
             </h4>
             <div className="w-24 h-1 bg-yellow-500 mx-auto mt-2" />
@@ -1859,7 +1858,7 @@ export function MultipleSelectQuiz({
         <p className="text-xs text-brand-success font-black uppercase tracking-widest mb-1 flex items-center gap-2">
           <Sparkles size={14} /> Misión Activa: Selección Múltiple
         </p>
-        <p className="text-slate-350 text-xs font-bold">
+        <p className="text-slate-355 text-xs font-bold">
           Lee con extremo cuidado. Al ser un ejercicio especial, puede haber
           **MÁS DE UNA opción correcta**. Marca todas las adecuadas para rebasar
           la barrera.
@@ -1876,7 +1875,7 @@ export function MultipleSelectQuiz({
           </p>
         </div>
 
-        <div className="grid gap-3">
+        <div className="grid gap-3 custom-scroll overflow-y-auto max-h-[36vh] sm:max-h-[44vh] md:max-h-[48vh] pr-1">
           {options.map((opt, i) => {
             const isChecked = selected.includes(i);
             return (

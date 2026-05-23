@@ -114,630 +114,6 @@ const TECHNIQUES: Technique[] = [
   },
 ];
 
-const OLD_STATIC_LESSONS: Lesson[] = [
-  // ANXIETY STAGE (10 levels)
-  {
-    id: "ans-1",
-    sectionId: "anxiety",
-    title: "Alertas corporales",
-    description: "¿Tu cuerpo a veces te manda alertas raras?",
-    type: "anxiety",
-    activityType: "quiz",
-    ageGroup: "teen",
-    completed: false,
-    order: 1,
-    content: [
-      {
-        text: "El corazón acelerado antes de un examen o las mariposas en el estómago antes de hablar en clase son señales que nos manda el cuerpo. Eso tiene nombre: ansiedad, y está bien sentirla.",
-        image: "💓",
-      },
-      {
-        question: "¿Cuál de estas frases describe mejor lo que es la ansiedad?",
-        options: [
-          "Una enfermedad grave que solo les pasa a personas muy débiles.",
-          "Una señal del cuerpo que nos avisa cuando algo nos parece peligroso o amenazante.",
-          "Sentirse triste por algo que salió mal.",
-          "Un estado que solo ocurre en situaciones muy extremas, como terremotos.",
-        ],
-        correct: 1,
-        feedback:
-          "La ansiedad es una señal normal del cuerpo, no una debilidad. Todos la sentimos de vez en cuando. (Craske & Barlow, 2022; Kendall et al., 2016)",
-        hint: "Recuerda que la ansiedad es una señal del cuerpo.",
-      },
-    ],
-  },
-  {
-    id: "ans-2",
-    sectionId: "anxiety",
-    title: "El ciclo del miedo",
-    description: "¿Por qué evitar agranda nuestros miedos?",
-    type: "anxiety",
-    activityType: "quiz",
-    ageGroup: "teen",
-    completed: false,
-    order: 2,
-    content: [
-      {
-        text: "Cuando nos enfrentamos a algo que nos asusta, nuestra reacción puede ser evitarlo. Esto da un alivio inmediato pero, a la larga, el miedo tiende a crecer y volverse más intenso.",
-        image: "🔄",
-      },
-      {
-        question:
-          "Para reducir la ansiedad de verdad, ¿qué necesito hacer con las situaciones que me asustan?",
-        options: [
-          "Evitarlas para sentir calma por siempre.",
-          "Afrontarlas poco a poco con calma y guía.",
-          "Correr, huir o ignorar el reto.",
-          "Enojarme con los demás.",
-        ],
-        correct: 1,
-        feedback:
-          "Para reducir la ansiedad, es importante afrontar las situaciones que nos asustan poco a poco, en lugar de evitar. (Clark & Wells, 1995; Higa-McMillan, 2016)",
-        hint: "Evitar da alivio rápido pero a la larga el miedo crece. ¿Qué palabra es la contraria?",
-      },
-    ],
-  },
-  {
-    id: "ans-3",
-    sectionId: "anxiety",
-    title: "Respiración cuadrada",
-    description: "Hackea tu alarma interna",
-    type: "anxiety",
-    activityType: "quiz",
-    ageGroup: "teen",
-    completed: false,
-    order: 3,
-    content: [
-      {
-        text: "Imagina que dibujas un cuadrado. Inhalas en 4, mantienes 4, exhalas en 4 y sostienes sin aire otros 4. Así ordenas a tu cerebro relajarse.",
-        image: "💨",
-      },
-      {
-        question:
-          "En la respiración cuadrada, ¿cuál es el primer paso indispensable de la secuencia?",
-        options: [
-          "Mantener el aire por 4 tiempos.",
-          "Inhalar por la nariz contando 4 tiempos.",
-          "Exhalar fuertemente todo el aire.",
-          "Sostener sin aire contando 4 tiempos.",
-        ],
-        correct: 1,
-        feedback:
-          "Al inhalar, retener, exhalar y mantener el vacío en tiempos iguales, le envías a tu cerebro la señal directa de que estás a salvo. (Zaccaro et al., 2018; Ma et al., 2017)",
-        hint: "Primero necesitas llenarte de aire y energía antes de empezar a retenerla.",
-      },
-    ],
-  },
-  {
-    id: "ans-4",
-    sectionId: "anxiety",
-    title: "¿Qué hace la evitación?",
-    description: "La trampa del escape fácil",
-    type: "anxiety",
-    activityType: "quiz",
-    ageGroup: "teen",
-    completed: false,
-    order: 4,
-    content: [
-      {
-        text: "La evitación es escapar de nuestros miedos. Pareciera una solución perfecta hoy, pero en el fondo enseña al cerebro que la situación es inmanejable.",
-        image: "🚪",
-      },
-      {
-        question:
-          "Valentina siempre se hace la enferma para evitar exponer. ¿Qué le pasa a su miedo con el tiempo?",
-        options: [
-          "Desaparece porque no tiene que enfrentarlo.",
-          "Se mantiene exactamente igual sin cambiar.",
-          "Crece porque el cerebro aprende que exponer es realmente peligroso.",
-          "Se vuelve más valiente para la próxima.",
-        ],
-        correct: 2,
-        feedback:
-          "Cada vez que evitamos, le decimos al cerebro que tenía razón en asustarse. Por eso el miedo crece. (Barlow, 2002; Chorpita & Daleiden, 2009)",
-        hint: "Recuerda que el miedo crece si lo evitas y el cerebro aprende que esa situación es peligrosa.",
-      },
-    ],
-  },
-  {
-    id: "ans-5",
-    sectionId: "anxiety",
-    title: "Pensamientos trampa",
-    description: "Aprende a identificarlos",
-    type: "anxiety",
-    activityType: "quiz",
-    ageGroup: "teen",
-    completed: false,
-    order: 5,
-    content: [
-      {
-        text: "Los pensamientos tramposos distorsionan la realidad y disparan miedos innecesarios. Cuestionarlos es el primer paso para no dejarnos controlar por ellos.",
-        image: "🧠",
-      },
-      {
-        question:
-          "Al detectar un pensamiento trampa que te asusta, ¿qué tipo de pensamiento debes elaborar?",
-        options: [
-          "Un pensamiento exageradamente optimista aunque falso.",
-          "Un pensamiento equilibrado, justo y realista contigo mismo.",
-          "Un pensamiento ignorando el problema por completo.",
-          "Un pensamiento culposo.",
-        ],
-        correct: 1,
-        feedback:
-          "Siempre trata de desarrollar una forma más justa y equilibrada de pensar sobre las situaciones que te generan miedo. (Beck, 2021; Kendall et al., 2016)",
-        hint: "Busca una palabra que describa el punto medio: algo justo, tranquilo y equilibrado.",
-      },
-    ],
-  },
-  {
-    id: "ans-6",
-    sectionId: "anxiety",
-    title: "Ciclo de la ansiedad",
-    description: "Conoce los engranajes de la alerta",
-    type: "anxiety",
-    activityType: "quiz",
-    ageGroup: "teen",
-    completed: false,
-    order: 6,
-    content: [
-      {
-        text: "Una situación activa una alerta. Surge el pensamiento automático ('Me bloquearé'). El cuerpo reacciona con emoción intensa. Evitas para sentir alivio rápido. El miedo crece.",
-        image: "🌀",
-      },
-      {
-        question:
-          "¿Qué papel juega evitar la situación estresante dentro de este ciclo?",
-        options: [
-          "Disuelve el ciclo de inmediato de forma definitiva.",
-          "Permite que el cerebro olvide el peligro.",
-          "Da un alivio rápido al principio pero confirma al cerebro que la situación era peligrosa y el miedo crece.",
-          "Garantiza el éxito total en tareas difíciles.",
-        ],
-        correct: 2,
-        feedback:
-          "Evitar enseña al cerebro que solo sobreviviste gracias al escape. Romper el ciclo requiere exposición gradual. (Clark & Wells, 1995; Craske & Barlow, 2022)",
-        hint: "Es un parche cómodo momentáneo que agiganta la sombra a largo plazo.",
-      },
-    ],
-  },
-  {
-    id: "ans-7",
-    sectionId: "anxiety",
-    title: "Pensamientos y etiquetas",
-    description: "No te pongas leyes absolutas",
-    type: "anxiety",
-    activityType: "quiz",
-    ageGroup: "teen",
-    completed: false,
-    order: 7,
-    content: [
-      {
-        text: "Obtener un mal resultado y transformarlo en una etiqueta global sobre nuestra identidad es un error cognitivo común que nos desgasta en exceso.",
-        image: "🏷️",
-      },
-      {
-        question:
-          "Andrés saca un 3.8 en un examen y piensa: 'Soy un fracasado total, nunca sirvo para nada.' ¿Qué tipo de pensamiento es?",
-        options: [
-          "Lectura de mente: asume lo que otros piensan.",
-          "Generalización excesiva: saca una conclusión absoluta de sí mismo por un solo evento.",
-          "Catastrofización: asume que es el fin del mundo.",
-          "Pensamiento lógico realista.",
-        ],
-        correct: 1,
-        feedback:
-          "Generalizar en exceso es un sesgo clave donde un fallo temporal se lee como una definición irreversible de quién eres. (Beck, 1979; Burns, 1980)",
-        hint: "Andrés sacó 3.8 que es aprobatoria, pero cerró la puerta de su valor con la palabra 'nunca'.",
-      },
-    ],
-  },
-  {
-    id: "ans-8",
-    sectionId: "anxiety",
-    title: "La escalera de miedo",
-    description: "Exposición paso a paso",
-    type: "anxiety",
-    activityType: "quiz",
-    ageGroup: "teen",
-    completed: false,
-    order: 8,
-    content: [
-      {
-        text: "Subir una montaña alta o vencer el pánico no se hace corriendo sino con pasos controlados y calculados. La escalera de miedos te guía de lo simple a lo complejo.",
-        image: "🪜",
-      },
-      {
-        question:
-          "¿Cuáles miedos debemos colocar al inicio de nuestra escalera de exposición?",
-        options: [
-          "Miedos medianamente extremos.",
-          "Los miedos más fáciles y tolerables primero.",
-          "Los miedos definitivos y destructivos.",
-          "No colocar ningún miedo.",
-        ],
-        correct: 1,
-        feedback:
-          "La escalera empieza con retos pequeños para habituarnos, de modo que cada logro nos dé la confianza de dar el siguiente paso. (Higa-McMillan, 2016; Chorpita, 2009)",
-        hint: "Para subir sin resbalar, siempre colocamos el pie en el escalón más accesible y fácil.",
-      },
-    ],
-  },
-  {
-    id: "ans-9",
-    sectionId: "anxiety",
-    title: "Postergación de dudas",
-    description: "Guarda tus preocupaciones para luego",
-    type: "anxiety",
-    activityType: "quiz",
-    ageGroup: "teen",
-    completed: false,
-    order: 9,
-    content: [
-      {
-        text: "Preocuparse 24/7 desgasta. La técnica de postergación te enseña a anotarlas todas para analizarlas juntas únicamente en un horario reservado de tu día.",
-        image: "📝",
-      },
-      {
-        question:
-          "Cuando llega tu horario programado de resolver preocupaciones anotadas, ¿qué filtro racional debes aplicarles?",
-        options: [
-          "Preguntarte: ¿puedo hacer algo al respecto hoy?, ¿sigue siendo importante hoy?",
-          "Llorar desconsoladamente por cada una.",
-          "Compartirlas en redes para asustar a mis contactos.",
-          "Anotarlas en una lista más larga.",
-        ],
-        correct: 0,
-        feedback:
-          "Al mirarlas en frío, descubrirás que muchas de tus preocupaciones han perdido relevancia o fuerza por sí solas. (Borkovec et al., 1983; Rego, 2011)",
-        hint: "Te cuestionas racionalmente si la duda es útil, si tiene una acción viable hoy o perdió importancia.",
-      },
-    ],
-  },
-  {
-    id: "ans-10",
-    sectionId: "anxiety",
-    title: "EL JEFE: VORTEX",
-    description: "Desarma la trampa del hipercontrol",
-    type: "boss",
-    activityType: "quiz",
-    ageGroup: "teen",
-    completed: false,
-    order: 10,
-    content: [
-      {
-        text: "El VORTEX te susurra que debes controlarlo todo, revisarlo cinco veces y no confiar en nadie u ocurrirá un desastre. ¡Desafía y vence la desconfianza ansiosa!",
-        image: "👾",
-      },
-      {
-        question:
-          "Santiago predice que si no rehace él mismo el trabajo grupal sacarán cero. ¿Cuál es el experimento seguro para probar su predicción?",
-        options: [
-          "Abandono total: dejar todo tirado y apagar su teléfono sin mediar acuerdo.",
-          "Hipercontrol: desvelarse rehaciendo en secreto la entrega entera solo.",
-          "Delegación pequeña: redactar su parte, permitir que el grupo redacte la conclusión y revisarla juntos solo una vez al final.",
-          "Hacer la entrega solo, pero pasarse días quejándose.",
-        ],
-        correct: 2,
-        feedback:
-          "Menos control es más paz. Al soltar una parte pequeña y controlada, Santiago le da la oportunidad a la reality de demostrar que no ocurrirá un desastre. (Bennett-Levy et al., 2004; McManus, 2012)",
-        hint: "No saltes al vacío; busca una delegación intermedia, equilibrada y saludable para verificar.",
-      },
-    ],
-  },
-  // DEPRESSION STAGE (10 Levels)
-  {
-    id: "dep-1",
-    sectionId: "depression",
-    title: "Tristeza vs Depresión",
-    description: "Entiendo profundamente mis ánimos",
-    type: "depression",
-    activityType: "quiz",
-    ageGroup: "teen",
-    completed: false,
-    order: 11,
-    content: [
-      {
-        text: "Estar triste es normal y dura poco. La depresión se ancla por semanas o meses, apaga el placer en tus pasatiempos y drena tu energía diaria sin una explicación clara.",
-        image: "☁️",
-      },
-      {
-        question:
-          "Valentina lleva tres semanas sintiéndose vacía, sin aliento de nada, durmiendo en exceso y cree que es una carga. ¿Qué describe su estado?",
-        options: [
-          "Es solo pereza escolar que se pasará distrayéndose.",
-          "Como no le ocurrió un drama puntual, no puede ser nada de cuidado.",
-          "Se parece a la depresión clínica: dura más de dos semanas, anula el gusto por todo y carece de causa clara.",
-          "Solo debería atenderse si afecta radicalmente sus tareas.",
-        ],
-        correct: 2,
-        feedback:
-          "Que no haya pasado nada malo es una característica de la depresión; es un malestar de salud real persistente. (APA, 2013; Hankin et al., 2015)",
-        hint: "Presta atención a la duración prolongada (mayor a dos semanas) y a la apatía que no requiere un luto.",
-      },
-    ],
-  },
-  {
-    id: "dep-2",
-    sectionId: "depression",
-    title: "Cerebro y regulación",
-    description: "La alarma hipersensible",
-    type: "depression",
-    activityType: "quiz",
-    ageGroup: "teen",
-    completed: false,
-    order: 12,
-    content: [
-      {
-        text: "En la juventud, tu cerebro madura a mil por hora. En la depresión, la alarma emocional interna se enciende a tope por tonterías, mientras el freno regulador pierde tracción.",
-        image: "🧠",
-      },
-      {
-        question:
-          "¿Qué ocurre biológicamente con el sistema emocional en la depresión?",
-        options: [
-          "La zona amortiguadora cerebral trabaja el triple de fuerte.",
-          "La alarma emocional se dispara fácil y al mismo tiempo el guardián regulador de calma trabaja con menos fuerza.",
-          "Se cancela toda actividad y producción hormonal de golpe.",
-          "Se multiplica la energía mental infinitamente.",
-        ],
-        correct: 1,
-        feedback:
-          "Esta desregulación temporal hace que sientas todo con un volumen ensordecedor. Aprender técnicas le devuelve la fuerza al freno cerebral. (Lupien et al., 2009; Gotlib & Hamilton, 2008)",
-        hint: "Es una combinación dual de alarma hipersensible combinada con un freno débil.",
-      },
-    ],
-  },
-  {
-    id: "dep-3",
-    sectionId: "depression",
-    title: "Depresión invisible",
-    description: "La irritabilidad constante",
-    type: "depression",
-    activityType: "quiz",
-    ageGroup: "teen",
-    completed: false,
-    order: 13,
-    content: [
-      {
-        text: "En los jóvenes, la depresión no siempre se reduce a llorar. Se esconde a menú detrás de un mal humor constante, responder hostilmente y dolores corporales raros.",
-        image: "🎭",
-      },
-      {
-        question:
-          "Sebastián antes era pacífico, pero hace un mes está irritable, con dolores de cabeza frecuentes y dejó de chatear. ¿Qué es lo más acertado?",
-        options: [
-          "Es solo rebelión adolescente común, no hay de qué preocuparse.",
-          "La depresión en adolescentes se manifiesta a menudo con irritabilidad, fatiga somática y evitación social en lugar de lágrimas.",
-          "Mientras no declare estar deprimido, no se le debe forzar a nada.",
-          "Solo es preocupante si empieza a faltar a clase.",
-        ],
-        correct: 1,
-        feedback:
-          "Darse de baja socialmente, enfadarse por minucias y expresar dolores corporales recurrentes son banderas rojas importantes. (APA, 2013; Stringaris & Goodman, 2009)",
-        hint: "No todos lloran; algunos manifiestan sufrimiento con enojo constante, silencios corporales y alejamiento.",
-      },
-    ],
-  },
-  {
-    id: "dep-4",
-    sectionId: "depression",
-    title: "El laberinto social",
-    description: "Ojo con el scrolleo pasivo",
-    type: "depression",
-    activityType: "quiz",
-    ageGroup: "teen",
-    completed: false,
-    order: 14,
-    content: [
-      {
-        text: "Consumir feeds perfectos de redes en silencio deforma la percepción. Comparar tu vida normal con la pantalla hiperfiltrada ajena destruye el amor propio.",
-        image: "📱",
-      },
-      {
-        question:
-          "Laura pasa dos horas en silencio scrolleando fotos perfectas de compañeras y termina triste sin saber por qué. ¿Qué lo explica?",
-        options: [
-          "La cantidad de tiempo es idónea para regular el cansancio.",
-          "Mirar pasivamente vidas recortadas y editadas incita a la comparación social, disparando inferioridad.",
-          "Las redes causan depresión biológica inmediata.",
-          "Es una respuesta sana de autocrítica.",
-        ],
-        correct: 1,
-        feedback:
-          "El consumo pasivo y la comparación destructiva de 'vidas perfectas' es un factor estresante de alta correlación con el desánimo. (Twenge et al., 2018; Keles et al., 2020)",
-        hint: "Ella mira sin hablar ni reír, comparando su backstage con las mejores fotos editadas de otros.",
-      },
-    ],
-  },
-  {
-    id: "dep-5",
-    sectionId: "depression",
-    title: "Detector de engaños",
-    description: "Las trampas de tu propio cerebro",
-    type: "depression",
-    activityType: "quiz",
-    ageGroup: "teen",
-    completed: false,
-    order: 15,
-    content: [
-      {
-        text: "La depresión deforma los pensamientos. Nos hace ver todo en blanco o negro ('siempre fallo', 'nunca mejoraré') y descarta por completo las buenas victorias.",
-        image: "🕶️",
-      },
-      {
-        question:
-          "Camila saca un decente 3.8 y piensa: 'Me fue horrible, soy la peor, nunca voy a poder'. ¿Cuántas trampas mentales hay aquí?",
-        options: [
-          "Ninguna, es una queja normal y razonable.",
-          "Una sola: está frustrada académica.",
-          "Múltiples trampas: filtrado negativo (ignora pasar la materia), catastrofismo y absolutismo de todo-o-nada.",
-          "Dos: se echa la culpa de problemas climáticos.",
-        ],
-        correct: 2,
-        feedback:
-          "Disolver estos extremismos debilita el filtro oscuro y le quita dramatismo a la realidad. (Beck et al., 1979; Weisz et al., 2017)",
-        hint: "Presta atención a términos exagerados como 'nunca', 'siempre' y su descarte absoluto de su nota de 3.8.",
-      },
-    ],
-  },
-  {
-    id: "dep-6",
-    sectionId: "depression",
-    title: "El descanso sagrado",
-    description: "Regula las horas de tu batería",
-    type: "depression",
-    activityType: "quiz",
-    ageGroup: "teen",
-    completed: false,
-    order: 16,
-    content: [
-      {
-        text: "Dormir menos de 8 horas debilita el escudo biológico contra la tristeza. El sueño no es una deuda que se liquide toda junta el fin de semana.",
-        image: "🔋",
-      },
-      {
-        question:
-          "Daniel duerme 5 horas semanales y 12 horas los sábados. ¿Cuál es la consecuencia anímica de esta rutina?",
-        options: [
-          "Un sábado largo solventa y repara la fatiga diaria acumulada.",
-          "Dormir poco desgasta el humor diario y los atracones de sueño de fin de semana desestabilizan el ritmo circadiano de tus neuronas.",
-          "No tiene repercusiones si pasa el resto del día jugando.",
-          "Que recorta su capacidad creativa anímica.",
-        ],
-        correct: 1,
-        feedback:
-          "La regularidad del sueño diario es indispensable para que el cerebro sintetice neurotransmisores de bienestar. (Paruthi et al., 2016; Goldstein et al., 2014)",
-        hint: "El sistema del sueño requiere constancia diaria; no funciona ahorrando de golpe un día.",
-      },
-    ],
-  },
-  {
-    id: "dep-7",
-    sectionId: "depression",
-    title: "La ley de la inercia",
-    description: "La chispa nace de la acción",
-    type: "depression",
-    activityType: "quiz",
-    ageGroup: "teen",
-    completed: false,
-    order: 17,
-    content: [
-      {
-        text: "En la depresión, esperar a que te nazcan las ganas de actuar te dejará atrapado perpetuamente. Las ganas de moverte aparecen justamente después de comenzar algo simple.",
-        image: "🔥",
-      },
-      {
-        question:
-          "Sofi solía jugar voley, pero lo dejó y dice: 'Cuando tenga ánimos iré'. ¿Qué falla en su plan?",
-        options: [
-          "Ninguno, descansar sin ganas es la terapia más idónea.",
-          "La activación conductual enseña que las ganas regresan una vez arranca la acción física coordinada, no antes.",
-          "Debe sustituir el voley por ver películas sola.",
-          "Que los ánimos regresan únicamente durmiendo.",
-        ],
-        correct: 1,
-        feedback:
-          "Dar un paso pequeño (como preparar la mochila) rompe la parálisis de la desgana dopaminérgica de la depresión. (Cuijpers et al., 2007; Lejuez et al., 2011)",
-        hint: "La gasolina de las ganas de actuar nace después de calentar el motor de la acción.",
-      },
-    ],
-  },
-  {
-    id: "dep-8",
-    sectionId: "depression",
-    title: "Hablarse con clemencia",
-    description: "Desarma el juez interno",
-    type: "depression",
-    activityType: "quiz",
-    ageGroup: "teen",
-    completed: false,
-    order: 18,
-    content: [
-      {
-        text: "La autocrítica salvaje eleva el cortisol sanguíneo. El cerebro procesa tu culpa interna como un ataque físico en curso. Háblate con la ternura de un amigo.",
-        image: "🤍",
-      },
-      {
-        question:
-          "Tomás falla en su presentación y se tilda de 'fracaso'. ¿Cómo luce un trato autocompasivo honesto?",
-        options: [
-          "Validar que el fallo dolió profundamente, consolarse y recordarse que un tropiezo no anula su valor intelectual completo.",
-          "Evadir el asunto fingiendo que nunca ocurrió.",
-          "Decirse delirios inflados de perfección absoluta en todo.",
-          "Autocastigarse rumiando el percance sin tregua.",
-        ],
-        correct: 0,
-        feedback:
-          "Abordarse con clemencia reduce el miedo a cometer fallos, permitiendo reintentar los retos con calma. (Neff, 2003; MacBeth & Gumley, 2012)",
-        hint: "Utiliza el mismo tono comprensivo que dirigirías a tu mejor compañero al verlo triste.",
-      },
-    ],
-  },
-  {
-    id: "dep-9",
-    sectionId: "depression",
-    title: "El puente de la amistad",
-    description: "Acompañar a quien sufre",
-    type: "depression",
-    activityType: "quiz",
-    ageGroup: "teen",
-    completed: false,
-    order: 19,
-    content: [
-      {
-        text: "Apoyar no es jugar al doctor ni repetir frases vacías de 'échale ganas'. Consiste en prestar oído paciente, no juzgar el llanto y ser el puente a adultos habilitados.",
-        image: "🤝",
-      },
-      {
-        question:
-          "Tu mejor amiga lleva semanas ausente y apagada en el colegio. Decides ayudarla. ¿Cuál es el camino?",
-        options: [
-          "Forzarla a sonreír enfrente de toda la clase.",
-          "Acercarte en privado, escuchar su dolor con paciencia sin sermonear y sugerirle con respeto acudir a un orientador o especialista.",
-          "Hacerte cargo tú de rescatarla emocional en solitario.",
-          "Exponer sus secretos a otros compañeros para aconsejarla grupal.",
-        ],
-        correct: 1,
-        feedback:
-          "Brindar una escucha empática libre de juicios y motivarla a buscar ayuda calificada es el mayor acto de ternura. (Kitchener & Jorm, 2002; Radez et al., 2021)",
-        hint: "Es discreto, libre de sermones y promueve alentar a buscar ayuda de un psicólogo o acudientes.",
-      },
-    ],
-  },
-  {
-    id: "dep-10",
-    sectionId: "depression",
-    title: "EL JEFE: SOMBRA ETERNA",
-    description: "Recuperando la luz del Guardián",
-    type: "boss",
-    activityType: "quiz",
-    ageGroup: "teen",
-    completed: false,
-    order: 20,
-    content: [
-      {
-        text: "La SOMBRA ETERNA de la depresión te infunde aislamiento para debilitarte en un calabozo. ¡Pero tu equipo de apoyo galáctico está listo hoy para ganar!",
-        image: "💀",
-      },
-      {
-        question:
-          "Andrés sumamente cansado y vacío hace tres semanas dice: 'Es solo una mala racha'. Según el protocolo de bienestar, ¿cuál es el paso definitivo?",
-        options: [
-          "Esperar más meses antes de alarmarse.",
-          "Acudir al doctor únicamente si tiene pensamientos extremos.",
-          "Como lleva más de dos semanas seguidas de alertas clínicas claras de anhedonia y fatiga, merece consultar a redes escolares o profesionales de salud sin dilación.",
-          "Ocultarlo indefinidamente de sus padres.",
-        ],
-        correct: 2,
-        feedback:
-          "Dos semanas de desinterés general y cansancio persistente ameritan atención. Pedir ayuda oportuna es el mayor superpoder del Guardián. (APA, 2013; MinSalud colombiano, 2023)",
-        hint: "Asegúrate de ponderar la duración en semanas (el límite general son dos semanas de desgana continuada).",
-      },
-    ],
-  },
-];
-
 export default function App() {
   const [view, setView] = useState<
     | "onboarding"
@@ -851,14 +227,17 @@ export default function App() {
   const handleInstitutionalSubmit = (data: InstitutionalConfig) => {
     setInstitutionalData(data);
     setView("intro");
-    // We could save this data too if needed
   };
 
   const handleStartLesson = (lesson: Lesson) => {
     const prevLessonsDone =
-      lessons.filter((l) => l.order < lesson.order && !l.completed).length ===
-      0;
-    if (prevLessonsDone || lesson.order === 1) {
+      lessons.filter(
+        (l) =>
+          l.sectionId === lesson.sectionId &&
+          l.order < lesson.order &&
+          !l.completed,
+      ).length === 0;
+    if (prevLessonsDone) {
       setCurrentLesson(lesson);
       setView("lesson");
     }
@@ -937,7 +316,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-bg-main flex flex-col items-center justify-start overflow-x-hidden border-8 border-bg-space relative">
+    <div className="min-h-screen bg-bg-main flex flex-col items-center justify-start overflow-x-hidden border-8 border-bg-space relative w-full">
       <StarsBackground />
 
       <AnimatePresence mode="wait">
@@ -1041,7 +420,7 @@ export default function App() {
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           onClick={() => setShowCrisis(true)}
-          className="w-20 h-20 bg-accent-rose hover:bg-rose-600 rounded-full border-b-8 border-rose-800 flex flex-col items-center justify-center text-white shadow-2xl transition-transform active:translate-y-1 active:border-b-0"
+          className="w-20 h-20 bg-accent-rose hover:bg-rose-600 rounded-full border-b-8 border-rose-800 flex flex-col items-center justify-center text-white shadow-2xl transition-transform active:translate-y-1 active:border-b-0 cursor-pointer"
         >
           <span className="text-3xl">🆘</span>
           <span className="text-[10px] font-black uppercase">Sos</span>
@@ -1165,7 +544,7 @@ function IntroNarrative({
 
         <button
           onClick={handleNext}
-          className="mt-12 group relative w-full overflow-hidden py-6 bg-brand-primary text-white font-black text-xl rounded-2xl shadow-[0_0_30px_rgba(97,0,148,0.4)] border-b-8 border-purple-800 hover:scale-105 transition-all active:translate-y-1 active:border-b-0 uppercase tracking-widest"
+          className="mt-12 group relative w-full overflow-hidden py-6 bg-brand-primary text-white font-black text-xl rounded-2xl shadow-[0_0_30px_rgba(97,0,148,0.4)] border-b-8 border-purple-800 hover:scale-105 transition-all active:translate-y-1 active:border-b-0 uppercase tracking-widest cursor-pointer"
         >
           <span className="relative z-10">
             {step === narrative.length - 1 ? "¡ACEPTO LA MISIÓN!" : "Siguiente"}
@@ -1269,7 +648,7 @@ function ParentConsentView({
 
         <button
           onClick={handleSubmit}
-          className="w-full mt-10 py-5 bg-accent-amber text-slate-800 font-black rounded-3xl border-b-8 border-yellow-600 shadow-xl uppercase tracking-widest hover:scale-[1.01] transition-all"
+          className="w-full mt-10 py-5 bg-accent-amber text-slate-800 font-black rounded-3xl border-b-8 border-yellow-600 shadow-xl uppercase tracking-widest hover:scale-[1.01] transition-all cursor-pointer"
         >
           VERIFICAR Y CONTINUAR
         </button>
@@ -1299,7 +678,7 @@ function RoleSelection({
       <div className="grid gap-6 w-full">
         <button
           onClick={() => onSelect("player")}
-          className="relative py-5 pl-24 pr-6 w-full min-h-[84px] text-left bg-brand-primary text-white font-black rounded-3xl border-b-8 border-blue-800 hover:scale-[1.02] active:translate-y-1 active:border-b-0 transition-all text-lg md:text-xl flex items-center shadow-lg"
+          className="relative py-5 pl-24 pr-6 w-full min-h-[84px] text-left bg-brand-primary text-white font-black rounded-3xl border-b-8 border-blue-800 hover:scale-[1.02] active:translate-y-1 active:border-b-0 transition-all text-lg md:text-xl flex items-center shadow-lg cursor-pointer"
         >
           <div className="absolute left-5 w-12 h-12 bg-black/20 rounded-2xl flex items-center justify-center text-white shadow-inner">
             <Gamepad2 size={26} />
@@ -1308,7 +687,7 @@ function RoleSelection({
         </button>
         <button
           onClick={() => onSelect("parent")}
-          className="relative py-5 pl-24 pr-6 w-full min-h-[84px] text-left bg-bg-space text-brand-primary font-black rounded-3xl border-b-8 border-slate-900 border-2 hover:scale-[1.02] active:translate-y-1 active:border-b-0 transition-all text-lg md:text-xl flex items-center shadow-lg"
+          className="relative py-5 pl-24 pr-6 w-full min-h-[84px] text-left bg-bg-space text-brand-primary font-black rounded-3xl border-b-8 border-slate-900 border-2 hover:scale-[1.02] active:translate-y-1 active:border-b-0 transition-all text-lg md:text-xl flex items-center shadow-lg cursor-pointer"
         >
           <div className="absolute left-5 w-12 h-12 bg-brand-primary/10 rounded-2xl flex items-center justify-center text-brand-primary shadow-inner border border-brand-primary/20">
             <User size={26} />
@@ -1317,7 +696,7 @@ function RoleSelection({
         </button>
         <button
           onClick={() => onSelect("student")}
-          className="relative py-5 pl-24 pr-6 w-full min-h-[84px] text-left bg-slate-100 text-slate-700 font-black rounded-3xl border-b-8 border-slate-300 border-2 hover:scale-[1.02] active:translate-y-1 active:border-b-0 transition-all text-lg md:text-xl flex items-center shadow-lg"
+          className="relative py-5 pl-24 pr-6 w-full min-h-[84px] text-left bg-slate-100 text-slate-700 font-black rounded-3xl border-b-8 border-slate-300 border-2 hover:scale-[1.02] active:translate-y-1 active:border-b-0 transition-all text-lg md:text-xl flex items-center shadow-lg cursor-pointer"
         >
           <div className="absolute left-5 w-12 h-12 bg-slate-200 rounded-2xl flex items-center justify-center text-slate-600 shadow-inner">
             <BookOpen size={26} />
@@ -1392,7 +771,7 @@ function InstitutionalFormView({
             </label>
             <input
               type="email"
-              className={`w-full p-4 rounded-xl font-bold transition-all border-2 text-slate-950 ${showError && !formData.institutionalEmail ? "border-red-500 bg-red-50 text-red-950 placeholder-red-300 focus:border-red-500 focus:outline-none" : "bg-slate-50 border-slate-100 text-slate-100 focus:border-brand-primary"}`}
+              className={`w-full p-4 rounded-xl font-bold transition-all border-2 text-slate-100 ${showError && !formData.institutionalEmail ? "border-red-500 bg-red-50 text-red-950 placeholder-red-300 focus:border-red-500 focus:outline-none" : "bg-slate-50 border-slate-100 text-slate-950 focus:border-brand-primary"}`}
               placeholder="estudiante@colegio.edu.co"
               value={formData.institutionalEmail}
               onChange={(e) => {
@@ -1429,7 +808,7 @@ function InstitutionalFormView({
 
         <button
           onClick={handleSubmit}
-          className="w-full mt-10 py-5 bg-brand-primary text-white font-black rounded-3xl border-b-8 border-purple-800 shadow-xl uppercase tracking-widest hover:scale-[1.01] transition-all"
+          className="w-full mt-10 py-5 bg-brand-primary text-white font-black rounded-3xl border-b-8 border-purple-800 shadow-xl uppercase tracking-widest hover:scale-[1.01] transition-all cursor-pointer"
         >
           ACCEDER AL JUEGO
         </button>
@@ -1466,7 +845,7 @@ function Onboarding({
       <div className="grid gap-6 w-full">
         <button
           onClick={() => onStart("teen")}
-          className="py-6 px-4 bg-brand-primary text-white font-black rounded-3xl text-xl shadow-lg border-b-8 border-blue-800 hover:scale-[1.02] active:scale-95 active:border-b-0 uppercase"
+          className="py-6 px-4 bg-brand-primary text-white font-black rounded-3xl text-xl shadow-lg border-b-8 border-blue-800 hover:scale-[1.02] active:scale-95 active:border-b-0 uppercase cursor-pointer"
         >
           TENGO ENTRE 13 Y 17 AÑOS
         </button>
@@ -1537,7 +916,7 @@ function AppWalkthrough({
           {step > 0 && (
             <button
               onClick={() => setStep(step - 1)}
-              className="flex-1 py-4 bg-slate-900 text-slate-400 font-black rounded-2xl"
+              className="flex-1 py-4 bg-slate-900 text-slate-400 font-black rounded-2xl cursor-pointer"
             >
               ANTERIOR
             </button>
@@ -1546,7 +925,7 @@ function AppWalkthrough({
             onClick={() =>
               step < steps.length - 1 ? setStep(step + 1) : onComplete()
             }
-            className="flex-2 py-4 bg-brand-primary text-white font-black rounded-2xl shadow-lg shadow-purple-900/40"
+            className="flex-2 py-4 bg-brand-primary text-white font-black rounded-2xl shadow-lg shadow-purple-900/40 cursor-pointer"
           >
             {step === steps.length - 1 ? "¡LISTO PARA EMPEZAR!" : "SIGUIENTE"}
           </button>
@@ -1584,7 +963,7 @@ function ParentDashboard({
       <header className="flex items-center justify-between mb-10">
         <button
           onClick={onBack}
-          className="w-12 h-12 bg-slate-100 rounded-2xl flex items-center justify-center text-slate-800"
+          className="w-12 h-12 bg-slate-100 rounded-2xl flex items-center justify-center text-slate-800 cursor-pointer"
         >
           <ChevronLeft />
         </button>
@@ -1675,7 +1054,7 @@ function ParentDashboard({
               className="p-4 bg-slate-50 rounded-2xl flex items-center justify-between"
             >
               <div>
-                <p className="font-black text-slate-700 text-sm">{l.title}</p>
+                <p className="font-black text-slate-705 text-sm">{l.title}</p>
                 <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">
                   Completado
                 </p>
@@ -1694,30 +1073,11 @@ function ParentDashboard({
 
       <button
         onClick={onBack}
-        className="w-full mt-10 py-5 bg-slate-800 text-white font-black rounded-3xl uppercase tracking-widest"
+        className="w-full mt-10 py-5 bg-slate-800 text-white font-black rounded-3xl uppercase tracking-widest cursor-pointer"
       >
         Volver al Inicio
       </button>
     </motion.div>
-  );
-}
-
-function AgeButton({
-  label,
-  onClick,
-  color,
-}: {
-  label: string;
-  onClick: () => void;
-  color: string;
-}) {
-  return (
-    <button
-      onClick={onClick}
-      className={`py-6 px-4 ${color} text-white font-black rounded-3xl text-xl shadow-lg border-b-8 hover:scale-[1.02] transition-all active:scale-95 active:border-b-0 uppercase tracking-tight`}
-    >
-      {label}
-    </button>
   );
 }
 
@@ -1740,7 +1100,7 @@ function Dashboard({
   return (
     <div className="w-full h-full flex flex-col relative z-10">
       {/* Header */}
-      <header className="h-20 bg-bg-space/80 backdrop-blur-md border-b-4 border-brand-primary/30 px-4 md:px-8 flex items-center justify-between shadow-lg z-10 sticky top-0">
+      <header className="h-20 bg-bg-space/85 backdrop-blur-md border-b-4 border-brand-primary/30 px-4 md:px-8 flex items-center justify-between shadow-lg z-10 sticky top-0">
         <div className="flex items-center space-x-3 md:space-x-4">
           <div className="bg-brand-primary p-2 rounded-xl text-white shadow-lg">
             <Gamepad2 size={20} />
@@ -1754,7 +1114,7 @@ function Dashboard({
           {/* Top SOS Button - Discreeter */}
           <button
             onClick={onShowCrisis}
-            className="ml-4 px-3 py-1.5 bg-accent-rose/20 text-accent-rose border border-accent-rose/30 rounded-lg text-[10px] font-black uppercase tracking-wider hover:bg-accent-rose hover:text-white transition-all flex items-center gap-1"
+            className="ml-4 px-3 py-1.5 bg-accent-rose/20 text-accent-rose border border-accent-rose/30 rounded-lg text-[10px] font-black uppercase tracking-wider hover:bg-accent-rose hover:text-white transition-all flex items-center gap-1 cursor-pointer"
           >
             <ShieldAlert size={12} /> SOS
           </button>
@@ -1783,7 +1143,7 @@ function Dashboard({
           </div>
           <button
             onClick={() => onNavigate("profile")}
-            className="w-10 h-10 md:w-12 md:h-12 rounded-full border-4 border-brand-primary shadow-md bg-brand-secondary flex items-center justify-center overflow-hidden hover:scale-110 transition-transform"
+            className="w-10 h-10 md:w-12 md:h-12 rounded-full border-4 border-brand-primary shadow-md bg-brand-secondary flex items-center justify-center overflow-hidden hover:scale-110 transition-transform cursor-pointer"
           >
             <span className="text-2xl">{stats.avatar}</span>
           </button>
@@ -1791,7 +1151,7 @@ function Dashboard({
       </header>
 
       <div className="flex flex-1 overflow-hidden h-screen relative">
-        <nav className="hidden lg:flex w-24 border-r-4 border-brand-primary/30 bg-bg-space/50 backdrop-blur-sm flex-col items-center py-8 space-y-8">
+        <nav className="hidden lg:flex w-24 border-r-4 border-brand-primary/30 bg-bg-space/55 backdrop-blur-sm flex-col items-center py-8 space-y-8">
           <NavButton
             icon={<Home size={28} />}
             label="Mapa"
@@ -1837,7 +1197,6 @@ function Dashboard({
 
                   {/* Nodes for this section */}
                   <div className="flex flex-col items-center space-y-16 relative">
-                    {/* Visual Connection line could be added here */}
                     {sectionLessons.map((lesson, lIdx) => {
                       const isCompleted = lesson.completed;
                       const isLocked =
@@ -1894,12 +1253,12 @@ function Dashboard({
                             }}
                             onClick={() => !isLocked && onStartLesson(lesson)}
                             className={`
-                              w-24 h-24 rounded-full flex flex-col items-center justify-center shadow-2xl relative z-10 transition-all
+                              w-24 h-24 rounded-full flex flex-col items-center justify-center shadow-2xl relative z-10 transition-all cursor-pointer
                               ${
                                 isCompleted
                                   ? "bg-brand-success border-b-8 border-green-700 text-white shadow-green-500/30"
                                   : isLocked
-                                    ? "bg-slate-800 border-b-8 border-slate-900 text-slate-600 opacity-60"
+                                    ? "bg-slate-800 border-b-8 border-slate-900 text-slate-600 opacity-60 cursor-not-allowed"
                                     : "bg-purple-600 border-b-8 border-purple-900 text-white ring-4 ring-yellow-400 border-4 border-yellow-350 glow-text scale-[1.05]"
                               }
                               ${lIdx % 2 === 0 ? "-translate-x-10" : "translate-x-10"}
@@ -2001,11 +1360,10 @@ function AchievementsView({
       className="fixed inset-0 bg-bg-main z-50 overflow-y-auto pt-10 pb-20 px-6"
     >
       <div className="max-w-2xl mx-auto flex flex-col items-center">
-        {/* Previous Header/Progress code */}
         <header className="w-full flex items-center justify-between mb-12">
           <button
             onClick={onBack}
-            className="w-12 h-12 bg-bg-space rounded-2xl flex items-center justify-center text-white border-2 border-brand-primary/30 hover:scale-110 transition-transform"
+            className="w-12 h-12 bg-bg-space rounded-2xl flex items-center justify-center text-white border-2 border-brand-primary/30 hover:scale-110 transition-transform cursor-pointer"
           >
             <ChevronLeft />
           </button>
@@ -2153,7 +1511,7 @@ function AchievementsView({
                 </p>
                 <button
                   onClick={() => setSelectedTechnique(null)}
-                  className="w-full py-5 bg-brand-primary text-white font-black uppercase tracking-widest rounded-3xl border-b-8 border-purple-800 active:translate-y-1 active:border-b-0"
+                  className="w-full py-5 bg-brand-primary text-white font-black uppercase tracking-widest rounded-3xl border-b-8 border-purple-800 active:translate-y-1 active:border-b-0 cursor-pointer"
                 >
                   ¡ENTENDIDO!
                 </button>
@@ -2177,7 +1535,7 @@ function AchievementStat({
   return (
     <div className="bg-black/40 p-4 rounded-3xl flex flex-col items-center">
       {icon}
-      <span className="text-[10px] font-black text-slate-500 uppercase mt-1">
+      <span className="text-[10px] font-black text-slate-500 uppercase mt-1 text-center">
         {label}
       </span>
       <span className="font-black text-lg text-white">{value}</span>
@@ -2197,11 +1555,11 @@ function BadgeItem({
   return (
     <div className="flex flex-col items-center">
       <div
-        className={`w-14 h-14 rounded-full flex items-center justify-center text-2xl transition-all shadow-xl ${unlocked ? "bg-brand-primary/30 border-2 border-brand-primary shadow-purple-500/20 outline outline-2 outline-offset-2 outline-brand-primary/20" : "bg-slate-900 border-2 border-slate-800 grayscale scale-90 opacity-40"}`}
+        className={`w-14 h-14 rounded-full flex items-center justify-center text-2xl transition-all shadow-xl ${unlocked ? "bg-brand-primary/30 border-2 border-brand-primary shadow-purple-500/20 outline-2 outline-offset-2 outline-brand-primary/20" : "bg-slate-900 border-2 border-slate-800 grayscale scale-90 opacity-40"}`}
       >
         {icon}
       </div>
-      <span className="text-[8px] font-black uppercase text-slate-500 mt-2 tracking-widest">
+      <span className="text-[8px] font-black uppercase text-slate-500 mt-2 tracking-widest text-center">
         {label}
       </span>
     </div>
@@ -2222,6 +1580,8 @@ function ProfileView({
   onBack: () => void;
   key?: string;
 }) {
+  const [showResetConfirm, setShowResetConfirm] = useState(false);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -2232,7 +1592,7 @@ function ProfileView({
         <header className="w-full flex items-center justify-between mb-12">
           <button
             onClick={onBack}
-            className="w-12 h-12 bg-bg-space rounded-2xl flex items-center justify-center text-white border-2 border-brand-primary/30 hover:scale-110 transition-transform"
+            className="w-12 h-12 bg-bg-space rounded-2xl flex items-center justify-center text-white border-2 border-brand-primary/30 hover:scale-110 transition-transform cursor-pointer"
           >
             <ChevronLeft />
           </button>
@@ -2250,7 +1610,7 @@ function ProfileView({
           {stats.avatar}
           <button
             onClick={onEdit}
-            className="absolute -bottom-2 -right-2 w-12 h-12 bg-accent-amber rounded-2xl flex items-center justify-center text-slate-800 shadow-xl border-b-4 border-yellow-700 active:translate-y-1 active:border-b-0"
+            className="absolute -bottom-2 -right-2 w-12 h-12 bg-accent-amber rounded-2xl flex items-center justify-center text-slate-805 shadow-xl border-b-4 border-yellow-700 active:translate-y-1 active:border-b-0 cursor-pointer"
           >
             <Edit size={20} />
           </button>
@@ -2281,8 +1641,7 @@ function ProfileView({
             icon={<RefreshCcw />}
             label="Reiniciar Progreso"
             onClick={() => {
-              if (confirm("¿Estás seguro? Perderás todo tu progreso espacial."))
-                onReset();
+              setShowResetConfirm(true);
             }}
             color="bg-slate-900 border-slate-950"
             danger
@@ -2298,6 +1657,54 @@ function ProfileView({
           </p>
         </div>
       </div>
+
+      <AnimatePresence>
+        {showResetConfirm && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/90 backdrop-blur-md z-[70] flex items-center justify-center p-6"
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              className="max-w-md w-full bg-slate-950 border-4 border-red-500/45 rounded-[40px] p-8 text-center space-y-6 shadow-2xl"
+            >
+              <div className="w-20 h-20 bg-accent-rose/10 text-accent-rose rounded-full flex items-center justify-center text-4xl mx-auto shadow-[0_0_25px_rgba(239,68,68,0.25)]">
+                ⚠️
+              </div>
+              <h3 className="text-2xl font-black text-white uppercase tracking-tight">
+                ¿REINICIAR TODO EL PROGRESO?
+              </h3>
+              <p className="text-slate-300 text-sm font-bold leading-relaxed">
+                Estás a punto de borrar tu progreso galáctico de forma
+                permanente. Si continúas, volverás a la pantalla de inicio para
+                registrarte de nuevo y tus logros y gachas se restablecerán.
+                ¿Estás seguro?
+              </p>
+              <div className="space-y-3 pt-4">
+                <button
+                  onClick={() => {
+                    onReset();
+                    setShowResetConfirm(false);
+                  }}
+                  className="w-full py-5 bg-gradient-to-r from-red-650 to-rose-700 text-white font-black text-sm uppercase tracking-[0.2em] border-b-6 border-red-900 rounded-3xl hover:scale-[1.01] transition-transform shadow-xl cursor-pointer"
+                >
+                  SÍ, REINICIAR PROGRESO
+                </button>
+                <button
+                  onClick={() => setShowResetConfirm(false)}
+                  className="w-full py-5 bg-slate-900 text-slate-300 font-black text-sm uppercase tracking-[0.2em] border-b-6 border-slate-950 rounded-3xl hover:scale-[1.01] transition-transform cursor-pointer"
+                >
+                  NO, CANCELAR
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
@@ -2320,7 +1727,7 @@ function ProfileActionButton({
   return (
     <button
       onClick={onClick}
-      className={`w-full py-5 px-6 rounded-3xl flex items-center justify-between transition-all active:scale-95 border-b-8 shadow-xl ${color} ${secondary ? "text-slate-200" : "text-white"}`}
+      className={`w-full py-5 px-6 rounded-3xl flex items-center justify-between transition-all active:scale-95 border-b-8 shadow-xl cursor-pointer ${color} ${secondary ? "text-slate-200" : "text-white"}`}
     >
       <div className="flex items-center gap-4">
         <div
@@ -2389,7 +1796,7 @@ function EditProfileModal({
               <button
                 key={a}
                 onClick={() => setAvatar(a)}
-                className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl transition-all ${a === avatar ? "bg-brand-primary border-b-4 border-purple-800 scale-110 shadow-lg" : "bg-black/40 border-2 border-brand-primary/10 hover:bg-black/60"}`}
+                className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl transition-all cursor-pointer ${a === avatar ? "bg-brand-primary border-b-4 border-purple-800 scale-110 shadow-lg" : "bg-black/40 border-2 border-brand-primary/10 hover:bg-black/60"}`}
               >
                 {a}
               </button>
@@ -2400,28 +1807,19 @@ function EditProfileModal({
         <div className="flex gap-4">
           <button
             onClick={onClose}
-            className="flex-1 py-4 bg-slate-900 text-slate-400 font-black uppercase tracking-widest text-xs rounded-2xl border-b-4 border-slate-950"
+            className="flex-1 py-4 bg-slate-900 text-slate-400 font-black uppercase tracking-widest text-xs rounded-2xl border-b-4 border-slate-950 cursor-pointer"
           >
             Cancelar
           </button>
           <button
             onClick={() => onSave(name, avatar)}
-            className="flex-1 py-4 bg-brand-primary text-white font-black uppercase tracking-widest text-xs rounded-2xl border-b-4 border-purple-800 shadow-xl shadow-purple-900/20"
+            className="flex-1 py-4 bg-brand-primary text-white font-black uppercase tracking-widest text-xs rounded-2xl border-b-4 border-purple-800 shadow-xl shadow-purple-900/20 cursor-pointer"
           >
             Guardar
           </button>
         </div>
       </motion.div>
     </motion.div>
-  );
-}
-
-function StatBadge({ icon, value }: { icon: React.ReactNode; value: number }) {
-  return (
-    <div className="flex items-center gap-1.5 px-3 py-1 bg-slate-100 rounded-full font-bold text-sm">
-      {icon}
-      <span>{value}</span>
-    </div>
   );
 }
 
@@ -2439,7 +1837,7 @@ function NavButton({
   return (
     <button
       onClick={onClick}
-      className={`flex flex-col items-center gap-1 ${active ? "text-white" : "text-slate-400"} hover:text-white transition-colors`}
+      className={`flex flex-col items-center gap-1 ${active ? "text-white" : "text-slate-400"} hover:text-white transition-colors cursor-pointer`}
     >
       <div className={`p-1 rounded-xl ${active ? "bg-blue-50/10" : ""}`}>
         {icon}
@@ -2467,6 +1865,7 @@ function LessonView({
     "tip",
   );
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
+  const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const [interactiveSolved, setInteractiveSolved] = useState(false);
@@ -2488,7 +1887,6 @@ function LessonView({
       "preocupacion-util",
       "yo-compasivo",
       "laboratorio-pociones",
-      "multiple-select",
     ].includes(currentContent.type);
 
   const toggleSpeak = () => {
@@ -2556,13 +1954,37 @@ function LessonView({
     setShowHint(false);
 
     if (currentContent?.options && !showFeedback) {
-      if (selectedOption === null) return;
-      if (selectedOption === currentContent.correct) {
-        setFeedbackType("correct");
-        setShowFeedback(true);
+      if (currentContent.type === "multiple-select") {
+        if (selectedOptions.length === 0) return;
+        const correctArray = Array.isArray(currentContent.correct)
+          ? currentContent.correct
+          : [currentContent.correct];
+        const correctSorted = [...correctArray]
+          .map(Number)
+          .sort((a, b) => a - b);
+        const selectedSorted = [...selectedOptions]
+          .map(Number)
+          .sort((a, b) => a - b);
+        const matched =
+          correctSorted.length === selectedSorted.length &&
+          correctSorted.every((val, index) => val === selectedSorted[index]);
+
+        if (matched) {
+          setFeedbackType("correct");
+          setShowFeedback(true);
+        } else {
+          setFeedbackType("wrong");
+          setShowFeedback(true);
+        }
       } else {
-        setFeedbackType("wrong");
-        setShowFeedback(true);
+        if (selectedOption === null) return;
+        if (selectedOption === currentContent.correct) {
+          setFeedbackType("correct");
+          setShowFeedback(true);
+        } else {
+          setFeedbackType("wrong");
+          setShowFeedback(true);
+        }
       }
       return;
     }
@@ -2571,6 +1993,7 @@ function LessonView({
       setStep(step + 1);
       setShowFeedback(false);
       setSelectedOption(null);
+      setSelectedOptions([]);
       setInteractiveSolved(false);
     } else {
       onComplete();
@@ -2580,8 +2003,29 @@ function LessonView({
   const getHint = () => {
     if (currentContent.hint) return currentContent.hint;
     if (currentContent.options && currentContent.correct !== undefined) {
-      const correctText = currentContent.options[currentContent.correct];
-      return `Kaelen susurra: "Enfócate en la opción que menciona '${correctText.split(" ").slice(0, 2).join(" ")}...'. Es la clave para vencer esta sombra."`;
+      const correctIndices = Array.isArray(currentContent.correct)
+        ? currentContent.correct
+        : [currentContent.correct];
+      const correctTextList = correctIndices
+        .map((idx) => currentContent.options[idx])
+        .filter(Boolean);
+
+      if (correctTextList.length > 0) {
+        if (correctIndices.length > 1) {
+          const firstTwoPart = correctTextList
+            .slice(0, 2)
+            .map((txt) => {
+              const words = txt.split(/\s+/).filter(Boolean);
+              return `'${words.slice(0, 2).join(" ")}...'`;
+            })
+            .join(" y ");
+          return `Kaelen susurra: "Esta misión tiene múltiples respuestas correctas. Enfócate en las opciones que mencionan ${firstTwoPart}. Son claves para vencer esta sombra."`;
+        } else {
+          const correctText = correctTextList[0];
+          const words = correctText.split(/\s+/).filter(Boolean);
+          return `Kaelen susurra: "Enfócate en la opción que menciona '${words.slice(0, 2).join(" ")}...'. Es la clave para vencer esta sombra."`;
+        }
+      }
     }
     return "Confía en tu entrenamiento de Guardián.";
   };
@@ -2598,11 +2042,11 @@ function LessonView({
       <header className="h-20 border-b-4 border-brand-primary/30 flex items-center px-4 md:px-8 gap-4 bg-bg-space/80 backdrop-blur-md">
         <button
           onClick={onClose}
-          className="w-12 h-12 flex items-center justify-center text-slate-400 hover:text-white transition-colors"
+          className="w-12 h-12 flex items-center justify-center text-slate-400 hover:text-white transition-colors cursor-pointer"
         >
           <X size={32} />
         </button>
-        <div className="flex-1 h-4 bg-black rounded-full overflow-hidden border-2 border-brand-primary/30 shadow-inner">
+        <div className="flex-1 h-3 bg-black rounded-full overflow-hidden border-2 border-brand-primary/30 shadow-inner">
           <motion.div
             className="h-full bg-brand-primary shadow-[0_0_15px_#610094]"
             initial={{ width: 0 }}
@@ -2616,14 +2060,14 @@ function LessonView({
         </div>
       </header>
 
-      <main className="flex-1 flex flex-col items-center justify-center p-8 relative overflow-y-auto">
+      <main className="flex-1 flex flex-col items-center justify-start md:justify-center p-4 md:p-8 relative overflow-y-auto w-full custom-scroll">
         <AnimatePresence mode="wait">
           <motion.div
             key={`${lesson.id}-${step}`}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -30 }}
-            className={`max-w-3xl md:max-w-4xl w-full p-8 md:p-12 rounded-[60px] shadow-2xl border-4 relative overflow-hidden ${lesson.type === "boss" ? "bg-red-950/20 border-red-500/50 shadow-[0_0_50px_rgba(239,68,68,0.2)]" : "bg-bg-space border-brand-primary/30"}`}
+            className={`max-w-3xl md:max-w-4xl w-full p-8 md:p-12 rounded-[60px] shadow-2xl border-4 relative ${lesson.type === "boss" ? "bg-red-950/20 border-red-500/50 shadow-[0_0_50px_rgba(239,68,68,0.2)]" : "bg-bg-space border-brand-primary/30"}`}
           >
             {lesson.type === "boss" && (
               <div className="absolute top-4 right-8 flex items-center gap-2">
@@ -2637,7 +2081,7 @@ function LessonView({
             <div className="absolute top-4 left-8 flex gap-2">
               <button
                 onClick={toggleSpeak}
-                className={`p-3 rounded-xl transition-all ${isSpeaking ? "bg-brand-primary text-white scale-110 shadow-[0_0_15px_#610094]" : "bg-white/5 text-slate-400 hover:bg-white/10 border border-white/10"}`}
+                className={`p-3 rounded-xl transition-all cursor-pointer ${isSpeaking ? "bg-brand-primary text-white scale-110 shadow-[0_0_15px_#610094]" : "bg-white/5 text-slate-400 hover:bg-white/10 border border-white/10"}`}
                 title="Escuchar con voz relajada"
               >
                 <Zap size={20} fill={isSpeaking ? "currentColor" : "none"} />
@@ -2646,7 +2090,7 @@ function LessonView({
               {currentContent.options && (
                 <button
                   onClick={() => setShowHint(!showHint)}
-                  className={`p-3 rounded-xl transition-all ${showHint ? "bg-accent-amber text-slate-900 scale-110 shadow-[0_0_15px_#FFB400]" : "bg-white/5 text-slate-400 hover:bg-white/10 border border-white/10"}`}
+                  className={`p-3 rounded-xl transition-all cursor-pointer ${showHint ? "bg-accent-amber text-slate-900 scale-110 shadow-[0_0_15px_#FFB400]" : "bg-white/5 text-slate-400 hover:bg-white/10 border border-white/10"}`}
                   title="Obtener pista"
                 >
                   <Star size={20} fill={showHint ? "currentColor" : "none"} />
@@ -2797,7 +2241,7 @@ function LessonView({
                   {currentContent.image ||
                     (lesson.type === "boss" ? "👿" : "🪐")}
                 </div>
-                <h2 className="text-xl md:text-3xl font-black text-white leading-tight uppercase tracking-tight glow-text leading-relaxed">
+                <h2 className="text-xl md:text-3xl font-black text-white leading-relaxed uppercase tracking-tight glow-text leading-relaxed">
                   {currentContent.text}
                 </h2>
                 <p className="mt-6 text-slate-400 italic font-bold text-sm">
@@ -2806,8 +2250,8 @@ function LessonView({
               </div>
             ) : (
               <div className="text-left w-full mt-6">
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="w-16 h-16 bg-brand-primary/20 rounded-2xl flex items-center justify-center text-4xl">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-16 h-16 bg-brand-primary/20 rounded-2xl flex items-center justify-center text-4xl shrink-0">
                     {lesson.type === "boss" ? "💀" : "❓"}
                   </div>
                   <h2 className="text-xl md:text-2xl font-black text-white uppercase tracking-tight grow">
@@ -2815,23 +2259,75 @@ function LessonView({
                   </h2>
                 </div>
 
-                <div className="grid gap-4 custom-scroll overflow-y-auto max-h-[55vh] pr-1">
-                  {currentContent.options.map((opt: string, i: number) => (
-                    <button
-                      key={i}
-                      onClick={() => !showFeedback && setSelectedOption(i)}
-                      className={`w-full py-5 px-6 rounded-3xl border-b-8 font-black text-left flex items-center gap-4 transition-all ${
-                        selectedOption === i
-                          ? "bg-brand-primary text-white border-purple-800 scale-[1.02]"
-                          : "bg-black/20 text-slate-300 border-black/40 hover:bg-black/40"
-                      }`}
-                    >
-                      <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-xs font-black">
-                        {String.fromCharCode(65 + i)}
-                      </div>
-                      {opt}
-                    </button>
-                  ))}
+                {currentContent.type === "multiple-select" && (
+                  <div className="bg-purple-950/25 p-5 rounded-3xl border border-purple-500/20 mb-6 text-left">
+                    <p className="text-xs text-brand-success font-black uppercase tracking-widest mb-1 flex items-center gap-2">
+                      <Star size={14} fill="currentColor" /> Misión Activa:
+                      Selección Múltiple
+                    </p>
+                    <p className="text-slate-300 text-xs font-bold leading-relaxed">
+                      Lee con extremo cuidado. Al ser un ejercicio especial,
+                      puede haber
+                      <span className="text-brand-success">
+                        {" "}
+                        MÁS DE UNA opción correcta
+                      </span>
+                      . Marca todas las adecuadas para superar la misión.
+                    </p>
+                  </div>
+                )}
+
+                <div className="grid gap-4 pr-1">
+                  {currentContent.options.map((opt: string, i: number) => {
+                    const isSelected =
+                      currentContent.type === "multiple-select"
+                        ? selectedOptions.includes(i)
+                        : selectedOption === i;
+
+                    const handleSelect = () => {
+                      if (showFeedback) return;
+                      if (currentContent.type === "multiple-select") {
+                        if (selectedOptions.includes(i)) {
+                          setSelectedOptions(
+                            selectedOptions.filter((x) => x !== i),
+                          );
+                        } else {
+                          setSelectedOptions([...selectedOptions, i]);
+                        }
+                      } else {
+                        setSelectedOption(i);
+                      }
+                    };
+
+                    return (
+                      <button
+                        key={i}
+                        onClick={handleSelect}
+                        className={`w-full py-5 px-6 rounded-3xl border-b-8 font-black text-left flex items-start gap-4 transition-all cursor-pointer ${
+                          isSelected
+                            ? "bg-brand-primary text-white border-purple-800 scale-[1.02]"
+                            : "bg-black/20 text-slate-300 border-black/40 hover:bg-black/40"
+                        }`}
+                      >
+                        <div
+                          className={`w-8 h-8 flex items-center justify-center text-xs font-black shrink-0 ${
+                            currentContent.type === "multiple-select"
+                              ? "bg-white/10 rounded-lg border-2 border-white/20"
+                              : "bg-white/10 rounded-full"
+                          }`}
+                        >
+                          {currentContent.type === "multiple-select"
+                            ? selectedOptions.includes(i)
+                              ? "✓"
+                              : ""
+                            : String.fromCharCode(65 + i)}
+                        </div>
+                        <span className="flex-1 leading-relaxed pt-0.5">
+                          {opt}
+                        </span>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             )}
@@ -2847,19 +2343,13 @@ function LessonView({
               exit={{ y: 20, opacity: 0 }}
               className={`absolute bottom-32 w-full max-w-lg p-8 rounded-[40px] border-b-8 shadow-2xl z-25 ${
                 feedbackType === "correct"
-                  ? "bg-brand-success border-green-700 shadow-green-500/20"
-                  : feedbackType === "wrong"
-                    ? "bg-accent-rose border-rose-700 shadow-rose-500/20"
-                    : "bg-accent-amber border-yellow-600 shadow-amber-500/20"
+                  ? "bg-brand-success border-green-700 shadow-green-500/20 text-white"
+                  : "bg-accent-rose border-rose-700 shadow-rose-500/20 text-white"
               }`}
             >
               <div className="flex gap-6">
                 <div className="text-5xl">
-                  {feedbackType === "correct"
-                    ? "🏆"
-                    : feedbackType === "wrong"
-                      ? "🛸"
-                      : "💡"}
+                  {feedbackType === "correct" ? "🏆" : "🛸"}
                 </div>
                 <div>
                   <h3 className="font-black text-white uppercase text-sm mb-2 tracking-widest">
@@ -2889,10 +2379,11 @@ function LessonView({
                   } else {
                     setShowFeedback(false);
                     setSelectedOption(null);
+                    setSelectedOptions([]);
                     setInteractiveSolved(false);
                   }
                 }}
-                className="mt-8 w-full py-5 bg-black/30 hover:bg-black/40 text-white font-black text-sm uppercase tracking-[0.2em] border-2 border-white/20 rounded-2xl transition-all"
+                className="mt-8 w-full py-5 bg-black/30 hover:bg-black/40 text-white font-black text-sm uppercase tracking-[0.2em] border-2 border-white/20 rounded-2xl transition-all cursor-pointer"
               >
                 {feedbackType === "correct"
                   ? "CONTINUAR EL VIAJE"
@@ -2903,83 +2394,51 @@ function LessonView({
         </AnimatePresence>
       </main>
 
-      <footer className="p-8 border-t-4 border-brand-primary/30 bg-bg-space/80">
+      <footer className="p-8 border-t-4 border-brand-primary/30 bg-bg-space/80 w-full shrink-0">
         <div className="max-w-xl mx-auto flex gap-4">
           <button
-            onClick={handleNext}
+            onClick={() => {
+              if (showFeedback && feedbackType === "wrong") {
+                setShowFeedback(false);
+                setSelectedOption(null);
+                setSelectedOptions([]);
+                setInteractiveSolved(false);
+              } else {
+                handleNext();
+              }
+            }}
             disabled={
-              (currentContent.options &&
-                selectedOption === null &&
-                !showFeedback) ||
-              (isInteractive && !interactiveSolved && !showFeedback)
+              !showFeedback &&
+              (currentContent.options
+                ? currentContent.type === "multiple-select"
+                  ? selectedOptions.length === 0
+                  : selectedOption === null
+                : isInteractive && !interactiveSolved)
             }
-            className={`w-full py-6 bg-brand-primary text-white font-black text-xl rounded-3xl shadow-xl border-b-8 border-purple-800 hover:scale-[1.02] transition-all active:translate-y-1 active:border-b-0 uppercase tracking-widest glow-text ${(currentContent.options && selectedOption === null && !showFeedback) || (isInteractive && !interactiveSolved && !showFeedback) ? "opacity-50 grayscale cursor-not-allowed" : ""}`}
+            className={`w-full py-6 bg-brand-primary text-white font-black text-xl rounded-3xl shadow-xl border-b-8 border-purple-800 hover:scale-[1.02] transition-all active:translate-y-1 active:border-b-0 uppercase tracking-widest glow-text cursor-pointer ${
+              !showFeedback &&
+              (currentContent.options
+                ? currentContent.type === "multiple-select"
+                  ? selectedOptions.length === 0
+                  : selectedOption === null
+                : isInteractive && !interactiveSolved)
+                ? "opacity-50 grayscale cursor-not-allowed"
+                : ""
+            }`}
           >
-            {step < content.length - 1
-              ? "SIGUIENTE PASO"
-              : lesson.type === "boss"
-                ? "¡JEFE DERROTADO!"
-                : "¡MISIÓN COMPLETADA!"}
+            {currentContent.options && !showFeedback
+              ? "VERIFICAR RESPUESTA"
+              : showFeedback && feedbackType === "wrong"
+                ? "REINTENTAR ANÁLISIS"
+                : step < content.length - 1
+                  ? "SIGUIENTE PASO"
+                  : lesson.type === "boss"
+                    ? "¡JEFE DERROTADO!"
+                    : "¡MISIÓN COMPLETADA!"}
           </button>
         </div>
       </footer>
     </motion.div>
-  );
-}
-
-function InteractiveBreathe({
-  steps,
-  onFinish,
-}: {
-  steps: number;
-  onFinish: () => void;
-}) {
-  const [phase, setPhase] = useState<"inhale" | "hold" | "exhale">("inhale");
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (count >= steps) {
-      onFinish();
-      return;
-    }
-
-    const timer = setInterval(() => {
-      setPhase((p) => {
-        if (p === "inhale") return "hold";
-        if (p === "hold") return "exhale";
-        setCount((c) => c + 1);
-        return "inhale";
-      });
-    }, 4000);
-
-    return () => clearInterval(timer);
-  }, [count, steps, onFinish]);
-
-  return (
-    <div className="flex flex-col items-center">
-      <motion.div
-        animate={{
-          scale: phase === "inhale" ? 1.5 : phase === "hold" ? 1.5 : 0.8,
-          opacity: phase === "hold" ? 1 : 0.7,
-        }}
-        transition={{ duration: 4, ease: "easeInOut" }}
-        className="w-32 h-32 bg-brand-primary rounded-full flex items-center justify-center text-white text-3xl shadow-[0_0_40px_#610094]"
-      >
-        <Wind size={40} />
-      </motion.div>
-      <div className="mt-12">
-        <p className="text-2xl font-black text-white uppercase tracking-widest">
-          {phase === "inhale"
-            ? "Inhala..."
-            : phase === "hold"
-              ? "Mantén..."
-              : "Exhala..."}
-        </p>
-        <p className="text-slate-500 font-bold mt-2 italic">
-          Ciclo {count + 1} de {steps}
-        </p>
-      </div>
-    </div>
   );
 }
 
@@ -3028,7 +2487,7 @@ function CrisisModal({
             <div className="grid gap-4">
               <button
                 onClick={() => setActiveTechnique("478")}
-                className="w-full p-6 bg-blue-50 border-2 border-blue-100 rounded-[32px] text-left hover:scale-[1.02] transition-transform group"
+                className="w-full p-6 bg-blue-50 border-2 border-blue-100 rounded-[32px] text-left hover:scale-[1.02] transition-transform group cursor-pointer"
               >
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-blue-600 shadow-sm group-hover:rotate-12 transition-transform">
@@ -3047,7 +2506,7 @@ function CrisisModal({
 
               <button
                 onClick={() => setActiveTechnique("54321")}
-                className="w-full p-6 bg-purple-50 border-2 border-purple-100 rounded-[32px] text-left hover:scale-[1.02] transition-transform group"
+                className="w-full p-6 bg-purple-50 border-2 border-purple-100 rounded-[32px] text-left hover:scale-[1.02] transition-transform group cursor-pointer"
               >
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-purple-600 shadow-sm group-hover:rotate-12 transition-transform">
@@ -3076,9 +2535,9 @@ function CrisisModal({
                 <a
                   key={contact.number}
                   href={`tel:${contact.number.replace(/\s/g, "")}`}
-                  className="flex items-center gap-4 p-4 bg-slate-50 border-2 border-gray-100 rounded-2xl hover:bg-slate-100 transition-all group active:scale-95"
+                  className="flex items-center gap-4 p-4 bg-slate-50 border-2 border-gray-100 rounded-2xl hover:bg-slate-100 transition-all group active:scale-95 cursor-pointer"
                 >
-                  <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-accent-rose group-hover:scale-110 transition-transform border-b-2 border-gray-100">
+                  <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-accent-rose group-hover:scale-110 transition-transform border-b-2 border-gray-100 shrink-0">
                     <Phone size={18} fill="currentColor" />
                   </div>
                   <div className="flex-1">
@@ -3089,7 +2548,7 @@ function CrisisModal({
                       {contact.number}
                     </p>
                   </div>
-                  <ChevronRight size={16} className="text-slate-300" />
+                  <ChevronRight size={16} className="text-slate-300 shrink-0" />
                 </a>
               ))}
             </div>
@@ -3098,7 +2557,7 @@ function CrisisModal({
 
         <button
           onClick={onClose}
-          className="w-full py-6 text-slate-400 font-black text-xs uppercase tracking-widest border-t-2 border-gray-50 outline-none hover:bg-gray-50 transition-colors shrink-0"
+          className="w-full py-6 text-slate-400 font-black text-xs uppercase tracking-widest border-t-2 border-gray-50 outline-none hover:bg-gray-50 transition-colors shrink-0 cursor-pointer"
         >
           Cerrar Protocolo
         </button>
@@ -3114,7 +2573,7 @@ function CrisisModal({
             >
               <button
                 onClick={() => setActiveTechnique(null)}
-                className="absolute top-8 right-8 text-slate-300 hover:text-slate-800 transition-colors"
+                className="absolute top-8 right-8 text-slate-300 hover:text-slate-800 transition-colors cursor-pointer"
               >
                 <X size={32} />
               </button>
@@ -3129,23 +2588,23 @@ function CrisisModal({
                     : "Grounding 5-4-3-2-1"}
                 </h3>
 
-                <div className="space-y-6 text-slate-600 font-bold leading-relaxed text-lg">
+                <div className="space-y-6 text-slate-600 font-bold leading-relaxed text-lg w-full max-w-sm mx-auto">
                   {activeTechnique === "478" ? (
                     <ul className="space-y-4">
                       <li className="flex items-center gap-4 bg-blue-50 p-4 rounded-2xl">
-                        <span className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm">
+                        <span className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm shrink-0">
                           1
                         </span>{" "}
                         Inhala por la nariz (4s)
                       </li>
                       <li className="flex items-center gap-4 bg-blue-50 p-4 rounded-2xl">
-                        <span className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm">
+                        <span className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm shrink-0">
                           2
                         </span>{" "}
                         Mantén el aire (7s)
                       </li>
                       <li className="flex items-center gap-4 bg-blue-50 p-4 rounded-2xl">
-                        <span className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm">
+                        <span className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm shrink-0">
                           3
                         </span>{" "}
                         Exhala por la boca (8s)
@@ -3154,31 +2613,31 @@ function CrisisModal({
                   ) : (
                     <ul className="space-y-3">
                       <li className="flex items-center gap-4 bg-purple-50 p-3 rounded-xl">
-                        <span className="w-6 h-6 rounded-full bg-purple-600 text-white flex items-center justify-center text-xs">
+                        <span className="w-6 h-6 rounded-full bg-purple-600 text-white flex items-center justify-center text-xs shrink-0">
                           5
                         </span>{" "}
                         cosas que ves
                       </li>
                       <li className="flex items-center gap-4 bg-purple-50 p-3 rounded-xl">
-                        <span className="w-6 h-6 rounded-full bg-purple-600 text-white flex items-center justify-center text-xs">
+                        <span className="w-6 h-6 rounded-full bg-purple-600 text-white flex items-center justify-center text-xs shrink-0">
                           4
                         </span>{" "}
                         cosas que sientes
                       </li>
                       <li className="flex items-center gap-4 bg-purple-50 p-3 rounded-xl">
-                        <span className="w-6 h-6 rounded-full bg-purple-600 text-white flex items-center justify-center text-xs">
+                        <span className="w-6 h-6 rounded-full bg-purple-600 text-white flex items-center justify-center text-xs shrink-0">
                           3
                         </span>{" "}
                         cosas que escuchas
                       </li>
                       <li className="flex items-center gap-4 bg-purple-50 p-3 rounded-xl">
-                        <span className="w-6 h-6 rounded-full bg-purple-600 text-white flex items-center justify-center text-xs">
+                        <span className="w-6 h-6 rounded-full bg-purple-600 text-white flex items-center justify-center text-xs shrink-0">
                           2
                         </span>{" "}
                         cosas que hueles
                       </li>
                       <li className="flex items-center gap-4 bg-purple-50 p-3 rounded-xl">
-                        <span className="w-6 h-6 rounded-full bg-purple-600 text-white flex items-center justify-center text-xs">
+                        <span className="w-6 h-6 rounded-full bg-purple-600 text-white flex items-center justify-center text-xs shrink-0">
                           1
                         </span>{" "}
                         cosa que saboreas
@@ -3190,7 +2649,7 @@ function CrisisModal({
 
               <button
                 onClick={() => setActiveTechnique(null)}
-                className="w-full py-5 bg-slate-800 text-white font-black uppercase rounded-3xl mt-10 active:translate-y-1"
+                className="w-full py-5 bg-slate-800 text-white font-black uppercase rounded-3xl mt-10 active:translate-y-1 cursor-pointer"
               >
                 He terminado
               </button>

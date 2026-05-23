@@ -2,13 +2,13 @@ import { Lesson } from "./types";
 
 export const INITIAL_LESSONS: Lesson[] = [
   // ==========================================
-  // STAGE 1: ANXIETY (20 Levels)
+  // STAGE 1: ANXIETY (10 Levels)
   // ==========================================
   {
     id: "ans-1",
     sectionId: "anxiety",
-    title: "¿Tu cuerpo te manda alertas?",
-    description: "Aprende a reconocer tus señales corporales.",
+    title: "¿Tu cuerpo manda alertas?",
+    description: "Reconoce las señales que nos da el cuerpo.",
     type: "anxiety",
     activityType: "quiz",
     ageGroup: "teen",
@@ -29,7 +29,7 @@ export const INITIAL_LESSONS: Lesson[] = [
         ],
         correct: 1,
         feedback:
-          "La ansiedad es una señal normal del cuerpo, no una debilidad. Todos la sentimos de vez en cuando (Craske & Barlow, 2022; Kendall et al., 2016).",
+          "La ansiedad es una señal normal del cuerpo, no una debilidad. Todos la sentimos de vez en cuando.\n\nReferencias:\n- Craske, M.G. & Barlow, D.H. (2022). Mastery of your anxiety and worry (3rd ed.). Oxford University Press.\n- Kendall, P.C. et al. (2016). Cognitive-behavioral therapy for anxious youth. Journal of Consulting and Clinical Psychology, 84(6), 522–531.",
         hint: "Recuerda que la ansiedad es una señal.",
       },
     ],
@@ -37,73 +37,36 @@ export const INITIAL_LESSONS: Lesson[] = [
   {
     id: "ans-2",
     sectionId: "anxiety",
-    title: "El ciclo del miedo",
-    description: "¿Por qué evitar agranda nuestras dudas?",
+    title: "Respiración cuadrada",
+    description: "Regula tus alarmas internas.",
     type: "anxiety",
-    activityType: "interactive",
+    activityType: "quiz",
     ageGroup: "teen",
     completed: false,
     order: 2,
     content: [
       {
-        type: "completar-frase",
-        text: "El miedo es una emoción que todos experimentamos en algún momento de nuestras vidas. A menudo, cuando nos enfrentamos a algo que nos asusta, nuestra reacción puede ser evitarlo. Aunque esto puede proporcionar un alivio temporal, a la larga, el miedo tiende a crecer y volverse más intenso.",
-        sentences: [
-          "Cuando evito algo que me da miedo, siento [GAP_0] por un momento, pero el miedo se vuelve [GAP_1].",
-          "Para reducir la ansiedad de verdad, necesito [GAP_2] las situaciones que me asustan poco a poco.",
+        text: "Para usar la respiración al cuadrado, imagina que dibujas un cuadrado en el aire mientras cuentas hasta cuatro en cada lado. Primero, subes tomando aire por la nariz. Luego, cruzas aguantando la respiración. Después, bajas soltando el aire despacio por la boca. Finalmente, cierras la base quedándote un momento sin aire antes de empezar otra vez. Repetir este recorrido le avisa a tu cerebro que todo está bien, relajando tu cuerpo al instante.",
+        image: "🔲",
+      },
+      {
+        question:
+          "¿Cuáles son los cuatro pasos de la respiración cuadrada en el orden correcto?",
+        options: [
+          "A) Respirar hondo, pausar el aire, vaciar los pulmones y mantener el vacío.",
+          "B) Tomar aire, soltarlo lentamente, aguantar la respiración y pausar en seco.",
+          "C) Retener el aire, inhalar profundo, pausar el ritmo y exhalar por completo.",
+          "D) Respirar hondo, mantener el aire, inhalar de nuevo y vaciar los pulmones.",
         ],
-        bank: [
-          "alivio",
-          "tristeza",
-          "más grande",
-          "más pequeño",
-          "afrontar",
-          "evitar",
-          "correr",
-          "huir",
-          "felicidad",
-        ],
-        correct: ["alivio", "más grande", "afrontar"],
+        correct: 0,
         feedback:
-          "Para reducir la ansiedad, es importante afrontar las situaciones que nos asustan poco a poco, en lugar de evitar (Clark & Wells, 1995; Higa-McMillan, 2016).",
-        hint: "Evitar no es la mejor opción. Busquemos afrontar.",
+          "Seguir un orden y un ritmo medido al respirar funciona como un interruptor biológico. Al alternar de forma exacta cada fase del ejercicio, se corta la señal de alerta que los nervios envían al cerebro, lo que estabiliza el ritmo cardíaco de forma automática y ayuda a recuperar el control y la claridad mental en cualquier momento tenso.\n\nReferencias:\n- Zaccaro, A. et al. (2018). How breath-control can change your life: A systematic review. Frontiers in Human Neuroscience, 12, 353.\n- Ma, X. et al. (2017). The effect of diaphragmatic breathing on attention and stress in healthy adults. Frontiers in Psychology, 8, 874.",
+        hint: "Para descubrir el orden, sigue el flujo natural de tu cuerpo: piensa en qué debes hacer obligatoriamente antes de poder retener el aire, y en qué estado te quedas justo después de haberlo soltado por completo.",
       },
     ],
   },
   {
     id: "ans-3",
-    sectionId: "anxiety",
-    title: "Respiración cuadrada",
-    description: "Hackea tu calma en 4 pasos.",
-    type: "anxiety",
-    activityType: "interactive",
-    ageGroup: "teen",
-    completed: false,
-    order: 3,
-    content: [
-      {
-        type: "ordenar",
-        text: "Imagina que estás dibujando un cuadrado. Esta técnica de respiración tiene cuatro partes, como los cuatro lados del cuadrado, hacer esto ayuda a que tu cuerpo se sienta más tranquilo y relajado rápidamente.",
-        correctItems: [
-          "Inhalar por la nariz contando 4 tiempos.",
-          "Sostener el aire contando 4 tiempos.",
-          "Exhala lentamente por la boca contando 4 tiempos.",
-          "Sostener sin aire contando 4 tiempos.",
-        ],
-        initialItems: [
-          "Sostener sin aire contando 4 tiempos.",
-          "Inhalar por la nariz contando 4 tiempos.",
-          "Exhala lentamente por la boca contando 4 tiempos.",
-          "Sostener el aire contando 4 tiempos.",
-        ],
-        feedback:
-          "Al inhalar, retener, exhalar y mantener el vacío en tiempos iguales, le envías a tu cerebro la señal directa de que estás a salvo (Zaccaro et al., 2018; Ma et al., 2017).",
-        hint: "Recuerda el ciclo de la vida: primero necesitas llenarte de aire (inhalar), luego sostener, y después exhalar.",
-      },
-    ],
-  },
-  {
-    id: "ans-4",
     sectionId: "anxiety",
     title: "¿Qué hace la evitación?",
     description: "La trampa del desvío rápido.",
@@ -111,7 +74,7 @@ export const INITIAL_LESSONS: Lesson[] = [
     activityType: "quiz",
     ageGroup: "teen",
     completed: false,
-    order: 4,
+    order: 3,
     content: [
       {
         text: "La evitación es un comportamiento que muchas personas utilizan para escapar de situaciones que les generan miedo o ansiedad. Aunque puede parecer una solución fácil en el momento, evitar enfrentar nuestros miedos puede tener consecuencias a largo plazo.",
@@ -121,94 +84,116 @@ export const INITIAL_LESSONS: Lesson[] = [
         question:
           "Valentina siempre se hace la enferma los días que tiene que exponer en clase. ¿Qué le pasa a su miedo con el tiempo?",
         options: [
-          "El miedo desaparece porque no tiene que enfrentarlo.",
-          "El miedo se mantiene igual, no cambia.",
-          "El miedo crece porque el cerebro aprende que exponer es peligroso.",
-          "Valentina se vuelve más valiente al descansar de las exposiciones.",
+          "A) El miedo desaparece porque no tiene que enfrentarlo.",
+          "B) El miedo se mantiene igual, no cambia.",
+          "C) El miedo crece porque el cerebro aprende que exponer es peligroso.",
+          "D) Valentina se vuelve más valiente al descansar de las exposiciones.",
         ],
         correct: 2,
         feedback:
-          "Cada vez que evitamos, le decimos al cerebro que tenía razón en asustarse. Por eso el miedo crece (Barlow, 2002; Chorpita & Daleiden, 2009).",
-        hint: "Recuerda que el miedo crece si lo evitas y el cerebro aprende que eso que evitamos es peligroso.",
+          "Evitar lo que nos asusta da un alivio inmediato, pero es una trampa. Al huir, le confirmamos al cerebro que la situación era realmente peligrosa y que solo la evasión nos mantenía a salvo. Esto hace que el miedo crezca, volviéndonos más sensibles y atrapándonos en un ciclo que debilita nuestra confianza.\n\nReferencias:\n- Barlow, D.H. (2002). Anxiety and its disorders (2nd ed.). Guilford Press.\n- Chorpita, B.F. & Daleiden, E.L. (2009). Mapping evidence-based treatments for children and adolescents. Journal of Consulting and Clinical Psychology, 77(3), 566–579.",
+        hint: "Piensa en lo que ocurre cuando el cerebro no comprueba si el peligro es real. Si la única respuesta ante el miedo es alejarnos, el sistema de alerta asume que huir fue lo que nos salvó, reforzando esa misma reacción para la próxima vez.",
+      },
+    ],
+  },
+  {
+    id: "ans-4",
+    sectionId: "anxiety",
+    title: "Detector de pensamientos trampa",
+    description: "Cuestiona las películas alarmantes de tu mente.",
+    type: "anxiety",
+    activityType: "quiz",
+    ageGroup: "teen",
+    completed: false,
+    order: 4,
+    content: [
+      {
+        text: "A veces, nuestros pensamientos pueden engañarnos y hacernos sentir miedo o ansiedad sin una razón real. Estos son lo que llamamos 'pensamientos trampa'. Aprender a identificarlos y cuestionarlos es un paso importante para mantener una mentalidad saludable y equilibrada.",
+        image: "🕵️",
+      },
+      {
+        question:
+          "Completa la frase lógica de cuestionamiento: 'Cuando tengo un pensamiento que me asusta, primero pregunto: ¿Es __________ que esto va a pasar? Luego me pregunto: ¿Qué le __________ a un amigo que piensa lo mismo? Finalmente escribo un pensamiento __________ que sea más justo conmigo.'",
+        options: [
+          "A) probable / aconsejaría / positivo",
+          "B) seguro / diría / equilibrado",
+          "C) posible / ocultaría / lógico",
+          "D) fijo / preguntaría / feliz",
+        ],
+        correct: 1,
+        feedback:
+          "Cuestionar lo que pensamos nos ayuda a quitarle fuerza al miedo. Al evaluar la certeza de un pensamiento, ponernos en el lugar de un amigo y buscar un enfoque más equilibrado, logramos desactivar el drama de la mente para responder con mucha más calma y justicia hacia nosotros mismos.\n\nReferencias:\n- Beck, J.S. (2021). Cognitive Behavior Therapy: Basics and Beyond (3rd ed.). Guilford Press.\n- Kendall, P.C. et al. (2016). Cognitive-behavioral therapy for anxious youth. Journal of Consulting and Clinical Psychology, 84(6), 522–531.",
+        hint: "Piensa en cómo reaccionarías con un amigo: no querrás mentirle con optimismo vacío, sino darle una opinión sensata, lógica y equilibrada.",
       },
     ],
   },
   {
     id: "ans-5",
     sectionId: "anxiety",
-    title: "Detector de pensamientos",
-    description: "Identifica pensamientos trampa.",
+    title: "El ciclo de la ansiedad",
+    description: "Ordena los engranajes del temor.",
     type: "anxiety",
-    activityType: "interactive",
+    activityType: "quiz",
     ageGroup: "teen",
     completed: false,
     order: 5,
     content: [
       {
-        type: "completar-frase",
-        text: "A veces, nuestros pensamientos pueden engañarnos y hacernos sentir miedo o ansiedad sin una razón real. Estos son lo que llamamos 'pensamientos trampa'. Aprender a identificarlos y cuestionarlos es un paso importante.",
-        sentences: [
-          "Cuando tengo un pensamiento que me asusta, primero pregunto: ¿Es [GAP_0] que esto va a pasar?",
-          "Luego me pregunto: ¿Qué le [GAP_1] a un amigo que piensa lo mismo?",
-          "Finalmente escribo un pensamiento [GAP_2] que sea más justo conmigo.",
+        text: "La ansiedad es una respuesta natural que todos experimentamos en diferentes momentos de nuestras vidas. Sin embargo, a veces, esta reacción puede volverse abrumadora y dificultar nuestras actividades diarias. Imagina que te llaman para exponer en clase. Esta situación puede activar una alerta en tu mente, desencadenando una serie de pensamientos y reacciones en tu cuerpo. A través de este ejercicio, aprenderás a identificar y ordenar estas etapas, lo que te ayudará a entender mejor cómo la ansiedad se desarrolla y cómo puedes manejarla de manera más efectiva.",
+        image: "⚙️",
+      },
+      {
+        question:
+          "¿Cuál es el orden secuencial correcto de cómo se desarrolla el ciclo de la ansiedad?",
+        options: [
+          "A) 1. Situación de alerta 2. Pensamiento automático 3. Reacción física y emocional 4. Evitación y alivio 5. Confirmación del peligro y aumento del miedo.",
+          "B) 1. Pensamiento automático 2. Situación de alerta 3. Evitación y alivio 4. Reacción física y emocional 5. Confirmación del peligro y aumento del miedo.",
+          "C) 1. Situación de alerta 2. Reacción física y emocional 3. Pensamiento automático 4. Confirmación del peligro y aumento del miedo 5. Evitación y alivio.",
+          "D) 1. Pensamiento automático 2. Reacción física y emocional 3. Situación de alerta 4. Evitación y alivio 5. Confirmación del peligro y aumento del miedo.",
         ],
-        bank: [
-          "seguro",
-          "posible",
-          "diría",
-          "haría",
-          "equilibrado",
-          "exagerado",
-          "incontrolable",
-          "inquieto",
-          "inseguro",
-        ],
-        correct: ["seguro", "diría", "equilibrado"],
+        correct: 0,
         feedback:
-          "Siempre trata de desarrollar una forma más justa y equilibrada de pensar sobre las situaciones que te generan miedo (Beck, 2021; Kendall et al., 2016).",
-        hint: "Busca una palabra que describa un pensamiento que no se va a los extremos, sino que se mantiene en un punto medio.",
+          "La ansiedad se dispara por un detonante que genera una idea de amenaza, activando al cuerpo; si se elige escapar, el cerebro asume erróneamente que el peligro era real, haciendo que el miedo aumente a futuro.\n\nReferencias:\n- Clark, D.M. & Wells, A. (1995). A cognitive model of social phobia. En R.G. Heimberg et al. (Eds.), Social Phobia. Guilford Press.\n- Craske, M.G. & Barlow, D.H. (2022). Mastery of your anxiety and worry (3rd ed.). Oxford University Press.",
+        hint: "Para descifrar el orden, piensa en la causa y el efecto: el cuerpo no reacciona por sí solo sin que la mente interprete primero la situación externa, y el cerebro no puede confirmar que huir 'te salvó' hasta que decides evitar el escenario.",
       },
     ],
   },
   {
     id: "ans-6",
     sectionId: "anxiety",
-    title: "El ciclo de la ansiedad",
-    description: "Ordena los engranajes del temor.",
+    title: "¿Qué tipo de pensamiento es?",
+    description: "No te pongas leyes absolutas.",
     type: "anxiety",
-    activityType: "interactive",
+    activityType: "quiz",
     ageGroup: "teen",
     completed: false,
     order: 6,
     content: [
       {
-        type: "ordenar",
-        text: "Imagina que te llaman para exponer en clase. Esta situación puede activar una alerta en tu mente, desencadenando una serie de reacciones físicas y conductuales. Ordena las etapas correctas:",
-        correctItems: [
-          "Una situación activa una alerta (ej. te llaman a exponer).",
-          "Aparece un pensamiento automático (ej. 'Me voy a bloquear').",
-          "El cuerpo reacciona con emoción intensa (corazón acelerado, sudor).",
-          "Evitas la situación para sentir alivio rápido.",
-          "El cerebro confirma que la situación era peligrosa y el miedo crece.",
+        text: "Los pensamientos que tenemos sobre nosotros mismos pueden influir mucho en cómo nos sentimos y actuamos. A veces, cuando enfrentamos situaciones difíciles, como obtener una calificación baja en un examen, podemos caer en patrones de pensamiento que no son útiles y que nos hacen sentir peor. Te invitamos a identificar qué tipo de pensamiento está teniendo Andrés.",
+        image: "🏷️",
+      },
+      {
+        question:
+          "Andrés saca un 3.8 en un examen y piensa: 'Soy un fracasado total, nunca sirvo para nada.' ¿Qué tipo de pensamiento es este?",
+        options: [
+          "A) Lectura de mente: cree saber lo que otros piensan de él.",
+          "B) Generalización excesiva: usa un evento para concluir algo absoluto sobre sí mismo.",
+          "C) Catastrofización: imagina el peor resultado posible.",
+          "D) Pensamiento mágico: cree que sus pensamientos pueden causar eventos.",
         ],
-        initialItems: [
-          "Evitas la situación para sentir alivio rápido.",
-          "Una situación activa una alerta (ej. te llaman a exponer).",
-          "El cerebro confirma que la situación era peligrosa and el miedo crece.",
-          "Aparece un pensamiento automático (ej. 'Me voy a bloquear').",
-          "El cuerpo reacciona con emoción intensa (corazón acelerado, sudor).",
-        ],
+        correct: 1,
         feedback:
-          "Evitar enseña al cerebro que solo sobreviviste gracias al escape. Romper el ciclo requiere exposición gradual (Clark & Wells, 1995; Craske & Barlow, 2022).",
-        hint: "Primero aparece la situación y el pensamiento automático, luego la reacción corporal y finalmente evitas.",
+          "Este patrón distorsiona la realidad al transformar un hecho aislado en una regla absoluta. Identificar estas conclusiones apresuradas nos permite frenar la autocrítica destructiva, recordándonos que un resultado específico jamás define nuestra capacidad total ni nuestro valor personal.\n\nReferencias:\n- Beck, A.T. (1979). Cognitive therapy of depression. Guilford Press.\n- Burns, D.D. (1980). Feeling good: The new mood therapy. Morrow. (Clasificación de distorsiones cognitivas)",
+        hint: "Andrés sacó un 3.8 (¡que ni siquiera es una nota perdida!), pero al decir 'nunca sirvo para nada', cerró la puerta a cualquier otra posibilidad. No está leyendo mentes, ni imaginando el fin del mundo ... está usando un único momento para ponerse una etiqueta excesiva para siempre.",
       },
     ],
   },
   {
     id: "ans-7",
     sectionId: "anxiety",
-    title: "Pensamientos y etiquetas",
-    description: "No te pongas leyes absolutas.",
+    title: "La escalera de miedo",
+    description: "Exposición paso a paso.",
     type: "anxiety",
     activityType: "quiz",
     ageGroup: "teen",
@@ -216,303 +201,121 @@ export const INITIAL_LESSONS: Lesson[] = [
     order: 7,
     content: [
       {
-        text: "Los pensamientos que tenemos sobre nosotros mismos influyen en cómo actuamos. A veces, al obtener una calificación regular en un examen, caemos en patrones que nos hacen sentir peor.",
-        image: "🏷️",
+        text: "Enfrentar nuestros miedos puede ser un desafío, pero es un paso importante para sentirnos más seguros y tranquilos. La técnica de la exposición gradual nos ayuda a enfrentar esos miedos de manera controlada y efectiva. Al hacerlo, nuestro cerebro comienza a entender que las situaciones que tememos no son tan peligrosas como pensamos.",
+        image: "🪜",
       },
       {
         question:
-          "Andrés saca un 3.8 en un examen y piensa: 'Soy un fracasado total, nunca sirvo para nada.' ¿Qué tipo de pensamiento es este?",
+          "Completa los conceptos de la exposición: 'La exposición gradual funciona porque el cerebro aprende que la situación no es tan __________ como creía. Cada vez que afronto un miedo sin evitarlo, el nivel de ansiedad sube y luego __________ solo. La escalera empieza por los miedos __________, no por los más intensos.'",
         options: [
-          "Lectura de mente: cree saber lo que otros piensan de él.",
-          "Generalización excesiva: usa un evento para concluir algo absoluto sobre sí mismo.",
-          "Catastrofización: imagina el peor resultado posible.",
-          "Pensamiento mágico: cree que sus pensamientos causan eventos.",
+          "A) real / desaparece / intermedios",
+          "B) peligrosa / baja / más fáciles",
+          "C) aburrida / se mantiene / conocidos",
+          "D) difícil / aumenta / más fuertes",
         ],
         correct: 1,
         feedback:
-          "Frases como 'Nunca sirvo para nada' a partir de un solo resultado es una de las distorsiones más frecuentes en la ansiedad (Beck, 1979; Burns, 1980).",
-        hint: "Andrés sacó un 3.8 que es aprobatorio, pero se impuso el término permanente de 'nunca sirvo'.",
+          "Enfrentar los miedos de forma escalonada reentrena al cerebro al demostrarle que el peligro percibido no es real. Al sostener la situación sin huir, permitimos que la alarma biológica se apague sola, demostrándonos que podemos tolerar el malestar y avanzar con éxito hacia retos mayores.\n\nReferencias:\n- Higa-McMillan, C.K. et al. (2016). Evidence base update: 50 years of research on treatment for child and adolescent anxiety. Journal of Clinical Child & Adolescent Psychology, 45(2), 91–113.\n- Chorpita, B.F. & Daleiden, E.L. (2009). Mapping evidence-based treatments for children and adolescents. Journal of Consulting and Clinical Psychology, 77(3), 566–579.",
+        hint: "Piensa en el proceso de adaptación del cuerpo: primero desmientes una amenaza exagerada, luego experimentas cómo el malestar se reduce de forma natural con el tiempo, y finalmente avanzas paso a paso, ganando confianza desde el escalón que requiere menos esfuerzo.",
       },
     ],
   },
   {
     id: "ans-8",
     sectionId: "anxiety",
-    title: "La escalera de miedo",
-    description: "Exposición paso a paso.",
+    title: "¿Cómo usar las preocupaciones?",
+    description: "Gana espacio libre posponiendo tus dudas.",
     type: "anxiety",
-    activityType: "interactive",
+    activityType: "quiz",
     ageGroup: "teen",
     completed: false,
     order: 8,
     content: [
       {
-        type: "completar-frase",
-        text: "Enfrentar miedos es retador pero vital. La técnica de exposición gradual nos ayuda a enfrentar miedos de manera controlada para que el cerebro entienda que no hay peligro real.",
-        sentences: [
-          "La exposición gradual funciona porque el cerebro aprende que la situación no es tan [GAP_0] como creía.",
-          "Cada vez que afronto un miedo sin evitarlo, el nivel de ansiedad sube y luego [GAP_1] solo.",
-          "La escalera empieza por los miedos [GAP_2], no por los más intensos.",
+        text: "Las preocupaciones son algo normal en nuestra vida diaria, pero a veces pueden volverse abrumadoras y difíciles de manejar. En lugar de dejar que estas preocupaciones nos controlen, podemos aprender a gestionarlas de manera efectiva. Una técnica útil es la 'postergación de preocupaciones', que nos permite anotar nuestras inquietudes y abordarlas en un momento específico.",
+        image: "📝",
+      },
+      {
+        question:
+          "¿Cuál es el orden ideal para aplicar la técnica de postergación de preocupaciones?",
+        options: [
+          "A) 1. Aparece una preocupación 2. La anoto en la app 3. Me digo que la pensaré luego 4. En el horario programado la leo 5. Evalúo si puedo hacer algo o si sigue siendo importante.",
+          "B) 1. Me digo que la pensaré luego 2. Aparece una preocupación 3. La anoto en la app 4. Evalúo si puedo hacer algo o si sigue siendo importante 5. En el horario programado la leo.",
+          "C) 1. Aparece una preocupación 2. Evalúo si puedo hacer algo o si sigue siendo importante 3. La anoto en la app 4. Me digo que la pensaré luego 5. En el horario programado la leo.",
+          "D) 1. La anoto en la app 2. Me digo que la pensaré luego 3. Aparece una preocupación 4. En el horario programado la leo 5. Evalúo si puedo hacer algo o si sigue siendo importante.",
         ],
-        bank: [
-          "peligrosa",
-          "segura",
-          "baja",
-          "sube",
-          "más fáciles",
-          "más difíciles",
-          "miedo",
-          "risa",
-        ],
-        correct: ["peligrosa", "baja", "más fáciles"],
+        correct: 0,
         feedback:
-          "La escalera de miedos empieza siempre con los más fáciles para ir avanzando progresivamente (Higa-McMillan, 2016; Chorpita, 2009).",
-        hint: "Para subir sin resbalarte, pones el pie sobre el escalón más accesible y fácil.",
+          "La postergación reduce la rumiación obsesiva y agobiante acumulando silenciosamente las inquietudes para resolverlas en un espacio planeado libre de apuros emocionales.\n\nReferencias:\n- Borkovec, T.D. et al. (1983). Preliminary exploration of worry. Behaviour Research and Therapy, 21(1), 9–16.\n- Rego, S.A. (2011). Worry postponement. En O'Donohue & Fisher (Eds.), Cognitive Behavior Therapy: Core Principles for Practice. Wiley.",
+        hint: "Para descifrar el orden, piensa en la causa: para poder guardar una preocupación y sacártela del foco escolar, esta primero tiene que brotar en tu mente.",
       },
     ],
   },
   {
     id: "ans-9",
     sectionId: "anxiety",
-    title: "Postergación de dudas",
-    description: "Guarda tus preocupaciones para luego.",
+    title: "Técnica 5-4-3-2-1",
+    description: "Grounding para reconectar con el presente.",
     type: "anxiety",
-    activityType: "interactive",
+    activityType: "quiz",
     ageGroup: "teen",
     completed: false,
     order: 9,
     content: [
       {
-        type: "ordenar",
-        text: "En lugar de dejar que las preocupaciones te controlen todo el día, ordene los pasos de la postergación de preocupaciones para abordarlas juntas en un momento específico:",
-        correctItems: [
-          "Aparece una preocupación en un momento del día.",
-          "La anoto en la app sin seguir pensando en ella.",
-          "Me digo: 'La pienso en mi momento de preocupaciones.'",
-          "En el horario programado leo todas las preocupaciones anotadas.",
-          "Para cada una me pregunto: ¿Puedo hacer algo al respecto? ¿Sigue siendo importante?",
+        text: "La técnica 5-4-3-2-1 es una herramienta útil para manejar la ansiedad y volver a conectar con el momento presente. A veces, cuando nos sentimos abrumados o ansiosos, nuestra mente puede empezar a dar vueltas a los mismos pensamientos, lo que puede intensificar nuestra incomodidad. Esta técnica nos ayuda a interrumpir ese ciclo y a enfocarnos en nuestro entorno de una manera sencilla y efectiva. Esta es una oportunidad para reflexionar sobre lo que funciona mejor para ti.",
+        image: "🖐️",
+      },
+      {
+        question:
+          "¿Cuál es el mejor momento para usar la técnica de estimulación sensorial 5-4-3-2-1?",
+        options: [
+          "A) Una vez que la agitación ha desaparecido por completo, para estabilizar el estado de ánimo.",
+          "B) Exclusivamente cuando la crisis emocional ha alcanzado su punto más alto e incontrolable.",
+          "C) Únicamente al final de la jornada como un método programado para conciliar el sueño.",
+          "D) Al notar las primeras señales de que la mente empieza a rumiar y el malestar va en aumento.",
         ],
-        initialItems: [
-          "Para cada una me pregunto: ¿Puedo hacer algo al respecto? ¿Sigue siendo importante?",
-          "Aparece una preocupación en un momento del día.",
-          "Me digo: 'La pienso en mi momento de preocupaciones.'",
-          "En el horario programado leo todas las preocupaciones anotadas.",
-          "La anoto en la app sin seguir pensando en ella.",
-        ],
+        correct: 3,
         feedback:
-          "Al mirarlas en frío, descubrirás que muchas preocupaciones perdieron su fuerza o relevancia solas (Borkovec et al., 1983; Rego, 2011).",
-        hint: "Anota la preocupación primero, mantén tu horario y evalúalas de forma analítica al final.",
+          "El ejercicio de estimulación sensorial (grounding) funciona mejor si se aplica de manera preventiva ante los primeros síntomas de agitación. Interrumpir el ciclo de rumiación a tiempo evita que los pensamientos repetitivos tomen el control total de tu atención, facilitando un retorno más rápido a la calma.\n\nReferencias:\n- Keng, S.L. et al. (2011). Effects of mindfulness on psychological health: A review. Clinical Psychology Review, 31(6), 1041–1056.\n- Zenner, C. et al. (2014). Mindfulness-based interventions in schools: A systematic review and meta-analysis. Frontiers in Psychology, 5, 603.",
+        hint: "Visualiza esta herramienta como un freno de mano: es mucho más fácil y seguro detener un vehículo cuando empieza a acelerar cuesta abajo que intentar frenarlo en seco cuando ya va a su máxima velocidad.",
       },
     ],
   },
   {
     id: "ans-10",
     sectionId: "anxiety",
-    title: "Calma 5-4-3-2-1",
-    description: "Trae tu atención de vuelta.",
-    type: "anxiety",
+    title: "EL JEFE: EL VELOCÍMETRO",
+    description: "Mide tus alertas antes de acelerar.",
+    type: "boss",
     activityType: "quiz",
     ageGroup: "teen",
     completed: false,
     order: 10,
     content: [
       {
-        text: "La técnica 5-4-3-2-1 es una herramienta excelente para reaccionar al pánico al conectarte con el presente mediante tus cinco sentidos básicos.",
-        image: "🖐️",
-      },
-      {
-        question: "¿Cuál es el mejor momento para usar la técnica 5-4-3-2-1?",
-        options: [
-          "Solo antes de dormir, como de costumbre.",
-          "Cuando siento que la ansiedad está subiendo y mi mente está dando vueltas al mismo pensamiento.",
-          "Después de que la ansiedad ya bajó, para celebrar.",
-          "Únicamente durante ataques de pánico severos.",
-        ],
-        correct: 1,
-        feedback:
-          "Es más efectiva cuando la activas de forma temprana — rompe el engranaje del pánico antes de que se cierre (Keng et al., 2011; Zenner, 2014).",
-        hint: "Piensa en interrumpir el ciclo de forma preventiva antes de llegar al máximo.",
-      },
-    ],
-  },
-  {
-    id: "ans-11",
-    sectionId: "anxiety",
-    title: "Mi cuerpo tiene el mapa",
-    description: "Ubica tus respuestas físicas.",
-    type: "anxiety",
-    activityType: "interactive",
-    ageGroup: "teen",
-    completed: false,
-    order: 11,
-    content: [
-      {
-        type: "mapa-corporal",
-      },
-    ],
-  },
-  {
-    id: "ans-12",
-    sectionId: "anxiety",
-    title: "Hecho vs Interpretación",
-    description: "Filtra fantasías ansiosas de realidades.",
-    type: "anxiety",
-    activityType: "interactive",
-    ageGroup: "teen",
-    completed: false,
-    order: 12,
-    content: [
-      {
-        type: "hecho-interpretacion",
-      },
-    ],
-  },
-  {
-    id: "ans-13",
-    sectionId: "anxiety",
-    title: "El velocímetro interno",
-    description: "Reconoce tu punto de aceleración.",
-    type: "anxiety",
-    activityType: "interactive",
-    ageGroup: "teen",
-    completed: false,
-    order: 13,
-    content: [
-      {
-        type: "velocimetro",
-      },
-    ],
-  },
-  {
-    id: "ans-14",
-    sectionId: "anxiety",
-    title: "Noticiero de mi Mente",
-    description: "Desarma titulares exagerados.",
-    type: "anxiety",
-    activityType: "interactive",
-    ageGroup: "teen",
-    completed: false,
-    order: 14,
-    content: [
-      {
-        type: "noticiero",
-      },
-    ],
-  },
-  {
-    id: "ans-15",
-    sectionId: "anxiety",
-    title: "Yo del Futuro",
-    description: "Gana perspectiva temporal en miedos.",
-    type: "anxiety",
-    activityType: "interactive",
-    ageGroup: "teen",
-    completed: false,
-    order: 15,
-    content: [
-      {
-        type: "yo-futuro",
-      },
-    ],
-  },
-  {
-    id: "ans-16",
-    sectionId: "anxiety",
-    title: "Mapa de Apoyo",
-    description: "Traza tu red para tormentas.",
-    type: "anxiety",
-    activityType: "interactive",
-    ageGroup: "teen",
-    completed: false,
-    order: 16,
-    content: [
-      {
-        type: "mapa-apoyo",
-      },
-    ],
-  },
-  {
-    id: "ans-17",
-    sectionId: "anxiety",
-    title: "Experimento del Control",
-    description: "Resta control y gana tranquilidad.",
-    type: "anxiety",
-    activityType: "quiz",
-    ageGroup: "teen",
-    completed: false,
-    order: 17,
-    content: [
-      {
-        text: "Cuando la ansiedad se eleva, nuestra mente se vuelve súper controladora y nos exige hipervigilancia total sobre cada insignificante detalle.",
-        image: "🧪",
+        text: "La ansiedad no llega de cero a cien de un momento a otro va subiendo poco a poco, como el velocímetro de un carro. El problema es que muchas veces no notamos que está subiendo hasta que ya está muy alta. Si aprendes a identificar tu nivel antes de que llegue al límite, puedes usar una herramienta a tiempo y evitar que se te salga de las manos.",
+        image: "🏎️",
       },
       {
         question:
-          "Santiago predice que si no revisa todo grupal sacarán cero. ¿Qué experimento propone un término medio saludable?",
+          "¿Cuál de estos esquemas se asocia con los niveles y herramientas del velocímetro?",
         options: [
-          "El experimento del abandono total: apagar el teléfono y ausentarse.",
-          "El experimento del hipercontrol: quedarse en vela rehaciendo todo solo.",
-          "El experimento de la delegación pequeña: asumir su parte y revisar con un compañero la conclusión juntos una sola vez al final.",
-          "Abstenerse de ayudar pero guardarle rabia al grupo.",
+          "A) 0–2 (Verde): Ansiedad leve; 3–5 (Amarillo): Momento de calma; 6–8 (Naranja): Crisis alta que requiere apoyo externo; 9–10 (Rojo): Pausa inmediata y técnica de grounding.",
+          "B) 0–2 (Verde): Estado tranquilo para aprender; 3–5 (Amarillo): Alerta leve para usar respiración cuadrada; 6–8 (Naranja): Ansiedad moderada para activar grounding 5-4-3-2-1; 9–10 (Rojo): Ansiedad alta que requiere un adulto de confianza.",
+          "C) 0–2 (Verde): Alerta inicial; 3–5 (Amarillo): Ansiedad moderada con respiración; 6–8 (Naranja): Estado tranquilo para planear; 9–10 (Rojo): Alerta máxima que se resuelve por completo con la app.",
+          "D) 0–2 (Verde): Momento de planear; 3–5 (Amarillo): Ansiedad alta; 6–8 (Naranja): Alerta leve para pausar actividades; 9–10 (Rojo): Ansiedad moderada que requiere soporte técnico.",
         ],
-        correct: 2,
+        correct: 1,
         feedback:
-          "Al delegar una porción controlada, le permites a la realidad demostrarte que no ocurrirá un desastre (Bennett-Levy, 2004; McManus, 2012).",
-        hint: "Busca la opción que delegue una tarea puntual con un único análisis final.",
-      },
-    ],
-  },
-  {
-    id: "ans-18",
-    sectionId: "anxiety",
-    title: "Preocupaciones Útiles",
-    description: "Diferencia ruidos de planes viables.",
-    type: "anxiety",
-    activityType: "interactive",
-    ageGroup: "teen",
-    completed: false,
-    order: 18,
-    content: [
-      {
-        type: "preocupacion-util",
-      },
-    ],
-  },
-  {
-    id: "ans-19",
-    sectionId: "anxiety",
-    title: "Mi Yo Compasivo",
-    description: "Háblate con afecto y clemencia.",
-    type: "anxiety",
-    activityType: "interactive",
-    ageGroup: "teen",
-    completed: false,
-    order: 19,
-    content: [
-      {
-        type: "yo-compasivo",
-      },
-    ],
-  },
-  {
-    id: "ans-20",
-    sectionId: "anxiety",
-    title: "EL JEFE: VORTEX",
-    description: "Diseña tu pócima de rescate químico.",
-    type: "boss",
-    activityType: "interactive",
-    ageGroup: "teen",
-    completed: false,
-    order: 20,
-    content: [
-      {
-        type: "laboratorio-pociones",
+          "Chequear cómo estás todos los días te ayuda a conocer tus patrones: qué situaciones te ponen nervioso, cuándo sube más, qué te ayuda a bajarla. Ese autoconocimiento vale muchísimo. Recuerda que si la ansiedad llega a un nivel rojo (muy alta), la app no reemplaza el acompañamiento presencial y de confianza de profesionales de la salud o un adulto cercano.\n\nReferencias:\n- Wolpe, J. (1969). The Practice of Behavior Therapy. Pergamon Press. (Origen de la Escala SUDs)\n- Kendall, P.C. et al. (2016). Cognitive-behavioral therapy for anxious youth. Journal of Consulting and Clinical Psychology, 84(6), 522–531.",
+        hint: "No busques el número perfecto — busca el que se siente honesto. Pregúntate: ¿puedo respirar con calma? ¿Mi cuerpo está tenso? ¿Mi mente está dando vueltas? Esas respuestas te ayudan a encontrar tu número.",
       },
     ],
   },
 
   // ==========================================
-  // STAGE 2: DEPRESSION (20 Levels)
+  // STAGE 2: DEPRESSION (10 Levels)
   // ==========================================
   {
     id: "dep-1",
@@ -523,7 +326,7 @@ export const INITIAL_LESSONS: Lesson[] = [
     activityType: "quiz",
     ageGroup: "teen",
     completed: false,
-    order: 21,
+    order: 11,
     content: [
       {
         text: "La tristeza suele tener una causa clara y dura poco. La depresión se ancla por semanas, apaga el goce por tus entretenimientos y merma notablemente tu energía física diaria.",
@@ -533,14 +336,14 @@ export const INITIAL_LESSONS: Lesson[] = [
         question:
           "Valentina lleva tres semanas vacía, duerme en demasía y se percibe como una carga sin causa real. ¿Qué describe su estado?",
         options: [
-          "Es solo tristeza normal que se solucionará esperando solitaria.",
-          "Como no tiene una causa dura, es solo para llamar la atención.",
-          "Su estado se asemeja a la depresión por su prolongación mayor a dos semanas, apatía por todo y ausencia de luto.",
-          "Solo es preocupante si empieza a reprobar materias.",
+          "A) Es solo tristeza normal que se solucionará esperando solitaria.",
+          "B) Como no tiene una causa dura, es solo para llamar la atención.",
+          "C) Su estado se asemeja a la depresión por su prolongación mayor a dos semanas, apatía por todo y ausencia de luto.",
+          "D) Solo es preocupante si empieza a reprobar materias.",
         ],
         correct: 2,
         feedback:
-          "La depresión puede aparecer de forma biológica sin un desencadenante evidente (APA, 2013; Hankin et al., 2015).",
+          "La depresión puede aparecer de forma biológica sin un desencadenante evidente.\n\nReferencias:\n- American Psychiatric Association (APA, 2013). Diagnostic and Statistical Manual of Mental Disorders (5th ed.).\n- Hankin, B.L. et al. (2015). Depressive disorders in children and adolescents. Handbook of Clinical Child Psychology.",
         hint: "Presta atención a la duración, asimetría de goces y la ausencia de un motivo trágico concreto.",
       },
     ],
@@ -554,7 +357,7 @@ export const INITIAL_LESSONS: Lesson[] = [
     activityType: "quiz",
     ageGroup: "teen",
     completed: false,
-    order: 22,
+    order: 12,
     content: [
       {
         text: "En la juventud, tu cerebro cambia aceleradamente. En la depresión, la alarma emocional se enciende a tope por tonterías, mientras la corteza reguladora de calma trabaja con menos fuerza.",
@@ -564,14 +367,14 @@ export const INITIAL_LESSONS: Lesson[] = [
         question:
           "¿Qué ocurre con el cerebro adolescente en presencia de la depresión?",
         options: [
-          "La zona de amortiguación afectiva trabaja de forma hiperactiva.",
-          "La alarma emocional se activa con desmedida facilidad y el freno amortiguador trabaja con menor ímpetu.",
-          "Se cancelan biológicamente todas las emociones por completo.",
-          "Los mensajeros neurotransmisores suben para darnos alegría extra.",
+          "A) La zona de amortiguación afectiva trabaja de forma hiperactiva.",
+          "B) La alarma emocional se activa con desmedida facilidad y el freno amortiguador trabaja con menor ímpetu.",
+          "C) Se cancelan biológicamente todas las emociones por completo.",
+          "D) Los mensajeros neurotransmisores suben para darnos alegría extra.",
         ],
         correct: 1,
         feedback:
-          "Esta desregulación temporal hace que las dificultades normales se perciban gigantes (Lupien et al., 2009; Gotlib & Hamilton, 2008).",
+          "Esta desregulación temporal hace que las dificultades normales se perciban gigantes.\n\nReferencias:\n- Lupien, S.J. et al. (2009). Effects of stress throughout the lifespan on the brain, behaviour and cognition. Nature Reviews Neuroscience, 10, 434-445.\n- Gotlib, I.H. & Hamilton, J.P. (2008). Neuroimaging and depression. Handbook of Depression.",
         hint: "Es una sumatoria: alarma altamente sensible sumada a un freno debilitado.",
       },
     ],
@@ -585,8 +388,12 @@ export const INITIAL_LESSONS: Lesson[] = [
     activityType: "interactive",
     ageGroup: "teen",
     completed: false,
-    order: 23,
+    order: 13,
     content: [
+      {
+        text: "La depresión en jóvenes no siempre se manifiesta en llanto triste o encierro. Muchas veces asume máscaras de ira defensiva, quejas físicas y desvinculación progresiva de amigos.",
+        image: "👤",
+      },
       {
         type: "multiple-select",
         question:
@@ -599,7 +406,7 @@ export const INITIAL_LESSONS: Lesson[] = [
         ],
         correct: [0, 1],
         feedback:
-          "La tristeza en jóvenes a menudo asume máscaras de ira defensiva, quejas físicas y desvinculación progresiva de amigos (APA, 2013; Stringaris & Goodman, 2009).",
+          "La tristeza en jóvenes a menudo asume máscaras de ira defensiva, quejas físicas y desvinculación progresiva de amigos.\n\nReferencias:\n- American Psychiatric Association (APA, 2013).\n- Stringaris, A. & Goodman, R. (2009). Longitudinal outcome of irritability in children. American Journal of Psychiatry, 166(9).",
       },
     ],
   },
@@ -612,7 +419,7 @@ export const INITIAL_LESSONS: Lesson[] = [
     activityType: "quiz",
     ageGroup: "teen",
     completed: false,
-    order: 24,
+    order: 14,
     content: [
       {
         text: "Consumir perfiles perfectos de redes sin interactuar te incita a comparar tu vida detrás de escena con la máscara editada de los demás.",
@@ -622,14 +429,14 @@ export const INITIAL_LESSONS: Lesson[] = [
         question:
           "Laura pasa horas scrolleando fotos perfectas de compañeras y termina frustrada y decaída sin saber por qué. ¿Qué lo explica?",
         options: [
-          "Dos horas es insignificante; necesita pasar cuatro horas para alterarse.",
-          "El scrolleo pasivo la empuja a la comparación social nociva contra fragmentos editados e irreales de otros.",
-          "Instagram destruye las neuronas mecánicas de forma instantánea.",
-          "Es una señal biológica de queLaura tiene baja capacidad académica.",
+          "A) Dos horas es insignificante; necesita pasar cuatro horas para alterarse.",
+          "B) El scrolleo pasivo la empuja a la comparación social nociva contra fragmentos editados e irreales de otros.",
+          "C) Instagram destruye las neuronas mecánicas de forma instantánea.",
+          "D) Es una señal biológica de que Laura tiene baja capacidad académica.",
         ],
         correct: 1,
         feedback:
-          "La comparación pasiva recurrente con ideales irreales de bienestar fomenta un desprecio severo de los propios logros (Twenge et al., 2018; Coyne et al., 2020).",
+          "La comparación pasiva recurrente con ideales irreales de bienestar fomenta un desprecio severo de los propios logros.\n\nReferencias:\n- Twenge, J.M. et al. (2018). Increases in depressive symptoms, suicide-related outcomes, and suicide rates among US adolescents. Clinical Psychological Science, 6(1), 3–17.\n- Coyne, S.M. et al. (2020). Does time spent on social media impact mental health? A 8-year longitudinal study. Computers in Human Behavior, 102.",
         hint: "Fíjate en el término de comparación social pasiva silenciosa contra vidas recortadas.",
       },
     ],
@@ -643,7 +450,7 @@ export const INITIAL_LESSONS: Lesson[] = [
     activityType: "quiz",
     ageGroup: "teen",
     completed: false,
-    order: 25,
+    order: 15,
     content: [
       {
         text: "La tristeza tiñe las opiniones. Hace que tu cerebro ignore el lado positivo de un evento y se autoafirme en mentiras catastróficas del todo-o-nada.",
@@ -653,14 +460,14 @@ export const INITIAL_LESSONS: Lesson[] = [
         question:
           "Camila obtiene un aceptable 3.8 y concluye: 'Me fue terrible. Nunca voy a poder con la materia. Siempre soy la peor.' ¿Qué trampas hay?",
         options: [
-          "Ninguna; es totalmente lógico y honesto que se exprese con ese desprecio.",
-          "Una sola: una leve molestia por perfeccionismo escolar.",
-          "Múltiples trampas: filtro negativo (ignora pasar la materia), catastrofismo y etiquetas extremas absolutas ('nunca', 'siempre').",
-          "Adjudicarse culpas ajenas a su control social.",
+          "A) Ninguna; es totalmente lógico y honesto que se exprese con ese desprecio.",
+          "B) Una sola: una leve molestia por perfeccionismo escolar.",
+          "C) Múltiples trampas: filtro negativo (ignora pasar la materia), catastrofismo y etiquetas extremas absolutas ('nunca', 'siempre').",
+          "D) Adjudicarse culpas ajenas a su control social.",
         ],
         correct: 2,
         feedback:
-          "Desmontar el absolutismo del filtro negativo disminuye la pesadez de los errores pasajeros (Beck et al., 1979; Haaga et al., 1991).",
+          "Desmontar el absolutismo del filtro negativo disminuye la pesadez de los errores pasajeros.\n\nReferencias:\n- Beck, A.T. et al. (1979). Cognitive therapy of depression. Guilford Press.\n- Haaga, D.A. et al. (1991). Empirical status of cognitive theory of depression. Psychological Bulletin, 110(2).",
         hint: "Presta atención al uso de leyes absolutas injustas como 'nunca sirvo' y 'siempre fallo'.",
       },
     ],
@@ -674,8 +481,12 @@ export const INITIAL_LESSONS: Lesson[] = [
     activityType: "interactive",
     ageGroup: "teen",
     completed: false,
-    order: 26,
+    order: 16,
     content: [
+      {
+        text: "La falta de sueño diario desgasta la paciencia, debilita el escudo de los neurotransmisores de bienestar y descalibra por completo tu ritmo circadiano.",
+        image: "🛌",
+      },
       {
         type: "multiple-select",
         question:
@@ -688,7 +499,7 @@ export const INITIAL_LESSONS: Lesson[] = [
         ],
         correct: [0, 1, 3],
         feedback:
-          "La falta recurrente de sueño diario magnifica la desregulación emocional, haciendo insalvables los retos (Paruthi et al., 2106; Harvey, 2011).",
+          "La falta recurrente de sueño diario magnifica la desregulación emocional, haciendo insalvables los retos.\n\nReferencias:\n- Paruthi, S. et al. (2016). Recommended amount of sleep for pediatric populations. Journal of Clinical Sleep Medicine, 12(6).\n- Harvey, A.G. (2011). Sleep and circadian rhythms in bipolar disorder and schizophrenia. Lancet Psychiatry.",
       },
     ],
   },
@@ -701,8 +512,12 @@ export const INITIAL_LESSONS: Lesson[] = [
     activityType: "interactive",
     ageGroup: "teen",
     completed: false,
-    order: 27,
+    order: 17,
     content: [
+      {
+        text: "En la depression, el cerebro se apaga y posterga. Al contrario de lo que creemos, las ganas no nacen de la espera pasiva, ¡nacen del movimiento físico inicial!",
+        image: "🏃",
+      },
       {
         type: "multiple-select",
         question:
@@ -715,20 +530,20 @@ export const INITIAL_LESSONS: Lesson[] = [
         ],
         correct: [0, 1],
         feedback:
-          "Iniciar con una actividad pequeña rompe el ciclo inactivo del decaimiento cerebral (Cuijpers et al., 2007; Lejuez, 2011).",
+          "Iniciar con una actividad pequeña rompe el ciclo inactivo del decaimiento cerebral.\n\nReferencias:\n- Cuijpers, P. et al. (2007). Behavioral activation in the treatment of depression: A meta-analysis. Clinical Psychology Review, 27(3).\n- Lejuez, C.W. et al. (2011). Ten-year revision of the Brief Behavioral Activation Treatment for Depression. Cognitive and Behavioral Practice, 18(2).",
       },
     ],
   },
   {
     id: "dep-8",
     sectionId: "depression",
-    title: "Hablase con amabilidad",
+    title: "Hablarse con amabilidad",
     description: "Desarma el desprecio interno.",
     type: "depression",
     activityType: "quiz",
     ageGroup: "teen",
     completed: false,
-    order: 28,
+    order: 18,
     content: [
       {
         text: "La autocrítica hostil daña tu cerebro igual que una amenaza física en curso. Háblate con la misma ternura que le ofrecerías a tu mejor amigo.",
@@ -738,14 +553,14 @@ export const INITIAL_LESSONS: Lesson[] = [
         question:
           "Tomás se equivoca en clase y piensa: 'Soy un fracasado.' ¿Cómo luce una respuesta autocompasiva y protectora?",
         options: [
-          "Validar que el error duele recio, consolarse y recordarse que un fallo transitorio no destruye su valor o inteligencia completa.",
-          "Negar el acontecimiento distrayéndose en videojuegos de forma obsesiva.",
-          "Decirse mentiras exageradas sobre ser perfecto e infalible.",
-          "Rumiar su descuidado en silencio por varias jornadas.",
+          "A) Validar que el error duele recio, consolarse y recordarse que un fallo transitorio no destruye su valor o inteligencia completa.",
+          "B) Negar el acontecimiento distrayéndose en videojuegos de forma obsesiva.",
+          "C) Decirse mentiras exageradas sobre ser perfecto e infalible.",
+          "D) Rumiar su descuidado en silencio por varias jornadas.",
         ],
         correct: 0,
         feedback:
-          "La amabilidad realista ante la falla atenúa el miedo limitante a volver a probar (Neff, 2003; Blatt, 2004).",
+          "La amabilidad realista ante la falla atenúa el miedo limitante a volver a probar.\n\nReferencias:\n- Neff, K.D. (2003). Development and validation of a scale to measure self-compassion. Self and Identity, 2(3), 223–250.\n- Blatt, S.J. (204). Experiences of depression: Theoretical, clinical, and research perspectives. American Psychological Association.",
         hint: "Busca la opción que acoja el dolor con clemencia, no con castigos mentales severos.",
       },
     ],
@@ -759,8 +574,12 @@ export const INITIAL_LESSONS: Lesson[] = [
     activityType: "interactive",
     ageGroup: "teen",
     completed: false,
-    order: 29,
+    order: 19,
     content: [
+      {
+        text: "Apoyar a un amigo con depresión no requiere dar sermones o decir 'ponle ganas'. Un oído paciente libre de juicios es el puente más poderoso.",
+        image: "🤝",
+      },
       {
         type: "multiple-select",
         question:
@@ -773,20 +592,20 @@ export const INITIAL_LESSONS: Lesson[] = [
         ],
         correct: [0, 1, 2],
         feedback:
-          "Una oreja dispuesta libre de críticas y motivar la vinculación con redes de soporte escolar son las mayores muestras de aprecio (Kitchener & Jorm, 2002; Rickwood et al., 2005).",
+          "Una oreja dispuesta libre de críticas y motivar la vinculación con redes de soporte escolar son las mayores muestras de aprecio.\n\nReferencias:\n- Kitchener, B.A. & Jorm, A.F. (2002). Mental health first aid training in a workplace setting. International Journal of Mental Health Systems.\n- Rickwood, D. et al. (2005). Young people's help-seeking for mental health problems. Australian e-Journal for the Advancement of Mental Health, 4(3).",
       },
     ],
   },
   {
     id: "dep-10",
     sectionId: "depression",
-    title: "Buscar ayuda calificada",
+    title: "EL JEFE: SOMBRA ETERNA",
     description: "Reconoce cuándo es tramo clínico.",
-    type: "depression",
+    type: "boss",
     activityType: "quiz",
     ageGroup: "teen",
     completed: false,
-    order: 30,
+    order: 20,
     content: [
       {
         text: "No requieres estar al borde del colapso para merecer apoyo. Dos semanas continuas de apatía general y pesadez son un indicador prudente para consultar.",
@@ -796,286 +615,15 @@ export const INITIAL_LESSONS: Lesson[] = [
         question:
           "Andrés lleva tres semanas cansado y vacío, pero dice: 'No es para tanto, todos tienen rachas malas'. ¿Qué criterio es apropiado?",
         options: [
-          "Tiene razón; tres semanas es un luto breve que disolverá con ocio solitario.",
-          "Debe consultar únicamente si empieza a reprobar exámenes drásticamente.",
-          "Como ya sobrepasó el umbral clínico de dos semanas con cansancio y anhedonia, merece buscar ayuda sin dudar.",
-          "Mientras no tenga llanto o crisis estridentes de luto, carece de alertas.",
+          "A) Tiene razón; tres semanas es un luto breve que disolverá con ocio solitario.",
+          "B) Debe consultar únicamente si empieza a reprobar exámenes drásticamente.",
+          "C) Como ya sobrepasó el umbral clínico de dos semanas con cansancio y anhedonia, merece buscar ayuda sin dudar.",
+          "D) Mientras no tenga llanto o crisis estridentes de luto, carece de alertas.",
         ],
         correct: 2,
         feedback:
-          "Esperar a que el dolor se torne insostenible dilata la sanación del desánimo (APA, 2013; Radez et al., 2021).",
+          "Esperar a que el dolor se torne insostenible dilata la sanación del desánimo.\n\nReferencias:\n- American Psychiatric Association (APA, 2013). DSM-5.\n- Radez, J. et al. (2021). Why do children and adolescents not seek formal help for their mental health difficulties? A systematic review. Social Psychiatry and Psychiatric Epidemiology, 56, 1221–1232.",
         hint: "Nuestras directrices fijan el umbral de dolor sostenido en las dos semanas continuadas.",
-      },
-    ],
-  },
-  {
-    id: "dep-11",
-    sectionId: "depression",
-    title: "Tu cuerpo también habla",
-    description: "Diferencia astenia de desgana voluntaria.",
-    type: "depression",
-    activityType: "interactive",
-    ageGroup: "teen",
-    completed: false,
-    order: 31,
-    content: [
-      {
-        type: "multiple-select",
-        question:
-          "Sofi lleva semanas cansada. Duerme mucho, tiene dolor de cabeza frecuente y se tacha de 'perezosa'. ¿Qué le dirías?",
-        options: [
-          "Es posible que tu corporalidad esté manifestando dolores que no has procesado de forma consciente.",
-          "Debes forzarte e ir de compras para superar de inmediato la modorra.",
-          "El letargo extremo y la somnolencia desmedida son llamadas físicas de socorro de la depresión clínica.",
-          "Esto carece por completo de conexión con tus sentimientos.",
-        ],
-        correct: [0, 2],
-        feedback:
-          "Nuestra mente y cuerpo operan unidos; el dolor anímico a menudo asume de forma silenciosa tensionales del cuerpo (Thapar et al., 2022).",
-      },
-    ],
-  },
-  {
-    id: "dep-12",
-    sectionId: "depression",
-    title: "Detector de mitos",
-    description: "Derrumba mentiras del bienestar.",
-    type: "depression",
-    activityType: "quiz",
-    ageGroup: "teen",
-    completed: false,
-    order: 32,
-    content: [
-      {
-        text: "Reducir la depresión a 'una simple flojera' o 'mucha tristeza pasajera' fomenta sentimientos de desamparo y culpa injustos.",
-        image: "🛡️",
-      },
-      {
-        question:
-          "Un compañero afirma: 'La depresión es estar algo triste y desganado. Poniéndole voluntad se cura'. ¿Qué opinas?",
-        options: [
-          "Es totalmente veraz; la voluntad anula el desbalance químico del cerebro.",
-          "Es parcialmente cierto; el optimismo cura gripes tensionales.",
-          "Es una mentira clínica severa. La depresión altera goces, sueño, relaciones y cognición, excediendo con creces un mero mal genio.",
-          "Depende enteramente del temperamento de nacimiento.",
-        ],
-        correct: 2,
-        feedback:
-          "Tildar la afección de mero desánimo menor culpabiliza innecesariamente a los jóvenes (APA, 2013).",
-      },
-    ],
-  },
-  {
-    id: "dep-13",
-    sectionId: "depression",
-    title: "Kit de Supervivencia",
-    description: "Arma tus escudos de hábitos básicos.",
-    type: "depression",
-    activityType: "interactive",
-    ageGroup: "teen",
-    completed: false,
-    order: 33,
-    content: [
-      {
-        type: "multiple-select",
-        question:
-          "Estás diseñando un 'escudo' anímico para periodos de exámenes escolares duros. ¿Qué hábitos añadirías?",
-        options: [
-          "Garantizar entre 8 y 10 horas de sueño diario regular.",
-          "Platicar con franqueza acerca de mis miedos con un tutor o acudiente.",
-          "Establecer descansos planeados alejándome de tareas cada hora.",
-          "Encerrarme a solas por tres días sin contestar chats.",
-        ],
-        correct: [0, 1, 2],
-        feedback:
-          "Los hábitos elementales protegen de forma robusta la estabilidad química frente al estrés y la pesadez (OMS, 2021).",
-      },
-    ],
-  },
-  {
-    id: "dep-14",
-    sectionId: "depression",
-    title: "¿Tristeza o algo más?",
-    description: "Descubre alertas detrás de la irritabilidad.",
-    type: "depression",
-    activityType: "interactive",
-    ageGroup: "teen",
-    completed: false,
-    order: 34,
-    content: [
-      {
-        type: "multiple-select",
-        question:
-          "Mateo está esquivo, responde de mal modo a todos y perdió el foco en clase. Los profesores lo tildan de 'grosero rebelde'. ¿Qué ocurre?",
-        options: [
-          "Mateo podría estar encubriendo un malestar depresivo profundo que no logra enunciar.",
-          "Se trata solo de caprichos y ganas de boicotear la clase escolar.",
-          "La hostilidad y la pérdida súbita de concentración son modos clásicos en que se expresa el dolor anímico juvenil.",
-          "Tiene mala crianza y pereza.",
-        ],
-        correct: [0, 2],
-        feedback:
-          "La ira desmedida suele ser una estrategia inconsciente de autodefensa ante la pesadez del desánimo (Thapar et al., 2022).",
-      },
-    ],
-  },
-  {
-    id: "dep-15",
-    sectionId: "depression",
-    title: "El primer mensaje",
-    description: "Inicia la plática salvadora.",
-    type: "depression",
-    activityType: "interactive",
-    ageGroup: "teen",
-    completed: false,
-    order: 35,
-    content: [
-      {
-        type: "multiple-select",
-        question:
-          "Deseas comentarle a un tutor de tu tensión pero tus miedos te frenan. ¿Qué mensajes serían discretos y efectivos para romper el hielo?",
-        options: [
-          "¿Podríamos platicar un momento? Últimamente no me he sentido muy bien en el colegio.",
-          "Necesito confiarte algo importante de mis sentimientos cuando tengas un espacio.",
-          "Será mejor callar; de todas formas a nadie le importa lo que siento.",
-          "Soy un fastidio innecesario.",
-        ],
-        correct: [0, 1],
-        feedback:
-          "No requieres un discurso elocuente ni perfecto; un ademán puntual es un puente poderoso para aliviar tu carga (Schwartz-Mette et al., 2020).",
-      },
-    ],
-  },
-  {
-    id: "dep-16",
-    sectionId: "depression",
-    title: "La nota perfecta",
-    description: "Desarma el perfeccionismo destructivo.",
-    type: "depression",
-    activityType: "interactive",
-    ageGroup: "teen",
-    completed: false,
-    order: 36,
-    content: [
-      {
-        type: "multiple-select",
-        question:
-          "Laura sacó 4.8 pero llora con desespero por no obtener un 5.0, asumiendo que es un fracaso absoluto. ¿Qué alertas expone su caso?",
-        options: [
-          "Un perfeccionismo dañino incontrolado que impide celebrar sus proezas académicas.",
-          "Una autoexigencia extrema donde un error menor equivale a la demolición de su valor completo.",
-          "Una ambición escolar perfectamente sana que conviene fomentar.",
-          "Un rigor intelectual excelente y digno de ser imitado.",
-        ],
-        correct: [0, 1],
-        feedback:
-          "El perfeccionismo agobiante asfixia el amor propio multiplicando la desazón existencial (Smith et al., 2021).",
-      },
-    ],
-  },
-  {
-    id: "dep-17",
-    sectionId: "depression",
-    title: "Entorno y consumos",
-    description: "Presta atención a tus divertimentos.",
-    type: "depression",
-    activityType: "interactive",
-    ageGroup: "teen",
-    completed: false,
-    order: 37,
-    content: [
-      {
-        type: "multiple-select",
-        question:
-          "Escuchar música sombría de forma constante o encallarse por horas en un videojuego frustrante altera tu ánimo. ¿Qué afirmaciones tienen sentido?",
-        options: [
-          "Los estímulos lúdicos y acústicos inciden directamente sobre tu estado de ánimo biológico.",
-          "Ciertos consumos calman y recargan las pilas, pero otros exacerban la frustración y la melancolía.",
-          "Los consumos digitales carecen de todo rastro sobre las hormonas afectivas adolescentes.",
-        ],
-        correct: [0, 1],
-        feedback:
-          "Regular concienzudamente tus consumos informáticos es una gran destreza de autodeterminación (Johannes et al., 2021).",
-      },
-    ],
-  },
-  {
-    id: "dep-18",
-    sectionId: "depression",
-    title: "Higlights de redes",
-    description: "Diferencia lo editado de lo verídico.",
-    type: "depression",
-    activityType: "interactive",
-    ageGroup: "teen",
-    completed: false,
-    order: 38,
-    content: [
-      {
-        type: "multiple-select",
-        question:
-          "Después de una hora en TikTok piensas: 'Todos tienen una fortuna mayor y son más amados que yo'. ¿Qué ocurre?",
-        options: [
-          "Comparación distorsionada contra recortes editados de mejores momentos ajenos.",
-          "Falsa devaluación de tu realidad personal basada en ficciones filtradas de pantallas.",
-          "Que las vidas proyectadas en redes son enteramente fieles a la realidad cotidiana.",
-        ],
-        correct: [0, 1],
-        feedback:
-          "Nadie publica fotos llorando o teniendo días rutinarios; comparar tu tras bastidores con el folleto digital ajeno distorsiona el amor propio (Valkenburg et al., 2022).",
-      },
-    ],
-  },
-  {
-    id: "dep-19",
-    sectionId: "depression",
-    title: "Cuando nada emociona",
-    description: "Comprende el vacío de la anhedonia.",
-    type: "depression",
-    activityType: "interactive",
-    ageGroup: "teen",
-    completed: false,
-    order: 39,
-    content: [
-      {
-        type: "multiple-select",
-        question:
-          "Samuel manifiesta: 'Ya nada me anima. Escuchar música o salir con amigos me da totalmente igual'. ¿Qué conceptos explican esto?",
-        options: [
-          "Vacío o bloqueo afectivo transitorio provocado por desánimo agudo.",
-          "Anhedonia clínica: merma severa de la capacidad para sentir deleite con pasatiempos antes amados.",
-          "Es perezón ordinario que requiere mano dura escolar.",
-          "Una llamada física y anímica de socorro.",
-        ],
-        correct: [0, 1, 3],
-        feedback:
-          "La apatía prolongada no es una elección de flojera, sino una alerta indispensable para ser oída (OMS, 2021).",
-      },
-    ],
-  },
-  {
-    id: "dep-20",
-    sectionId: "depression",
-    title: "EL JEFE: SOMBRA ETERNA",
-    description: "Desarma el calabozo del desánimo.",
-    type: "boss",
-    activityType: "interactive",
-    ageGroup: "teen",
-    completed: false,
-    order: 40,
-    content: [
-      {
-        type: "multiple-select",
-        question:
-          "Sientes flojera limitante, desafección total y lejanía con tu familia. Si esto fuera un combate contra el Jefe de la Sombra, ¿qué proezas elegirías?",
-        options: [
-          "Obrar con valentía e iniciar una plática sincera con un tutor o acudiente.",
-          "Acordar una cita de orientación con el área médica o psicológica del colegio.",
-          "Fugarse y clausurar tu comunicación con el mundo para no importunar.",
-          "Sufrir a solas obligándote a 'ponerle voluntad' perpetuamente.",
-        ],
-        correct: [0, 1],
-        feedback:
-          "Recurrir al amparo calificado escolar y médico es el mayor superpoder para retornar a la luz (NIMH, 2026).",
       },
     ],
   },
