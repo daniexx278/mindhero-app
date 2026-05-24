@@ -29,6 +29,7 @@ import {
   Cpu,
   Wind,
   Lock,
+  Crown,
 } from "lucide-react";
 import {
   AgeGroup,
@@ -128,6 +129,7 @@ export default function App() {
     | "achievements"
     | "profile"
     | "parentView"
+    | "premium"
   >("onboarding");
   const [userRole, setUserRole] = useState<UserRole | null>(null);
   const [ageGroup, setAgeGroup] = useState<AgeGroup | null>(null);
@@ -395,6 +397,13 @@ export default function App() {
             onEdit={() => setShowEditProfile(true)}
             onReset={handleReset}
             onLogout={handleLogout}
+            onBack={() => setView("dashboard")}
+          />
+        )}
+
+        {view === "premium" && (
+          <PremiumSubscriptionView
+            key="premium"
             onBack={() => setView("dashboard")}
           />
         )}
@@ -839,7 +848,7 @@ function Onboarding({
         Bienvenidos a MindHero
       </h1>
       <p className="text-slate-500 mb-10 text-lg font-bold">
-        Esta experiencia está diseñada exclusivamente para jóvenes entre 13 y 17
+        Esta experiencia está diseñada exclusivamente para jóvenes entre 12 y 17
         años.
       </p>
 
@@ -848,7 +857,7 @@ function Onboarding({
           onClick={() => onStart("teen")}
           className="py-6 px-4 bg-brand-primary text-white font-black rounded-3xl text-xl shadow-lg border-b-8 border-blue-800 hover:scale-[1.02] active:scale-95 active:border-b-0 uppercase cursor-pointer"
         >
-          TENGO ENTRE 13 Y 17 AÑOS
+          TENGO ENTRE 12 Y 17 AÑOS
         </button>
       </div>
 
@@ -1142,6 +1151,13 @@ function Dashboard({
               {stats.xp} EXP
             </span>
           </div>
+          <button
+            onClick={() => onNavigate("premium")}
+            className="w-10 h-10 md:w-12 md:h-12 rounded-full border-4 border-amber-400 shadow-lg bg-gradient-to-br from-yellow-300 via-amber-500 to-yellow-600 flex items-center justify-center overflow-hidden hover:scale-110 active:scale-95 transition-all cursor-pointer text-white animate-pulse shadow-yellow-500/20"
+            title="Suscripción Premium 👑"
+          >
+            <Crown size={20} className="stroke-[2.5]" fill="currentColor" />
+          </button>
           <button
             onClick={() => onNavigate("profile")}
             className="w-10 h-10 md:w-12 md:h-12 rounded-full border-4 border-brand-primary shadow-md bg-brand-secondary flex items-center justify-center overflow-hidden hover:scale-110 transition-transform cursor-pointer"
@@ -3321,6 +3337,148 @@ function CrisisModal({
           )}
         </AnimatePresence>
       </motion.div>
+    </motion.div>
+  );
+}
+
+function PremiumSubscriptionView({
+  onBack,
+}: {
+  onBack: () => void;
+  key?: string;
+}) {
+  const premiumFeatures = [
+    {
+      icon: "🧠",
+      title: "Retroalimentaciones Inteligentes",
+      desc: "Consejos súper detallados y dinámicos para guiarte mejor con tus miedos o desánimo.",
+    },
+    {
+      icon: "🪐",
+      title: "Más Niveles y Desafíos",
+      desc: "Libera mundos enteros con lecciones divertidas y aventuras secretas continuas.",
+    },
+    {
+      icon: "🎁",
+      title: "Mejores Recompensas",
+      desc: "Premios exclusivos en el gacha, avatares legendarios y tokens cósmicos especiales.",
+    },
+    {
+      icon: "🏆",
+      title: "Más Logros y Medallas",
+      desc: "Metas mensuales adicionales para premiar tu perseverancia intergaláctica.",
+    },
+    {
+      icon: "✨",
+      title: "Nuevas Habilidades y Técnicas",
+      desc: "Herramientas avanzadas de relajación y respiración activa para toda la vida.",
+    },
+  ];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      className="fixed inset-0 bg-bg-main z-50 overflow-y-auto px-4"
+    >
+      <div className="min-h-screen py-8 md:py-12 flex items-center justify-center w-full">
+        <div className="max-w-xl w-full bg-gradient-to-b from-[#1c013b] to-black rounded-[40px] border-4 border-amber-400 p-6 md:p-10 shadow-[0_0_50px_rgba(245,158,11,0.25)] relative overflow-hidden">
+          {/* Background Ambient Glow */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-72 h-72 bg-amber-400/15 rounded-full blur-[80px] pointer-events-none" />
+
+          {/* Header */}
+          <header className="flex items-center justify-between mb-8 pb-4 border-b border-purple-500/10">
+            <button
+              onClick={onBack}
+              className="w-10 h-10 bg-black/40 rounded-xl flex items-center justify-center text-slate-300 hover:text-white transition-colors cursor-pointer border border-slate-800"
+            >
+              <ChevronLeft size={20} />
+            </button>
+            <span className="text-xs font-black text-amber-400 uppercase tracking-[0.2em] bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
+              Pase Galáctico 👑
+            </span>
+            <div className="w-10" />
+          </header>
+
+          {/* Title Section */}
+          <div className="text-center mb-8">
+            <div className="w-16 h-16 bg-gradient-to-br from-yellow-300 to-amber-500 rounded-2xl flex items-center justify-center text-white mx-auto mb-4 shadow-lg shadow-amber-500/30">
+              <Crown size={32} className="stroke-[2]" fill="currentColor" />
+            </div>
+            <h2 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight glow-text">
+              MindHero{" "}
+              <span className="text-amber-400/90 drop-shadow-[0_0_15px_rgba(245,158,11,0.5)]">
+                Premium
+              </span>
+            </h2>
+            <p className="text-slate-300 text-xs font-semibold leading-relaxed mt-3 max-w-sm mx-auto">
+              ¡Sube de rango en tu salud mental y desbloquea beneficios
+              exclusivos de un verdadero héroe estelar!
+            </p>
+          </div>
+
+          {/* Feature Grid */}
+          <div className="space-y-4 mb-10">
+            <h3 className="text-[10px] font-black tracking-[0.25em] text-cyan-400 uppercase mb-3">
+              Mejoras de la Versión Premium:
+            </h3>
+            {premiumFeatures.map((feat, idx) => (
+              <div
+                key={idx}
+                className="flex items-start gap-4 p-4 rounded-2xl bg-black/40 border border-purple-500/10 hover:border-amber-400/20 hover:bg-black/60 transition-all group"
+              >
+                <div className="text-2xl w-10 h-10 rounded-xl bg-purple-950/40 border border-purple-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  {feat.icon}
+                </div>
+                <div className="flex-1">
+                  <p className="font-black text-sm text-white tracking-wide uppercase">
+                    {feat.title}
+                  </p>
+                  <p className="text-xs text-slate-400 font-bold leading-relaxed mt-1">
+                    {feat.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Subscription Price Block */}
+          <div className="bg-gradient-to-r from-amber-400/5 via-amber-400/10 to-amber-400/5 border-2 border-amber-400/30 rounded-3xl p-6 text-center shadow-lg mb-8 relative">
+            <p className="text-xs font-black text-amber-400 uppercase tracking-[0.14em] mb-2">
+              PLAN MENSUAL
+            </p>
+            <div className="flex justify-center items-baseline gap-1">
+              <span className="text-4xl font-black text-white glow-text">
+                $20,000
+              </span>
+              <span className="text-xs text-slate-400 font-bold uppercase">
+                / mes
+              </span>
+            </div>
+            <p className="text-[10px] text-slate-500 font-bold mt-2 leading-relaxed">
+              Suscripción mensual de 20.000 pesos colombianos. Cancélala cuando
+              quieras.
+            </p>
+          </div>
+
+          {/* CTA Button */}
+          <button
+            onClick={onBack}
+            className="w-full py-4 bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 text-white font-black uppercase text-sm tracking-[0.12em] rounded-2xl border-b-8 border-amber-800 hover:scale-[1.01] active:translate-y-1 active:border-b-0 transition-transform cursor-pointer shadow-lg shadow-amber-500/25 hover:brightness-110"
+          >
+            Comprar o Suscribirse a la versión premium
+          </button>
+
+          {/* Back link */}
+          <button
+            onClick={onBack}
+            className="w-full mt-4 text-center text-xs text-slate-500 font-bold uppercase tracking-wider hover:text-slate-300 transition-colors cursor-pointer"
+          >
+            Volver por ahora
+          </button>
+        </div>
+      </div>
     </motion.div>
   );
 }
