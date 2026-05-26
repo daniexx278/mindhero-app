@@ -1064,7 +1064,7 @@ function ParentDashboard({
               className="p-4 bg-slate-50 rounded-2xl flex items-center justify-between"
             >
               <div>
-                <p className="font-black text-slate-705 text-sm">{l.title}</p>
+                <p className="font-black text-slate-700 text-sm">{l.title}</p>
                 <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">
                   Completado
                 </p>
